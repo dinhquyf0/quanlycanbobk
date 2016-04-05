@@ -174,7 +174,7 @@ public class MainViewController {
             csw.setVisible(true);
             CanBo cb = new CanBo();
             CanBoDAO cbd = new CanBoDAO();
-            CanBoSearchViewController cbsv = new CanBoSearchViewController(csw, cb, cbd);
+            CanBoSearchViewController cbsv = new CanBoSearchViewController(csw, cb, cbd,s);
             mw.setVisible(false);
         }
     }

@@ -514,9 +514,9 @@ public class ChangeView extends javax.swing.JFrame {
         jLabel107 = new javax.swing.JLabel();
         jLabel108 = new javax.swing.JLabel();
         TxtTrinhDo = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        Rbtn_DangVien = new javax.swing.JRadioButton();
+        RBtn_CongDoanVien = new javax.swing.JRadioButton();
+        RBtn_DoanVien = new javax.swing.JRadioButton();
         jScrollPane19 = new javax.swing.JScrollPane();
         CanBo_TBL = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
@@ -944,7 +944,7 @@ public class ChangeView extends javax.swing.JFrame {
         jPanel18Layout.setVerticalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel18Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel109, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(AddCbBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE))
@@ -955,8 +955,7 @@ public class ChangeView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel110, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DelCbBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(DelCbBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         jPanel18Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {DelCbBtn, UpdateCbBtn});
@@ -1025,16 +1024,21 @@ public class ChangeView extends javax.swing.JFrame {
 
         jLabel108.setText("Trình Độ");
 
-        jRadioButton1.setText("Đảng viên");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        Rbtn_DangVien.setText("Đảng viên");
+        Rbtn_DangVien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                Rbtn_DangVienActionPerformed(evt);
             }
         });
 
-        jRadioButton2.setText("Công đoàn viên");
+        RBtn_CongDoanVien.setText("Công đoàn viên");
 
-        jRadioButton3.setText("Đoàn viên");
+        RBtn_DoanVien.setText("Đoàn viên");
+        RBtn_DoanVien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RBtn_DoanVienActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
@@ -1050,61 +1054,57 @@ public class ChangeView extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel5)
                     .addComponent(jLabel1)
-                    .addComponent(jRadioButton1))
+                    .addComponent(Rbtn_DangVien))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TxtCanBoID, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TxtTenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TxtTenCanBo, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel19Layout.createSequentialGroup()
+                        .addComponent(Cbx_NgaySinh_CB, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Cbx_ThangSinh_CB, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Cbx_NamSinh_CB, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TxtNoiCongTac, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel19Layout.createSequentialGroup()
+                        .addComponent(Rbtn_Nam, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(RBtn_Nu, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel19Layout.createSequentialGroup()
+                        .addComponent(RBtn_DoanVien)
+                        .addGap(45, 45, 45)
+                        .addComponent(RBtn_CongDoanVien))
                     .addGroup(jPanel19Layout.createSequentialGroup()
                         .addComponent(CBx_Ngay_Ctac, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(CBx_Thang_Ctac, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(CBx_Nam_Ctac, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel19Layout.createSequentialGroup()
-                        .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TxtCanBoID, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TxtTenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TxtTenCanBo, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel19Layout.createSequentialGroup()
-                                .addComponent(Cbx_NgaySinh_CB, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(Cbx_ThangSinh_CB, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(Cbx_NamSinh_CB, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(TxtNoiCongTac, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel19Layout.createSequentialGroup()
-                                .addComponent(Rbtn_Nam, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30)
-                                .addComponent(RBtn_Nu, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel19Layout.createSequentialGroup()
-                                .addComponent(jRadioButton3)
-                                .addGap(45, 45, 45)
-                                .addComponent(jRadioButton2)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
-                        .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel14)
-                            .addComponent(jLabel13))
-                        .addGap(24, 24, 24)
-                        .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TxtThongTinKhac)
-                            .addComponent(TxtMaSoThue, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TxtSoTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TxtDiaChi)
-                            .addComponent(TxtSoDienThoai, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
-                            .addComponent(TxtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TxtThanhTich))))
-                .addGap(58, 58, 58)
-                .addComponent(jLabel108)
+                        .addComponent(CBx_Nam_Ctac, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(TxtTrinhDo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel14)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel108))
+                .addGap(24, 24, 24)
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(TxtThongTinKhac)
+                    .addComponent(TxtMaSoThue, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                    .addComponent(TxtSoTaiKhoan, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                    .addComponent(TxtDiaChi)
+                    .addComponent(TxtSoDienThoai, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                    .addComponent(TxtEmail)
+                    .addComponent(TxtThanhTich)
+                    .addComponent(TxtTrinhDo, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
-        jPanel19Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {TxtDiaChi, TxtMaSoThue, TxtSoDienThoai, TxtSoTaiKhoan, TxtThanhTich, TxtThongTinKhac});
+        jPanel19Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {TxtDiaChi, TxtEmail, TxtMaSoThue, TxtSoDienThoai, TxtSoTaiKhoan, TxtThanhTich, TxtThongTinKhac, TxtTrinhDo});
 
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1114,9 +1114,7 @@ public class ChangeView extends javax.swing.JFrame {
                     .addGroup(jPanel19Layout.createSequentialGroup()
                         .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(TxtCanBoID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel108)
-                            .addComponent(TxtTrinhDo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(TxtCanBoID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
@@ -1138,9 +1136,9 @@ public class ChangeView extends javax.swing.JFrame {
                             .addComponent(RBtn_Nu))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jRadioButton1)
-                            .addComponent(jRadioButton2)
-                            .addComponent(jRadioButton3))
+                            .addComponent(Rbtn_DangVien)
+                            .addComponent(RBtn_CongDoanVien)
+                            .addComponent(RBtn_DoanVien))
                         .addGap(12, 12, 12)
                         .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
@@ -1174,12 +1172,15 @@ public class ChangeView extends javax.swing.JFrame {
                             .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(TxtThongTinKhac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel107)
-                    .addComponent(CBx_Ngay_Ctac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CBx_Thang_Ctac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CBx_Nam_Ctac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel107)
+                        .addComponent(CBx_Ngay_Ctac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(CBx_Thang_Ctac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(CBx_Nam_Ctac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel108)
+                    .addComponent(TxtTrinhDo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         CanBo_TBL.setModel(new javax.swing.table.DefaultTableModel(
@@ -1205,23 +1206,28 @@ public class ChangeView extends javax.swing.JFrame {
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGap(4, 4, 4)
-                .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane19))
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addComponent(jScrollPane19)
+                        .addContainerGap())
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 203, Short.MAX_VALUE)
+                        .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21))))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jScrollPane19, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -1229,14 +1235,14 @@ public class ChangeView extends javax.swing.JFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, 1344, Short.MAX_VALUE)
+                .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, 633, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane2.addTab("Cán Bộ", jPanel5);
@@ -1542,7 +1548,7 @@ public class ChangeView extends javax.swing.JFrame {
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 573, Short.MAX_VALUE)
+            .addComponent(jPanel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Gia Đình", jPanel6);
@@ -1733,7 +1739,7 @@ public class ChangeView extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 1324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1818,7 +1824,7 @@ public class ChangeView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Cbx_Nam_DangPhi, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(TxtSoTienDongDangVien, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(436, Short.MAX_VALUE))
+                .addContainerGap(374, Short.MAX_VALUE))
         );
         jPanel24Layout.setVerticalGroup(
             jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1938,7 +1944,7 @@ public class ChangeView extends javax.swing.JFrame {
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, 301, Short.MAX_VALUE)
+                    .addComponent(jPanel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -2015,7 +2021,7 @@ public class ChangeView extends javax.swing.JFrame {
                         .addComponent(Cbx_Thang_DoanPhi, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Cbx_Nam_DoanPhi, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 405, Short.MAX_VALUE))
+                .addGap(0, 345, Short.MAX_VALUE))
         );
         jPanel29Layout.setVerticalGroup(
             jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2211,7 +2217,7 @@ public class ChangeView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Cbx_Nam_ChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(Txt_ChucVu))
-                .addContainerGap(438, Short.MAX_VALUE))
+                .addContainerGap(396, Short.MAX_VALUE))
         );
         jPanel31Layout.setVerticalGroup(
             jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2339,7 +2345,7 @@ public class ChangeView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel32, javax.swing.GroupLayout.PREFERRED_SIZE, 310, Short.MAX_VALUE)))
+                    .addComponent(jPanel32, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)))
         );
 
         jTabbedPane2.addTab("Chức vụ", jPanel16);
@@ -2425,7 +2431,7 @@ public class ChangeView extends javax.swing.JFrame {
                         .addComponent(Cbx_Thang_CongDoanPhi, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Cbx_Nam_CongDoanPhi, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(382, Short.MAX_VALUE))
+                .addContainerGap(344, Short.MAX_VALUE))
         );
 
         jPanel28Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Cbx_Nam_CongDoanPhi, Cbx_Ngay_CongDoanPhi, Cbx_Thang_CongDoanPhi});
@@ -2633,7 +2639,7 @@ public class ChangeView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Cbx_Nam_ChucDanh, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(Txt_ChucDanh, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(441, Short.MAX_VALUE))
+                .addContainerGap(400, Short.MAX_VALUE))
         );
         jPanel33Layout.setVerticalGroup(
             jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2765,13 +2771,13 @@ public class ChangeView extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1349, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jTabbedPane2)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Quản Lý Cán Bộ", jPanel1);
@@ -4269,9 +4275,9 @@ public class ChangeView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Print_Btn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(BackBtn)
-                .addGap(13, 13, 13))
+                .addContainerGap())
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {BackBtn, Print_Btn});
@@ -4279,12 +4285,12 @@ public class ChangeView extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 719, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Print_Btn)
                     .addComponent(BackBtn))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -4762,8 +4768,27 @@ public class ChangeView extends javax.swing.JFrame {
                     break;
                 }
             }
+            int dgv = listcbo.get(row).getDangVien();
+            int dv = listcbo.get(row).getDoanVien();
+            int cdv = listcbo.get(row).getCongDoanVien();
+             System.out.println(dgv + dv + cdv);
+            if(dgv == 1){
+                Rbtn_DangVien.setSelected(true);
+            }else if(dgv == 0){
+                Rbtn_DangVien.setSelected(false);
+            }
             
+            if(dv == 1){
+                RBtn_DoanVien.setSelected(true);
+            }else if(dv == 0){
+                RBtn_DoanVien.setSelected(false);
+            }
             
+            if(cdv == 1){
+                RBtn_CongDoanVien.setSelected(true);
+            }else if(cdv == 0){
+                RBtn_CongDoanVien.setSelected(false);
+            }
             TxtNoiCongTac.setText(listcbo.get(row).getNoiCongTac());
             TxtMaSoThue.setText(listcbo.get(row).getMaSoThue());
             TxtSoTaiKhoan.setText(listcbo.get(row).getSoTaiKhoan());
@@ -4772,6 +4797,7 @@ public class ChangeView extends javax.swing.JFrame {
             TxtEmail.setText(listcbo.get(row).getEmail());
             TxtThanhTich.setText(listcbo.get(row).getThanhTich());
             TxtThongTinKhac.setText(listcbo.get(row).getThongTinKhac());
+            TxtTrinhDo.setText(listcbo.get(row).getTrinhDo());
             
             String nam = listcbo.get(row).getNgaySinh().substring(0, 4);
             String thang = listcbo.get(row).getNgaySinh().substring(5, 7);
@@ -4825,12 +4851,17 @@ public class ChangeView extends javax.swing.JFrame {
     private void Cbx_Nam_CongDoanPhiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cbx_Nam_CongDoanPhiActionPerformed
     }//GEN-LAST:event_Cbx_Nam_CongDoanPhiActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    private void Rbtn_DangVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Rbtn_DangVienActionPerformed
+        RBtn_DoanVien.setSelected(false);
+    }//GEN-LAST:event_Rbtn_DangVienActionPerformed
 
     private void TxtKetQuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtKetQuaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TxtKetQuaActionPerformed
+
+    private void RBtn_DoanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBtn_DoanVienActionPerformed
+        Rbtn_DangVien.setSelected(false);
+    }//GEN-LAST:event_RBtn_DoanVienActionPerformed
     
     public void GiangDayTBLActionListener(MouseListener me){
         GDayBTL.addMouseListener(me);
@@ -5198,12 +5229,15 @@ public class ChangeView extends javax.swing.JFrame {
     public javax.swing.JRadioButton RBtn_CB_BB;
     public javax.swing.JRadioButton RBtn_CB_GDay;
     public javax.swing.JRadioButton RBtn_CB_GTrinh;
+    public javax.swing.JRadioButton RBtn_CongDoanVien;
+    public javax.swing.JRadioButton RBtn_DoanVien;
     public javax.swing.JRadioButton RBtn_GD;
     public javax.swing.JRadioButton RBtn_GDay;
     public javax.swing.JRadioButton RBtn_GV_NCKH;
     public javax.swing.JRadioButton RBtn_GiaoTrinh;
     public javax.swing.JRadioButton RBtn_NCKH;
     public javax.swing.JRadioButton RBtn_Nu;
+    public javax.swing.JRadioButton Rbtn_DangVien;
     public javax.swing.JRadioButton Rbtn_Nam;
     public javax.swing.JTextField TxtCanBoID;
     public javax.swing.JTextField TxtCap;
@@ -5488,9 +5522,6 @@ public class ChangeView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    public javax.swing.JRadioButton jRadioButton1;
-    public javax.swing.JRadioButton jRadioButton2;
-    public javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;

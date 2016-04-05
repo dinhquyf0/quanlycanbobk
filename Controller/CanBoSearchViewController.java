@@ -8,6 +8,7 @@ package Controller;
 import Model.*;
 import ModelDAO.CanBoDAO;
 import View.CanBoSearchView;
+import View.Main;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ import javax.swing.table.TableRowSorter;
  * @author DINHQUY
  */
 public class CanBoSearchViewController {
-    
+    String user;
     private CanBo cb;
     private CanBoSearchView cbs;
     private CanBoDAO cbd;
@@ -30,7 +31,8 @@ public class CanBoSearchViewController {
     public int selected_index_2 = 0;
     public int selected_index_3 = 0; 
     
-    public CanBoSearchViewController(CanBoSearchView cbs, CanBo cb, CanBoDAO cbd) {
+    public CanBoSearchViewController(CanBoSearchView cbs, CanBo cb, CanBoDAO cbd, String s) {
+        this.user = s;
         this.cb = cb;
         this.cbs = cbs;
         this.cbs.Combobox_1Listener(new CanBoSearchViewController.CBx1Action());
@@ -38,11 +40,23 @@ public class CanBoSearchViewController {
         this.cbs.Conbobox_3Listener(new CanBoSearchViewController.CBx3Action());
         this.cbs.SearchBtnListener(new CanBoSearchViewController.SearchCNAction());
         this.cbs.RefreshBtnListener(new CanBoSearchViewController.RefreshBtnAction());
+        this.cbs.BackBtnListener(new CanBoSearchViewController.BackListener());
         cbs.Binding(cbd.loadSearchTable());
     }
     
     private void BindingSearch(){
         cbs.Binding(cbd.loadSearchTable());
+    }
+
+    private class BackListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+           Main m = new Main();
+           cbs.setVisible(false);
+            MainViewController mvc = new MainViewController(m, user);
+            m.setVisible(true);
+        }
     }
     
     private class RefreshBtnAction implements ActionListener {

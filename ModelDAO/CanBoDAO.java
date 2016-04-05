@@ -118,7 +118,7 @@ public class CanBoDAO {
                          String HovaTen, String NgaySinh, String GioiTinh, 
                          String NoiCongTac, String ThoiGianBatDau, String TrinhDo, 
                          String MaSoThue, String SoTaiKhoan, String DiaChi,
-                         String SoDienThoai, String Email,String ThanhTich, String ThongTinKhac){
+                         String SoDienThoai, String Email,String ThanhTich, String ThongTinKhac, int Dgv, int dv, int cdv){
         
         cb.setMa_CB(MaCB);
         cb.setUserName(user);
@@ -135,6 +135,9 @@ public class CanBoDAO {
         cb.setEmail(Email);
         cb.setThanhTich(ThanhTich);
         cb.setThongTinKhac(ThongTinKhac);
+        cb.setDangVien(Dgv);
+        cb.setDoanVien(dv);
+        cb.setCongDoanVien(cdv);
         
         if((MaCB.length() != 0) && (user.length() != 0)) {
             if (cb.AddData(cb)) {
@@ -152,7 +155,7 @@ public class CanBoDAO {
                             String HovaTen, String NgaySinh, String GioiTinh, 
                             String NoiCongTac, String ThoiGianBatDau, String TrinhDo, 
                             String MaSoThue, String SoTaiKhoan, String DiaChi,
-                            String SoDienThoai, String Email,String ThanhTich, String ThongTinKhac){
+                            String SoDienThoai, String Email,String ThanhTich, String ThongTinKhac, int Dgv, int dv, int cdv){
         
         cb.setMa_CB(MaCB);
         cb.setUserName(user);
@@ -168,6 +171,9 @@ public class CanBoDAO {
         cb.setEmail(Email);
         cb.setThanhTich(ThanhTich);
         cb.setThongTinKhac(ThongTinKhac);
+        cb.setDangVien(Dgv);
+        cb.setDoanVien(dv);
+        cb.setCongDoanVien(cdv);
         
         if (cb.Update(cb)) {
                 JOptionPane.showMessageDialog(null, "Cập nhật thành công.!");

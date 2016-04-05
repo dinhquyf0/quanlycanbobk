@@ -77,8 +77,24 @@ public class CanBoController extends CheckEmpty{
             String Email = cw.TxtEmail.getText();
             String ThanhTich = cw.TxtThanhTich.getText();
             String ThongTinKhac = cw.TxtThongTinKhac.getText();
-           
-            cbd.UpdateCanBo(Ma_CB, user, HovaTen, NgaySinh, GioiTinh, NoiCongTac, ThoiGianBatDau, TrinhDo, MaSoThue, SoTaiKhoan, DiaChi, SoDienThoai, Email, ThanhTich, ThongTinKhac);
+            int Dgv, dv, cdv;
+            if(cw.Rbtn_DangVien.isSelected()){
+                Dgv = 1;
+            }else {
+                Dgv =0;
+            }
+            if(cw.RBtn_DoanVien.isSelected()){
+                dv = 1;
+            }else{
+                dv = 0;
+            }
+            if(cw.RBtn_CongDoanVien.isSelected()){
+                cdv = 1;
+            }else {
+                cdv = 0;
+            }
+            
+            cbd.UpdateCanBo(Ma_CB, user, HovaTen, NgaySinh, GioiTinh, NoiCongTac, ThoiGianBatDau, TrinhDo, MaSoThue, SoTaiKhoan, DiaChi, SoDienThoai, Email, ThanhTich, ThongTinKhac, Dgv, dv,cdv);
             cw.BindingCanBo(cbd.loadTableCanBo());            
         }
     }
@@ -113,11 +129,27 @@ public class CanBoController extends CheckEmpty{
             String Email = cw.TxtEmail.getText();
             String ThanhTich = cw.TxtThanhTich.getText();
             String ThongTinKhac = cw.TxtThongTinKhac.getText();
+             int Dgv, dv, cdv;
+            if(cw.Rbtn_DangVien.isSelected()){
+                Dgv = 1;
+            }else {
+                Dgv =0;
+            }
+            if(cw.RBtn_DoanVien.isSelected()){
+                dv = 1;
+            }else{
+                dv = 0;
+            }
+            if(cw.RBtn_CongDoanVien.isSelected()){
+                cdv = 1;
+            }else {
+                cdv = 0;
+            }
             
             if (!checkEmpty(cw.TxtCanBoID, Ma_CB, "Mã Cán Bộ")&&!checkEmpty(cw.TxtTenDangNhap, user, "Tên Đăng Nhập")) {
                 return;
             }else {
-            cbd.AddCanBo(Ma_CB, user, Password, HovaTen, NgaySinh, GioiTinh, NoiCongTac, ThoiGianBatDau, TrinhDo, MaSoThue, SoTaiKhoan, DiaChi, SoDienThoai, Email, ThanhTich, ThongTinKhac);
+            cbd.AddCanBo(Ma_CB, user, Password, HovaTen, NgaySinh, GioiTinh, NoiCongTac, ThoiGianBatDau, TrinhDo, MaSoThue, SoTaiKhoan, DiaChi, SoDienThoai, Email, ThanhTich, ThongTinKhac,Dgv,dv,cdv);
             }
             cw.BindingCanBo(cbd.loadTableCanBo());
         }

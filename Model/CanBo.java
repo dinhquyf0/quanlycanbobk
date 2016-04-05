@@ -8,7 +8,6 @@ package Model;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -23,7 +22,7 @@ public class CanBo extends DBConnect implements java.io.Serializable {
     private final String GET_BYID_CBGD = "select canbo.* from canbo, canbo_giadinh where canbo.Ma_CB = canbo_giadinh.Ma_CB and canbo_giadinh.Ma_CB = ?  ";
     private final String GET_BYIDGD = "select canbo.* from canbo, canbo_giadinh,gia_dinh where canbo.Ma_CB = canbo_giadinh.Ma_CB and canbo_giadinh.Ma_GD = gia_dinh.Ma_GD and gia_dinh.Ma_GD = ?";
     private final String ADD_DATA = "insert into "
-            + "canbo(Ma_CB,UserName,Password,HoVaTen,NgaySinh,GioiTinh,NoiCongTac,ThoiGianBatDauCongTac,TrinhDo,MaSoThue,SoTaiKhoan,DiaChi,SoDienThoai,Email,ThanhTich,ThongTinKhac)"
+            + "canbo(Ma_CB,UserName,Password,HoVaTen,NgaySinh,GioiTinh,NoiCongTac,ThoiGianBatDauCongTac,TrinhDo,MaSoThue,SoTaiKhoan,DiaChi,SoDienThoai,Email,ThanhTich,ThongTinKhac,)"
             + "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     private final String UPDATE_DATA = "Update "
             + "canbo set UserName=?,HoVaTen=?,NgaySinh=?,GioiTinh=?,NoiCongTac=?,ThoiGianBatDauCongTac =?,TrinhDo =?,MaSoThue=?,SoTaiKhoan=?,DiaChi=?,SoDienThoai=?,Email=?,ThanhTich=?,ThongTinKhac=? where Ma_CB=?";
@@ -113,11 +112,10 @@ public class CanBo extends DBConnect implements java.io.Serializable {
                     item.setEmail(rs.getString("Email"));
                     item.setThanhTich(rs.getString("ThanhTich"));
                     item.setThongTinKhac(rs.getString("ThongTinKhac"));
-                    
+                    item.setDangVien(rs.getInt("DangVien"));
+                    item.setDoanVien(rs.getInt("DoanVien"));
+                    item.setCongDoanVien(rs.getInt("CongDoanVien"));
                     objs.add(item);
-                    
-                   
-                    
                 }
             }
             getClose();
@@ -151,6 +149,9 @@ public class CanBo extends DBConnect implements java.io.Serializable {
                     item.setEmail(rs.getString("Email"));
                     item.setThanhTich(rs.getString("ThanhTich"));
                     item.setThongTinKhac(rs.getString("ThongTinKhac"));
+                    item.setDangVien(rs.getInt("DangVien"));
+                    item.setDoanVien(rs.getInt("DoanVien"));
+                    item.setCongDoanVien(rs.getInt("CongDoanVien"));
                 objs.add(item);
             }
             getClose();
@@ -185,6 +186,9 @@ public class CanBo extends DBConnect implements java.io.Serializable {
                     item.setEmail(rs.getString("Email"));
                     item.setThanhTich(rs.getString("ThanhTich"));
                     item.setThongTinKhac(rs.getString("ThongTinKhac"));
+                    item.setDangVien(rs.getInt("DangVien"));
+                    item.setDoanVien(rs.getInt("DoanVien"));
+                    item.setCongDoanVien(rs.getInt("CongDoanVien"));
                 objs.add(item);
             }
             getClose();
@@ -215,6 +219,9 @@ public class CanBo extends DBConnect implements java.io.Serializable {
             ps.setString(14, cbo.getEmail());
             ps.setString(15, cbo.getThanhTich());
             ps.setString(16, cbo.getThongTinKhac());
+            ps.setInt(17, cbo.getDangVien());
+            ps.setInt(18, cbo.getDoanVien());
+            ps.setInt(19, cbo.getCongDoanVien());
             int rs = ps.executeUpdate();
             if(rs > 0){
                 check = true;
@@ -282,7 +289,10 @@ public class CanBo extends DBConnect implements java.io.Serializable {
             ps.setString(12, cbo.getEmail());
             ps.setString(13, cbo.getThanhTich());
             ps.setString(14, cbo.getThongTinKhac());
-            ps.setString(15, cbo.getMa_CB());
+            ps.setInt(15, cbo.getDangVien());
+            ps.setInt(16, cbo.getDoanVien());
+            ps.setInt(17, cbo.getCongDoanVien());
+            ps.setString(18, cbo.getMa_CB());
             int rs = ps.executeUpdate();
             if(rs > 0){
                 check = true;
@@ -313,7 +323,33 @@ public class CanBo extends DBConnect implements java.io.Serializable {
     String ThongTinKhac;
     String ThoiGianBDCT;
     String TrinhDo;
-    
+    int DoanVien;
+    int DangVien;
+    int CongDoanVien;
+
+    public int getDoanVien() {
+        return DoanVien;
+    }
+
+    public void setDoanVien(Integer DoanVien) {
+        this.DoanVien = DoanVien;
+    }
+
+    public int getDangVien() {
+        return DangVien;
+    }
+
+    public void setDangVien(Integer DangVien) {
+        this.DangVien = DangVien;
+    }
+
+    public int getCongDoanVien() {
+        return CongDoanVien;
+    }
+
+    public void setCongDoanVien(Integer CongDoanVien) {
+        this.CongDoanVien = CongDoanVien;
+    }
 
     public String getMa_CB() {
         return Ma_CB;
