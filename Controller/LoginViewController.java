@@ -1,7 +1,6 @@
  
 package Controller;
 import Model.*;
-import ModelDAO.*;
 import View.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,7 +21,19 @@ public class LoginViewController extends CheckEmpty {
         this.lgv = lgv;
         
         this.lgv.LoginBtnListener(new LoginViewController.LoginBtnListener());
-           
+        this.lgv.GuestLoginActionListener(new LoginViewController.GuestLoginListener());
+    }
+
+    private class GuestLoginListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            lgv.setVisible(false);
+            Main m = new Main();
+            Log lg = new Log();
+            MainViewController mc = new MainViewController(m, lg, "Khách");
+            m.setVisible(true);
+        }
     }
         
     public class LoginBtnListener implements ActionListener{
@@ -33,17 +44,15 @@ public class LoginViewController extends CheckEmpty {
             
             u = lgv.getTfUser().getText();
             p = lgv.getStringPass();
-//                System.out.println(u+"\n" + p);
-                
+            
             if(!checkEmpty(lgv.getTfUser(), u, "Tên Đăng Nhập")&&!checkEmpty(lgv.getTfPass(), p, "Password")){
                 return;
             }
             else if(cb.getLogin(u, p)){
                 lgv.setVisible(false);
                 Main m = new Main();
-                
-                
-                MainViewController mc = new MainViewController(m, u);
+                Log lg = new Log();
+                MainViewController mc = new MainViewController(m, lg, u);
                 m.setVisible(true);
                     
                 }else {

@@ -357,7 +357,6 @@ public class ChangeView extends javax.swing.JFrame {
         clums.add("Tên Cán Bộ");
         clums.add("Hệ Số Lương");
         clums.add("Thời Gian Bắt Đầu");
-        clums.add("Thời Gian Kết Thúc");
         clums.add("Tiền Lương");
         
         model.setColumnIdentifiers(clums);

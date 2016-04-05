@@ -21,19 +21,48 @@ public class Luong extends DBConnect{
     String Luong;
     private final String GET_BY_ID = "select * from luong where ma_canbo =?";
     private final String GET_ALL = "select * from luong";
-    private final String GET_TIME = "select HeSoLuong from luong where ma_canbo = ? and year(ThoiGianBatDau) = ? and month(ThoiGianBatDau) =?";
+    private final String GET_ID_AND_TIME = "select HeSoLuong from luong where ma_canbo = ? and year(ThoiGianBatDau) = ? and month(ThoiGianBatDau) =?";
+    private final String GET_BY_TIME = "select * from luong where year(ThoiGianBatDau) = ? and month(ThoiGianBatDau) =?";
     private final String ADD_DATA = "insert into "
             + "luong(Stt,ma_canbo,HeSoLuong,ThoiGianBatDau,Luong)"
             + "values (?,?,?,?,?)";
     private final String UPDATE_DATA = "Update "
             + "luong set ma_canbo=?,HeSoLuong=?,ThoiGianBatDau=?,Luong = ? where Stt=?";
     private final String REMOVE_DATA = "Delete from luong where Stt=?";
-
- public double getByTime(String macb, String yearbd, String monthbd) {
+    
+    public ArrayList<Luong> getByTime(String year,String month){
+        ArrayList<Luong> objs = new ArrayList<>();
+        try {
+            getConnect();
+            PreparedStatement ps = con.prepareStatement(GET_BY_TIME);
+            ps.setString(1, year);
+            ps.setString(2, month);
+            ResultSet rs = ps.executeQuery();
+            if(rs!= null ){
+                while (rs.next()){
+                Luong item = new Luong();
+                
+                item.setStt(rs.getString("Stt"));
+                item.setma_canbo(rs.getString("ma_canbo"));
+                item.setHeSoLuong(rs.getString("HeSoLuong"));
+                item.setThoiGianBatDau(rs.getString("ThoiGianBatDau"));
+                item.setLuong(rs.getString("Luong"));
+                
+                objs.add(item);
+                }
+            }
+            getClose();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return objs;
+    }
+    
+    public double getByIDandTime(String macb, String yearbd, String monthbd) {
         double hsl = 0;
         try {
             getConnect();
-            PreparedStatement ps = con.prepareStatement(GET_TIME);
+            PreparedStatement ps = con.prepareStatement(GET_ID_AND_TIME);
             ps.setString(1, macb);
             ps.setString(2, yearbd);
             ps.setString(3, monthbd);

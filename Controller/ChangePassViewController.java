@@ -6,6 +6,7 @@
 package Controller;
 
 import Model.CanBo;
+import Model.Log;
 import ModelDAO.CanBoDAO;
 import View.ChangePassView;
 import View.Main;
@@ -74,7 +75,8 @@ public class ChangePassViewController {
         public void actionPerformed(ActionEvent ae) {
             cpw.setVisible(false);
             Main m = new Main();
-            MainViewController mvc = new MainViewController(m, string);
+            Log lg = new Log();
+            MainViewController mvc = new MainViewController(m,lg, string);
             m.setVisible(true);
             
         }

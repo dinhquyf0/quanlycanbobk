@@ -6,6 +6,8 @@
 package Controller;
 import View.PhuPhiView;
 import Model.*;
+import ModelDAO.ChamThiDAO;
+import ModelDAO.LuongDAO;
 import View.Main;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,6 +16,7 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Vector;
 import javax.swing.JOptionPane;
 
 /**
@@ -30,8 +33,11 @@ public class PhuPhiViewController {
     private ChucDanh cd;
     private ChucVu cv;
     private ChamThi ct;
+    private LuongDAO ld;
+    private ChamThiDAO ctd;
     
-    public PhuPhiViewController(PhuPhiView ppv, CanBo cb,Luong lg, GiangDay gdy, ChucDanh cd, ChucVu cv, ChamThi ct, String s){
+    
+    public PhuPhiViewController(PhuPhiView ppv, CanBo cb,Luong lg, GiangDay gdy, ChucDanh cd, ChucVu cv, ChamThi ct,LuongDAO ld,ChamThiDAO ctd, String s){
         this.ppv = ppv;
         this.user = s;
         this.cb = cb;
@@ -40,13 +46,16 @@ public class PhuPhiViewController {
         this.cd = cd;
         this.cv = cv;
         this.ct = ct;
+        this.ld = ld;
+        this.ctd = ctd;
         this.ppv.GetDataBtnActionListener(new PhuPhiViewController.GetDataListener());
         this.ppv.TinhBtnActionListener(new PhuPhiViewController.TinhListener());
         this.ppv.RefreshBtnActionListener(new PhuPhiViewController.RefreshListener());
         this.ppv.SaveBtnActionListener(new PhuPhiViewController.SaveListener());
         this.ppv.BackBtnActionListenter(new PhuPhiViewController.BackListener());
         this.ppv.CBx_MaCbActionListener(new PhuPhiViewController.Cbx_MaCbListener());
-        
+        this.ppv.GetTableLuongBtnActionListener(new PhuPhiViewController.GetTableLuongListener());
+        this.ppv.GetTableChamThiBtnActionListener(new PhuPhiViewController.GetTableChamThiListener());
         if(s.equals("admin")){
            ppv.Cbx_MaCB.setEnabled(true);
         }else{
@@ -211,6 +220,42 @@ public class PhuPhiViewController {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
 }  
+    
+    ArrayList<Luong> listl = new ArrayList<>();
+    ArrayList<CanBo> listcb = new ArrayList<>();
+    ArrayList<ChamThi> listct = new ArrayList<>();
+
+    private class GetTableChamThiListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            String thang = ppv.Cbx_Thang_ChamThi.getSelectedItem().toString();
+            String nam = ppv.Cbx_Nam_ChamThi.getSelectedItem().toString();
+            
+            listct = ct.getByTIME(nam, thang);
+            ppv.BindingChamThi(ctd.loadTableChamThiTime(listct));
+            
+        }
+    }
+    private class GetTableLuongListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            String thang = ppv.Cbx_Thang.getSelectedItem().toString();
+            String nam = ppv.Cbx_Nam.getSelectedItem().toString();
+
+            listl = lg.getByTime(nam, thang);
+            while (listl == null){
+                int ithang = Integer.parseInt(ppv.Cbx_Thang_TGBD.getSelectedItem().toString());
+                ithang--;
+                listl = lg.getByTime(nam, Integer.toString(ithang));
+            }
+
+            ppv.BindingLuong(ld.loadTableLuongMonth(listl));
+        }
+    }
+
+
 
     private class Cbx_MaCbListener implements ActionListener {
 
@@ -218,8 +263,6 @@ public class PhuPhiViewController {
         public void actionPerformed(ActionEvent ae) {
 
             String macb = ppv.Cbx_MaCB.getSelectedItem().toString();
-            
-            
         }
     }
     
@@ -228,7 +271,7 @@ public class PhuPhiViewController {
         @Override
         public void actionPerformed(ActionEvent ae) {
             ppv.setVisible(false);
-            PhuPhiViewController ppvc = new PhuPhiViewController(ppv, cb, lg, gdy, cd, cv, ct, user);
+            PhuPhiViewController ppvc = new PhuPhiViewController(ppv, cb, lg, gdy, cd, cv, ct,ld,ctd,user);
             ppv.setVisible(true);
         }
     }
@@ -264,7 +307,8 @@ public class PhuPhiViewController {
         public void actionPerformed(ActionEvent ae) {
             ppv.setVisible(false);
             Main m = new Main();
-            MainViewController mvc = new MainViewController(m, user);
+            Log lg = new Log();
+            MainViewController mvc = new MainViewController(m, lg, user);
             m.setVisible(true);
         }
     }
@@ -299,38 +343,44 @@ public class PhuPhiViewController {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
+            
             ChucDanh cd = new ChucDanh();
             CanBo  cb = new CanBo();
             Luong lg = new Luong();
             ChucVu cv = new ChucVu();
             ChamThi ct = new ChamThi();
-
+            BaiBaoTapChi bb= new BaiBaoTapChi();
+            
             ArrayList<CanBo> listcb = new ArrayList<>();
+            ArrayList<BaiBaoTapChi> listbb = new ArrayList<>();
             
+            String ma_canbo = ppv.Cbx_MaCB.getSelectedItem().toString();
+
+            listcb = cb.getByID(ma_canbo);
+            listbb = bb.getByIDCB(ma_canbo);
             
-            listcb = cb.getByID(ppv.Cbx_MaCB.getSelectedItem().toString());
-            String chucdanh = cd.getByIDCB(ppv.Cbx_MaCB.getSelectedItem().toString());
-            String chucvu = cv.getByTime(ppv.Cbx_MaCB.getSelectedItem().toString(),ppv.Cbx_Nam_TGBD.getSelectedItem().toString(),ppv.Cbx_Thang_TGBD.getSelectedItem().toString());
+            String chucdanh = cd.getByIDCB(ma_canbo);
+            String chucvu = cv.getByTime(ma_canbo,ppv.Cbx_Nam_TGBD.getSelectedItem().toString(),ppv.Cbx_Thang_TGBD.getSelectedItem().toString());
             while (chucvu == ""){
                 int thang = Integer.parseInt(ppv.Cbx_Thang_TGBD.getSelectedItem().toString());
                 thang--;
-                chucvu = cv.getByTime(ppv.Cbx_MaCB.getSelectedItem().toString(),ppv.Cbx_Nam_TGBD.getSelectedItem().toString(), Integer.toString(thang));
+                chucvu = cv.getByTime(ma_canbo,ppv.Cbx_Nam_TGBD.getSelectedItem().toString(), Integer.toString(thang));
             }
-            Double hsl = lg.getByTime(ppv.Cbx_MaCB.getSelectedItem().toString(),ppv.Cbx_Nam_TGBD.getSelectedItem().toString(),
+            Double hsl = lg.getByIDandTime(ma_canbo,ppv.Cbx_Nam_TGBD.getSelectedItem().toString(),
                                                                             ppv.Cbx_Thang_TGBD.getSelectedItem().toString());
             while (hsl == 0.0) {                
                 int thang = Integer.parseInt(ppv.Cbx_Thang_TGBD.getSelectedItem().toString());
                 thang--;
-                hsl = lg.getByTime(ppv.Cbx_MaCB.getSelectedItem().toString(), ppv.Cbx_Nam_TGBD.getSelectedItem().toString() , Integer.toString(thang));
+                hsl = lg.getByIDandTime(ma_canbo, ppv.Cbx_Nam_TGBD.getSelectedItem().toString() , Integer.toString(thang));
             }
                 
             
             
             ppv.Txt_LCB.setText(Integer.toString(LCB));
 
-            String sbt = ct.getSoBaiThi(ppv.Cbx_MaCB.getSelectedItem().toString(),ppv.Cbx_Nam_TGBD.getSelectedItem().toString(),ppv.Cbx_Thang_TGBD.getSelectedItem().toString());
+            String sbt = ct.getSoBaiThi(ma_canbo,ppv.Cbx_Nam_TGBD.getSelectedItem().toString(),ppv.Cbx_Thang_TGBD.getSelectedItem().toString());
             try {
-                int tbt = 3500*Integer.parseInt(sbt);
+                int tbt = 10000*Integer.parseInt(sbt);
                 ppv.Txt_TienChamThi.setText(Integer.toString(tbt));
             } catch (Exception e) {
                 System.out.println(e.toString());

@@ -10,6 +10,9 @@ import Model.*;
 import ModelDAO.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
 /**
  *
  * @author DINHQUY
@@ -24,12 +27,12 @@ public class MainViewController {
     CanBoSearchView csw = new CanBoSearchView();
     ListView lw = new ListView();
     PhuPhiView ppw = new PhuPhiView();
+    private Log log;
     
     
-    
-    public MainViewController(Main m, String user){
+    public MainViewController(Main m, Log log, String user){
         this.mw = m;
-        
+        this.log  = log;
         s = user;
         this.mw.AboutBtnListener(new MainViewController.getAboutBtnListener());
         this.mw.ChangeDatatBtnListener(new MainViewController.getChangeDataBtnListener());
@@ -40,8 +43,31 @@ public class MainViewController {
         this.mw.LogoutBtnListener(new MainViewController.getLogoutBtnListener());
         
         mw.LBL_Ten.setText(user);
+        BindingLog();
+        
+        if(user.equals("admin")){
+            mw.ChangeBtn.setEnabled(true);
+        }else if(user.equals("Khách")){
+            mw.ChangeBtn.setEnabled(false);
+            mw.AboutBtn.setEnabled(false);
+            mw.ChangePassBtn.setEnabled(false);
+            mw.PPBtn.setEnabled(false);
+            
+            }else{
+            mw.ChangeBtn.setEnabled(false);
+        }
     }
- 
+    
+    public void BindingLog(){
+        ArrayList<Log> listlog = new ArrayList<>();
+        listlog = log.getALL();
+        String s;
+        for(Log lg :listlog){
+            s = lg.getNoiDung();
+            mw.BindingLog(s);
+        }
+        
+    }
     private  class getAboutBtnListener implements ActionListener {
 
         @Override
@@ -163,7 +189,9 @@ public class MainViewController {
             ChucDanh cd = new ChucDanh();
             ChucVu cv = new ChucVu();
             ChamThi ct = new ChamThi();
-            PhuPhiViewController ppv = new PhuPhiViewController(ppw, cb, lg, gdy, cd, cv, ct, s);
+            LuongDAO ld = new LuongDAO();
+            ChamThiDAO ctd = new ChamThiDAO();
+            PhuPhiViewController ppv = new PhuPhiViewController(ppw, cb, lg, gdy, cd, cv, ct,ld,ctd, s);
             mw.setVisible(false);
         }
     }

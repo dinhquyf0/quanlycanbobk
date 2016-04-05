@@ -21,7 +21,7 @@ public class BaiBaoTapChi extends DBConnect{
     String ChiSo_ISSN;
     String HeSo_IF;
     
-    private final String GET_BY_ID = "select tap_chi.* from canbo, giangvien_tapchi ,tap_chi where tap_chi.Ma_BaiBao = giangvien_tapchi.Ma_BaiBao and giangvien_tapchi.Ma_CB = canbo.Ma_CB and canbo.Ma_CB =?";
+    private final String GET_BY_ID_CB = "select tap_chi.* from canbo, giangvien_tapchi ,tap_chi where tap_chi.Ma_BaiBao = giangvien_tapchi.Ma_BaiBao and giangvien_tapchi.Ma_CB = canbo.Ma_CB and canbo.Ma_CB =?";
     private final String GET_ALL = "select * from tap_chi";
     private final String ADD_DATA = "insert into "
             + "tap_chi(Ma_BaiBao,TenTapChi,So,ThoiGianXuatBan,ChiSo_ISSN,HeSo_IF)"
@@ -30,11 +30,11 @@ public class BaiBaoTapChi extends DBConnect{
             + "tap_chi set TenTapChi=?,So=?,ThoiGianXuatBan=?,ChiSo_ISSN=?,HeSo_IF=? where Ma_BaiBao=?";
     private final String REMOVE_DATA = "Delete from tap_chi where Ma_BaiBao=?";
 
-    public ArrayList<BaiBaoTapChi> getByID(String id){
+    public ArrayList<BaiBaoTapChi> getByIDCB(String id){
         ArrayList<BaiBaoTapChi> objs = new ArrayList<>();
         try {
             getConnect();
-            PreparedStatement ps = con.prepareStatement(GET_BY_ID);
+            PreparedStatement ps = con.prepareStatement(GET_BY_ID_CB);
             ps.setString(1, id);
             ResultSet rs = ps.executeQuery();
             if(rs!= null && rs.next()){

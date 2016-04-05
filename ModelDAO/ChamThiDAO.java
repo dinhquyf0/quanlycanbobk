@@ -47,6 +47,25 @@ public class ChamThiDAO {
        return data;
     }
     
+    public Vector loadTableChamThiTime(ArrayList<ChamThi> listct){
+        Vector data = new Vector();
+        for(ChamThi ct : listct){
+            Vector row = new Vector();
+            listcb = cb.getByID(ct.getma_canbo());
+            row.add(ct.getMa_ChamThi());
+            row.add(ct.getma_canbo());
+            if(listcb.size() > 0){
+                row.add(listcb.get(0).getHoVaTen());
+            }else{
+                row.add("isEmpty");
+            }        
+            row.add(ct.getNgayNop());
+            row.add(ct.getSoBaiThi());
+            data.add(row);
+        }
+       return data;
+    }
+    
     public void AddChamThi(String Ma_ChamThi, String Ma_lop, String Ma_canBo, String Ma_monHoc, String NgayNop, String SoBaiThi){
         
         ct.setMa_ChamThi(Ma_ChamThi);

@@ -52,9 +52,10 @@ public class CanBoSearchViewController {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-           Main m = new Main();
-           cbs.setVisible(false);
-            MainViewController mvc = new MainViewController(m, user);
+            Main m = new Main();
+            Log lg = new Log();
+            cbs.setVisible(false);
+            MainViewController mvc = new MainViewController(m,lg, user);
             m.setVisible(true);
         }
     }

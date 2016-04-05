@@ -23,6 +23,30 @@ public class LuongDAO {
     Luong l = new Luong();
     ArrayList<Luong> listl = new ArrayList<>();
     
+    public Vector loadTableLuongMonth(ArrayList<Luong> listl){
+        
+        Vector data = new Vector();
+        
+        for(Luong l : listl){
+            Vector row = new Vector();
+            listcb =cb.getByID(l.getma_canbo());
+            
+            row.add(l.getStt());
+            row.add(l.getma_canbo());
+            if(listcb.size() > 0){
+                row.add(listcb.get(0).getHoVaTen());
+            }else{
+                row.add("isEmpty");
+            }
+            row.add(l.getHeSoLuong());
+            row.add(l.getThoiGianBatDau());
+            row.add(l.getLuong());
+          
+            data.add(row);
+        }
+        return data;
+    }
+    
     public Vector loadTableLuong(){
         listl = l.getALL();
         

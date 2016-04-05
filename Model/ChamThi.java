@@ -23,6 +23,7 @@ public class ChamThi extends DBConnect{
     private final String GET_SoBaiThi = "select SoBaiThi from cham_thi where ma_canbo =? and year(NgayNop) = ? and month(NgayNop) =?";
     private final String GET_BY_IDCT = "select cham_thi.* from cham_thi, giang_day where cham_thi.Ma_MH = giang_day.Ma_MH and giang_day.Ma_MH =?";
     private final String GET_BY_ID_CB ="select * from cham_thi where ma_canbo = ? ";
+    private final String GET_BY_TIME = "select ma_canbo,NgayNop,SoBaiThi from cham_thi where year(NgayNop) = ? and month(NgayNop) =?";
     private final String GET_ALL = "select * from cham_thi";
     private final String ADD_DATA = "insert into "
             + "cham_thi(Ma_ChamThi,Ma_lop,ma_canbo,Ma_MH,NgayNop,SoBaiThi)"
@@ -30,8 +31,30 @@ public class ChamThi extends DBConnect{
     private final String UPDATE_DATA = "Update "
             + "cham_thi set Ma_lop=?,ma_canbo=?,Ma_MH=?,NgayNop=?,SoBaiThi=? where Ma_ChamThi=?";
     private final String REMOVE_DATA = "Delete from cham_thi where Ma_ChamThi=?";
-
-      public ArrayList<ChamThi> getByIDCB(String s){
+    
+    public ArrayList<ChamThi> getByTIME(String year, String month){
+        ArrayList<ChamThi> objs = new ArrayList<>();
+        try{
+            getConnect();
+            PreparedStatement ps = con.prepareStatement(GET_BY_TIME);
+            ps.setString(1, year);
+            ps.setString(2, month);
+            ResultSet rs = ps.executeQuery();
+            if(rs != null && rs.next() ){
+                    ChamThi item = new ChamThi();
+                    item.setma_canbo(rs.getString("ma_canbo"));
+                    item.setNgayNop(rs.getString("NgayNop"));
+                    item.setSoBaiThi(rs.getString("SoBaiThi"));
+                objs.add(item);
+            }
+            getClose();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return objs;
+    }
+    
+    public ArrayList<ChamThi> getByIDCB(String s){
         ArrayList<ChamThi> objs = new ArrayList<>();
         try{
             getConnect();

@@ -77,7 +77,7 @@ public class AboutViewController {
                 av.TxtEmail.setText(cbo.getEmail());
                 av.TxtThanhTich.setText(cbo.getThanhTich());
                 av.TxtThongTinKhac.setText(cbo.getThongTinKhac());
-                av.BindingBB(bb.getByID(id));
+                av.BindingBB(bb.getByIDCB(id));
                 av.BindingCD(cd.getByID(id));
                 av.BindingCV(cv.getByID(id));
                 av.BindingChamThi(ct.getByIDCB(id));
@@ -111,8 +111,9 @@ public class AboutViewController {
         @Override
         public void actionPerformed(ActionEvent ae) {
             Main m = new Main();
+            Log lg = new Log();
             av.setVisible(false);
-            MainViewController mvc = new MainViewController(m, user);
+            MainViewController mvc = new MainViewController(m,lg, user);
             m.setVisible(true);
             
         }

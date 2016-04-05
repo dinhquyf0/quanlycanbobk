@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import Model.Log;
 import ModelDAO.BaiBaoTapChiDAO;
 import ModelDAO.CanBoCongDoanVienDAO;
 import ModelDAO.CanBoDAO;
@@ -106,7 +107,8 @@ public class ChangeViewController {
         public void actionPerformed(ActionEvent ae) {
             cw.setVisible(false);
             Main m = new Main();
-            MainViewController mvc = new MainViewController(m, user);
+            Log lg = new Log();
+            MainViewController mvc = new MainViewController(m,lg, user);
             m.setVisible(true);
         }
     }

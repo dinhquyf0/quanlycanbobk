@@ -50,7 +50,7 @@ public class LoginView extends javax.swing.JFrame {
         tfPass = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox();
-        jButton1 = new javax.swing.JButton();
+        GuestLoginBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,7 +77,7 @@ public class LoginView extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Đăng nhập tư cách khách");
+        GuestLoginBtn.setText("Đăng nhập tư cách khách");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -101,7 +101,7 @@ public class LoginView extends javax.swing.JFrame {
                             .addComponent(tfUser, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
                             .addComponent(tfPass, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
                             .addComponent(loginBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(GuestLoginBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(40, 40, 40))))
         );
 
@@ -127,7 +127,7 @@ public class LoginView extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                .addComponent(GuestLoginBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -228,7 +228,10 @@ public class LoginView extends javax.swing.JFrame {
     public String getjComboBox1() {
         return jComboBox1.getSelectedItem().toString();
     }
-
+    
+    public void GuestLoginActionListener(ActionListener al){
+        GuestLoginBtn.addActionListener(al);
+    }
     
     public JPasswordField getTfPass() {
         return tfPass;
@@ -267,7 +270,7 @@ public class LoginView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    public javax.swing.JButton GuestLoginBtn;
     public javax.swing.JComboBox jComboBox1;
     public javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel2;

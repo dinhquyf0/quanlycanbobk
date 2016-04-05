@@ -324,11 +324,7 @@ public class CanBoSearchView extends javax.swing.JFrame {
     }//GEN-LAST:event_text_3KeyPressed
 
     private void BackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackBtnActionPerformed
-        
-        Main m = new Main(s);
-        m.setVisible(true);
-        this.setVisible(false);
-
+       
     }//GEN-LAST:event_BackBtnActionPerformed
 
     private void text_1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_text_1FocusGained
