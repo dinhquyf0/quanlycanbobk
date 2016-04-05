@@ -78,7 +78,7 @@ public class CanBoSearchView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "CanBoID", "Ho va Ten", "Ngay Sinh", "Gioi Tinh", "Ma So Thue", "So Tai Khoan", "Dia Chi", "So Dien Thoai", "Email", "Thanh Tich", "Thong Tin Khac"
+
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -99,7 +99,7 @@ public class CanBoSearchView extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tìm kiếm", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
-        CB_1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Chọn", "cán bộ ID", "họ tên", "giới tính", "năm sinh", "chức vụ", "nơi công tác", "thời gian bắt đầu công tác", "trình độ", "chức danh", "địa chỉ", "email", "số điện thoại" }));
+        CB_1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Chọn", "cán bộ ID", "họ tên", "giới tính", "năm sinh", "chức vụ", "chức danh", "nơi công tác", "địa chỉ", "email", "số điện thoại" }));
         CB_1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 CB_1FocusGained(evt);
@@ -130,7 +130,7 @@ public class CanBoSearchView extends javax.swing.JFrame {
             }
         });
 
-        CB_2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Chọn", "cán bộ ID", "họ tên", "giới tính", "năm sinh", "chức vụ", "nơi công tác", "thời gian bắt đầu công tác", "trình độ", "chức danh", "địa chỉ", "email", "số điện thoại" }));
+        CB_2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Chọn", "cán bộ ID", "họ tên", "giới tính", "năm sinh", "chức vụ", "chức danh", "nơi công tác", "địa chỉ", "email", "số điện thoại" }));
         CB_2.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 CB_2FocusLost(evt);
@@ -148,7 +148,7 @@ public class CanBoSearchView extends javax.swing.JFrame {
             }
         });
 
-        CB_3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Chọn", "cán bộ ID", "họ tên", "giới tính", "năm sinh", "chức vụ", "nơi công tác", "thời gian bắt đầu công tác", "trình độ", "chức danh", "địa chỉ", "email", "số điện thoại" }));
+        CB_3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Chọn", "cán bộ ID", "họ tên", "giới tính", "năm sinh", "chức vụ", "chức danh", "nơi công tác", "địa chỉ", "email", "số điện thoại" }));
         CB_3.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 CB_3FocusLost(evt);
@@ -281,11 +281,10 @@ public class CanBoSearchView extends javax.swing.JFrame {
         clums.add("GioiTinh");
         clums.add("Chuc vu");
         clums.add("Chuc Danh");
+        clums.add("NoiCongTac");
         clums.add("DiaChi");
         clums.add("SoDienThoai");
         clums.add("Email");
-        clums.add("ThanhTich");
-        clums.add("ThongTinKhac");
         
         model.setColumnIdentifiers(clums);
         DefaultTableModel model = new DefaultTableModel(data, clums);

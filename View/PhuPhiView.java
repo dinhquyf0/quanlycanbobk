@@ -53,7 +53,7 @@ public class PhuPhiView extends javax.swing.JFrame {
             
         }
         
-        for(int months = 31; months > 0;months --){
+        for(int months = 12; months > 0;months --){
             Cbx_Thang_TGBD.addItem(months);
         }
     }
@@ -138,6 +138,8 @@ public class PhuPhiView extends javax.swing.JFrame {
                 Txt_LCBActionPerformed(evt);
             }
         });
+
+        Txt_HSL.setEditable(false);
 
         jLabel1.setText("Mã cán bộ");
 
@@ -330,7 +332,7 @@ public class PhuPhiView extends javax.swing.JFrame {
                 .addGap(0, 49, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Danh Sách Lương Tháng", jPanel2);
+        jTabbedPane1.addTab("Danh Sách Lương theo Tháng", jPanel2);
 
         Luong_Nam_TBL.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

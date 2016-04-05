@@ -118,35 +118,27 @@ public class CanBoSearchViewController {
                 break;
             }
             case "địa chỉ": {
-                selected_index_3 = 9;
+                selected_index_3 = 7;
 
                 break;
             }
             case "email": {
-                selected_index_3 = 10;
+                selected_index_3 = 9;
                 break;
             }
             case "số điện thoại": {
-                selected_index_3 = 11;
-                break;
-            }
-            case "chức vụ": {
-                selected_index_3 =7;
-                break;
-            }
-            case "chức danh": {
                 selected_index_3 = 8;
                 break;
             }
+            case "chức vụ": {
+                selected_index_3 = 4;
+                break;
+            }
+            case "chức danh": {
+                selected_index_3 = 5;
+                break;
+            }
             case "nơi công tác":{
-                selected_index_3 =4;
-                break;
-            }
-            case "thời gian bắt đầu công tác":{
-                selected_index_3 =5;
-                break;
-            }
-            case "trình độ":{
                 selected_index_3 =6;
                 break;
             }
@@ -160,56 +152,48 @@ public class CanBoSearchViewController {
         public void actionPerformed(ActionEvent ae) {
                     String cb_2_value = cbs.CB_2.getSelectedItem().toString();
         switch (cb_2_value) {
-          case "cán bộ ID": {
-                selected_index_2 = 0;
-                break;
-            }
-            case "họ tên": {
-                selected_index_2 = 1;
-                break;
-            }
-            case "giới tính": {
-                selected_index_2 = 3;
-                break;
-            }
-            case "năm sinh": {
-                selected_index_2 = 2;
-                break;
-            }
-           case "địa chỉ": {
-                selected_index_2 = 9;
+            case "cán bộ ID": {
+                  selected_index_2 = 0;
+                  break;
+              }
+              case "họ tên": {
+                  selected_index_2 = 1;
+                  break;
+              }
+              case "giới tính": {
+                  selected_index_2 = 3;
+                  break;
+              }
+              case "năm sinh": {
+                  selected_index_2 = 2;
+                  break;
+              }
+              case "địa chỉ": {
+                  selected_index_2 = 7;
 
-                break;
-            }
-            case "email": {
-                selected_index_2 = 10;
-                break;
-            }
-            case "số điện thoại": {
-                selected_index_2 = 11;
-                break;
-            }
-            case "chức vụ": {
-                selected_index_2 =7;
-                break;
-            }
-            case "chức danh": {
-                selected_index_2 = 8;
-                break;
-            }
-            case "nơi công tác":{
-                selected_index_2 =4;
-                break;
-            }
-            case "thời gian bắt đầu công tác":{
-                selected_index_2 =5;
-                break;
-            }
-            case "trình độ":{
-                selected_index_2 =6;
-                break;
-            }
-        }
+                  break;
+              }
+              case "email": {
+                  selected_index_2 = 9;
+                  break;
+              }
+              case "số điện thoại": {
+                  selected_index_2 = 8;
+                  break;
+              }
+              case "chức vụ": {
+                  selected_index_2 = 4;
+                  break;
+              }
+              case "chức danh": {
+                  selected_index_2 = 5;
+                  break;
+              }
+              case "nơi công tác":{
+                  selected_index_2 =6;
+                  break;
+              }
+          }
         }
     }
 
@@ -236,35 +220,27 @@ public class CanBoSearchViewController {
                 break;
             }
             case "địa chỉ": {
-                selected_index_1 = 9;
+                selected_index_1 = 7;
 
                 break;
             }
             case "email": {
-                selected_index_1 = 10;
+                selected_index_1 = 9;
                 break;
             }
             case "số điện thoại": {
-                selected_index_1 = 11;
-                break;
-            }
-            case "chức vụ": {
-                selected_index_1 =7;
-                break;
-            }
-            case "chức danh": {
                 selected_index_1 = 8;
                 break;
             }
+            case "chức vụ": {
+                selected_index_1 = 4;
+                break;
+            }
+            case "chức danh": {
+                selected_index_1 = 5;
+                break;
+            }
             case "nơi công tác":{
-                selected_index_1 =4;
-                break;
-            }
-            case "thời gian bắt đầu công tác":{
-                selected_index_1 =5;
-                break;
-            }
-            case "trình độ":{
                 selected_index_1 =6;
                 break;
             }

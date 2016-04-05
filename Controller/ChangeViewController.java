@@ -5,6 +5,19 @@
  */
 package Controller;
 
+import ModelDAO.BaiBaoTapChiDAO;
+import ModelDAO.CanBoCongDoanVienDAO;
+import ModelDAO.CanBoDAO;
+import ModelDAO.CanBoDangVienDAO;
+import ModelDAO.CanBoDoanVienDAO;
+import ModelDAO.ChamThiDAO;
+import ModelDAO.ChucDanhDAO;
+import ModelDAO.ChucVuDAO;
+import ModelDAO.GiaDinhDAO;
+import ModelDAO.GiangDayDAO;
+import ModelDAO.GiaoTrinhDAO;
+import ModelDAO.LuongDAO;
+import ModelDAO.NghienCuuKhoaHocDAO;
 import View.ChangeView;
 import View.Main;
 import View.PrintAdminView;
@@ -66,7 +79,20 @@ public class ChangeViewController {
         @Override
         public void actionPerformed(ActionEvent ae) {
             PrintAdminView pav = new PrintAdminView();
-            PrintChangeViewController pcvc = new PrintChangeViewController();
+            BaiBaoTapChiDAO bbd = new BaiBaoTapChiDAO();
+            CanBoCongDoanVienDAO cdvd = new CanBoCongDoanVienDAO();
+            CanBoDAO cbd = new CanBoDAO();
+            CanBoDangVienDAO dgvd = new CanBoDangVienDAO();
+            CanBoDoanVienDAO dvd = new CanBoDoanVienDAO();
+            ChamThiDAO ctd = new ChamThiDAO();
+            ChucDanhDAO cdd = new ChucDanhDAO();
+            ChucVuDAO cvd = new ChucVuDAO();
+            GiaDinhDAO gdd  = new GiaDinhDAO();
+            GiangDayDAO gdyd = new GiangDayDAO();
+            GiaoTrinhDAO gtd = new GiaoTrinhDAO();
+            LuongDAO ld = new LuongDAO();
+            NghienCuuKhoaHocDAO nckhd = new NghienCuuKhoaHocDAO();
+            PrintChangeViewController pcvc = new PrintChangeViewController(pav, cbd, bbd, cdvd, dgvd, dvd, cvd, cdd, nckhd, gdd, gdyd, gtd, ctd, ld);
             pav.setVisible(true);
         }
     }

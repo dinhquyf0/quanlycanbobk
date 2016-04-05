@@ -30,7 +30,7 @@ public class Luong extends DBConnect{
     private final String REMOVE_DATA = "Delete from luong where Stt=?";
 
  public double getByTime(String macb, String yearbd, String monthbd) {
-        double hsl =0;
+        double hsl = 0;
         try {
             getConnect();
             PreparedStatement ps = con.prepareStatement(GET_TIME);

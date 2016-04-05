@@ -61,9 +61,7 @@ public class CanBoDAO {
             row.add(cbo.getHoVaTen());
             row.add(cbo.getNgaySinh());
             row.add(cbo.getGioiTinh());
-            row.add(cbo.getNoiCongTac());
-            row.add(cbo.getThoiGianBDCT());
-            row.add(cbo.getTrinhDo());
+            
             if (listcv.size() > 0) {
                 row.add(listcv.get(0).getChucVu());
             } else {
@@ -74,6 +72,7 @@ public class CanBoDAO {
             } else {
                 row.add("isEmpty");
             }
+            row.add(cbo.getNoiCongTac());
             row.add(cbo.getDiaChi());
             row.add(cbo.getSoDienThoai());
             row.add(cbo.getEmail());

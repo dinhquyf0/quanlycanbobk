@@ -7,22 +7,19 @@
 
 package View;
 
-import Model.*;
-import View.ChangeView.*;
+import java.awt.event.ActionListener;
 import java.awt.print.PrinterException;
-import java.io.*;
-import static java.lang.System.out;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Vector;
-import java.util.logging.Level;
-import javax.swing.*;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-import javax.swing.text.Document;
 
 
 /**
@@ -46,47 +43,7 @@ public class PrintAdminView extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     
-    CanBo cb = new CanBo();
-    ArrayList<CanBo> listcbo = new ArrayList<>();
-    
-    GiaDinh gd = new GiaDinh();
-    ArrayList<GiaDinh> listgd = new  ArrayList<>();
-    
-    GiangDay gdy = new GiangDay();
-    ArrayList<GiangDay> listgdy = new ArrayList<>();
-    
-    NghienCuuKhoaHoc nckh = new NghienCuuKhoaHoc();
-    ArrayList<NghienCuuKhoaHoc> listnnck = new ArrayList<>();
-    
-    BaiBaoTapChi bb = new BaiBaoTapChi();
-    ArrayList<BaiBaoTapChi> listbb = new ArrayList<>();
-    
-    Luong l = new Luong();
-    ArrayList<Luong> listl = new ArrayList<>();
-    
-    CanBoCongDoanVien cdv = new CanBoCongDoanVien();
-    ArrayList<CanBoCongDoanVien> listcdv = new ArrayList<>();
-    
-    CanBoDangVien dgv = new CanBoDangVien();
-    ArrayList<CanBoDangVien> listdgv = new ArrayList<>();
-    
-    CanBoDoanVien dv = new CanBoDoanVien();
-    ArrayList<CanBoDoanVien> listdv = new ArrayList<>();
-    
-    GiaoTrinh gt = new GiaoTrinh();
-    ArrayList<GiaoTrinh> listgt = new ArrayList<>();
-    
-    ChamThi ct = new ChamThi();
-    ArrayList<ChamThi> listct = new ArrayList<>();
-         
-    ChucVu cv = new ChucVu();
-    ArrayList<ChucVu> listcv = new ArrayList<>();
-    
-    ChucDanh cd = new ChucDanh();
-    ArrayList<ChucDanh> listcd = new ArrayList<>();
-    
-    public void BindingChucDanh(){
-        listcd = cd.getALL();
+     public void BindingChucDanh(Vector data){
         Vector clums = new Vector();
         clums.add("Số thứ tự");
         clums.add("Mã Cán Bộ");
@@ -94,24 +51,11 @@ public class PrintAdminView extends javax.swing.JFrame {
         clums.add("Chức danh");
         clums.add("Thời gian nhận");
         model.setColumnIdentifiers(clums);
-        Vector data = new Vector();
-        for(ChucDanh cd : listcd){
-            Vector row = new Vector();
-            listcbo = cb.getByID(cd.getMa_CB());
-            row.add(cd.getStt());
-            row.add(cd.getMa_CB());
-            row.add(listcbo.get(0).getHoVaTen());
-            row.add(cd.getChucDanh());
-            row.add(cd.getThoiGianNhan());
-            
-            data.add(row);
-        }
         DefaultTableModel model = new DefaultTableModel(data, clums);
         TBL_print.setModel(model);
     }
     
-    public void BindingChucVu(){
-        listcv = cv.getALL();
+    public void BindingChucVu(Vector data){
         Vector clums = new Vector();
         clums.add("Số thứ tự");
         clums.add("Mã Cán Bộ");
@@ -120,24 +64,22 @@ public class PrintAdminView extends javax.swing.JFrame {
         clums.add("Thời gian nhận");
         clums.add("Phụ Cấp chức vụ");
         model.setColumnIdentifiers(clums);
-        Vector data = new Vector();
-        for(ChucVu cv : listcv){
-            Vector row = new Vector();
-            listcbo = cb.getByID(cv.getMa_CB());
-            row.add(cv.getStt());
-            row.add(cv.getMa_CB());
-            row.add(listcbo.get(0).getHoVaTen());
-            row.add(cv.getChucVu());
-            row.add(cv.getThoiGianNhan());
-            row.add(cv.getPhuCap_ChucVu());
-            data.add(row);
-        }
         DefaultTableModel model = new DefaultTableModel(data, clums);
         TBL_print.setModel(model);
     }
     
-    public void BindingChamThi(){
-        listct = ct.getALL();
+    public void BindingGV_GiangDay(Vector data){
+        Vector clums = new Vector();
+        clums.add("Số Thứ tự");
+        clums.add("Mã giảng viên");
+        clums.add("Tên giảng viên");
+        clums.add("Mã môn học");
+        model.setColumnIdentifiers(clums);
+        DefaultTableModel model = new DefaultTableModel(data, clums);
+        TBL_print.setModel(model);
+    }
+    
+    public void BindingChamThi(Vector data){
         Vector clums = new Vector();
         clums.add("Mã chấm thi");
         clums.add("Mã Lớp");
@@ -147,29 +89,57 @@ public class PrintAdminView extends javax.swing.JFrame {
         clums.add("Ngày Nộp");
         clums.add("Số Bài Thi");
         model.setColumnIdentifiers(clums);
-        Vector data = new Vector();
-        for(ChamThi ct : listct){
-            Vector row = new Vector();
-            listcbo = cb.getByID(ct.getma_canbo());
-            row.add(ct.getMa_ChamThi());
-            row.add(ct.getMa_lop());
-            row.add(ct.getma_canbo());
-            if(listcbo.size() > 0){
-                row.add(listcbo.get(0).getHoVaTen());
-            }else{
-                row.add("isEmpty");
-            }        
-            row.add(ct.getMa_MH());
-            row.add(ct.getNgayNop());
-            row.add(ct.getSoBaiThi());
-            data.add(row);
-        }
         DefaultTableModel model = new DefaultTableModel(data, clums);
         TBL_print.setModel(model);
     }
     
-    public void BindingGiaoTrinh(){
-        listgt = gt.getALL();
+    public void BindingGiangVien_GT(Vector data){
+        Vector clums = new Vector();
+        clums.add("Số Thứ tự");
+        clums.add("Mã cán bộ");
+        clums.add("Tên cán bộ");
+        clums.add("Mã giáo trình");
+        model.setColumnIdentifiers(clums);
+        DefaultTableModel model = new DefaultTableModel(data, clums);
+        TBL_print.setModel(model);
+    }
+    
+    public void BindingGiangVien_BBTC(Vector data){
+        Vector clums = new Vector();
+        clums.add("Số Thứ tự");
+        clums.add("Mã cán bộ");
+        clums.add("Tên cán bộ");
+        clums.add("Mã bài báo");
+        model.setColumnIdentifiers(clums);
+        DefaultTableModel model = new DefaultTableModel(data, clums);
+        TBL_print.setModel(model);
+    }
+    
+    public void BindingGiangVien_NCKH(Vector data){
+        
+        Vector clums = new Vector();
+        clums.add("Số Thứ Tự");
+        clums.add("Mã cán bộ");
+        clums.add("Tên cán bộ");
+        clums.add("Mã đề tài");
+        model.setColumnIdentifiers(clums);
+        DefaultTableModel model = new DefaultTableModel(data, clums);
+        TBL_print.setModel(model);
+    }
+    
+    public void BindingCanBo_GiaDinh(Vector data){
+        
+        Vector clums = new Vector();
+        clums.add("Số Thứ Tự");
+        clums.add("Mã cán bộ");
+        clums.add("Tên cán bộ");
+        clums.add("Mã gia đình");
+        model.setColumnIdentifiers(clums);
+        DefaultTableModel model = new DefaultTableModel(data, clums);
+        TBL_print.setModel(model);
+    }
+    
+    public void BindingGiaoTrinh(Vector data){
         Vector clums = new Vector();
         
         clums.add("Mã Giáo Trình");
@@ -180,26 +150,11 @@ public class PrintAdminView extends javax.swing.JFrame {
         
         model.setColumnIdentifiers(clums);
         
-        Vector data = new Vector();
-        
-        for(GiaoTrinh gt : listgt){
-            
-            Vector row = new Vector();
-            
-            row.add(gt.getMa_GT());
-            row.add(gt.getTenGiaoTrinh());
-            row.add(gt.getTenTacGia());
-            row.add(gt.getNamXuatBan());
-            row.add(gt.getNhaXuatBan());
-          
-            data.add(row);
-        }
         DefaultTableModel model = new DefaultTableModel(data,clums);
         TBL_print.setModel(model);
     }
     
-    public void BindingCongDoanPhi(){
-        listcdv = cdv.getALL();
+    public void BindingCongDoanPhi(Vector data){
         Vector clums = new Vector();
         
         clums.add("Số Thứ Tự");
@@ -210,30 +165,11 @@ public class PrintAdminView extends javax.swing.JFrame {
         
         model.setColumnIdentifiers(clums);
         
-        Vector data = new Vector();
-        
-        for(CanBoCongDoanVien cdv : listcdv){
-            
-            Vector row = new Vector();
-            listcbo =cb.getByID(cdv.getma_canbo());
-            row.add(cdv.getStt());
-            row.add(cdv.getma_canbo());
-            if(listcbo.size() > 0){
-                row.add(listcbo.get(0).getHoVaTen());
-            }else{
-                row.add("isEmpty");
-            }
-            row.add(cdv.getSoTienDong());
-            row.add(cdv.getThoiGianDong());
-          
-            data.add(row);
-        }
         DefaultTableModel model = new DefaultTableModel(data,clums);
         TBL_print.setModel(model);
     }
     
-    public void BindingDoanPhi(){
-        listdv = dv.getALL();
+    public void BindingDoanPhi(Vector data){
         Vector clums = new Vector();
         
         clums.add("Số Thứ Tự");
@@ -244,30 +180,11 @@ public class PrintAdminView extends javax.swing.JFrame {
         
         model.setColumnIdentifiers(clums);
         
-        Vector data = new Vector();
-        
-        for(CanBoDoanVien dv : listdv){
-            
-            Vector row = new Vector();
-            listcbo =cb.getByID(dv.getma_canbo());
-            row.add(dv.getStt());
-            row.add(dv.getma_canbo());
-            if(listcbo.size() > 0){
-                row.add(listcbo.get(0).getHoVaTen());
-            }else{
-                row.add("isEmpty");
-            }
-            row.add(dv.getSoTien());
-            row.add(dv.getThoiGian());
-          
-            data.add(row);
-        }
         DefaultTableModel model = new DefaultTableModel(data,clums);
         TBL_print.setModel(model);
     }
     
-    public void BindingDangPhi(){
-        listdgv = dgv.getALL();
+    public void BindingDangPhi(Vector data){
         Vector clums = new Vector();
         
         clums.add("Số Thứ Tự");
@@ -278,30 +195,11 @@ public class PrintAdminView extends javax.swing.JFrame {
         
         model.setColumnIdentifiers(clums);
         
-        Vector data = new Vector();
-        
-        for(CanBoDangVien dgv : listdgv){
-            
-            Vector row = new Vector();
-            listcbo = cb.getByID(dgv.getma_canbo());
-            row.add(dgv.getStt());
-            row.add(dgv.getma_canbo());
-            if(listcbo.size() > 0){
-                row.add(listcbo.get(0).getHoVaTen());
-            }else{
-                row.add("isEmpty");
-            }
-            row.add(dgv.getSoTienThu());
-            row.add(dgv.getThoiGianDong());
-          
-            data.add(row);
-        }
         DefaultTableModel model = new DefaultTableModel(data,clums);
         TBL_print.setModel(model);
     }
     
-    public void BindingLuong(){
-        listl = l.getALL();
+    public void BindingLuong(Vector data){
         Vector clums = new Vector();
         
         clums.add("Số Thứ Tự");
@@ -309,35 +207,16 @@ public class PrintAdminView extends javax.swing.JFrame {
         clums.add("Tên Cán Bộ");
         clums.add("Hệ Số Lương");
         clums.add("Thời Gian Bắt Đầu");
+        clums.add("Thời Gian Kết Thúc");
         clums.add("Tiền Lương");
         
         model.setColumnIdentifiers(clums);
         
-        Vector data = new Vector();
-        
-        for(Luong l : listl){
-            Vector row = new Vector();
-            listcbo =cb.getByID(l.getma_canbo());
-            
-            row.add(l.getStt());
-            row.add(l.getma_canbo());
-            if(listcbo.size() > 0){
-                row.add(listcbo.get(0).getHoVaTen());
-            }else{
-                row.add("isEmpty");
-            }
-            row.add(l.getHeSoLuong());
-            row.add(l.getThoiGianBatDau());
-            row.add("");
-          
-            data.add(row);
-        }
         DefaultTableModel model = new DefaultTableModel(data,clums);
         TBL_print.setModel(model);
     }
     
-    public void BindingNCKH(){
-        listnnck = nckh.getALL();
+    public void BindingNCKH(Vector data){
         
         Vector clums = new Vector();
         
@@ -353,27 +232,11 @@ public class PrintAdminView extends javax.swing.JFrame {
         
         model.setColumnIdentifiers(clums);
         
-        Vector data = new Vector();
-        
-        for(NghienCuuKhoaHoc nckh : listnnck){
-            Vector row = new Vector();
-            row.add(nckh.getMa_DT());
-            row.add(nckh.getTenDeTai());
-            row.add(nckh.getCap());
-            row.add(nckh.getKinhPhi());
-            row.add(nckh.getThoiGianBatDau());
-            row.add(nckh.getThoiGianKetThuc());
-            row.add(nckh.getChuTriDeTai());
-            row.add(nckh.getTinhTrang());
-            row.add(nckh.getKetQua());
-            data.add(row);
-        }
         DefaultTableModel model = new DefaultTableModel(data,clums);
         TBL_print.setModel(model);
     }
     
-    public void BindingBB(){
-        listbb = bb.getALL();
+    public void BindingBB(Vector data){
         
         Vector clums = new Vector();
         clums.add("Mã Tạp Chí");
@@ -385,25 +248,11 @@ public class PrintAdminView extends javax.swing.JFrame {
         
         model.setColumnIdentifiers(clums);
         
-        Vector data = new Vector();
-        
-        for(BaiBaoTapChi bb : listbb){
-            Vector row = new Vector();
-            row.add(bb.getMa_BaiBao());
-            row.add(bb.getTenTapChi());
-            row.add(bb.getSo());
-            row.add(bb.getThoiGianXuatBan());
-            row.add(bb.getChiSo_ISSN());
-            row.add(bb.getHeSo_IF());
- 
-            data.add(row);
-        }
         DefaultTableModel model = new DefaultTableModel(data,clums);
         TBL_print.setModel(model);
     }
     
-    public void BindingGD(){
-        listgd = gd.getALL();
+    public void BindingGD(Vector data){
         
         Vector clums = new Vector();
         clums.add("Số thứ tự");
@@ -413,23 +262,11 @@ public class PrintAdminView extends javax.swing.JFrame {
         clums.add("Thành Tích");
         
         model.setColumnIdentifiers(clums);
-        Vector data = new Vector();
-        for (GiaDinh gd : listgd){
-            
-            Vector row = new Vector();
-            row.add(gd.getStt());
-            row.add(gd.getMa_GD());
-            row.add(gd.getHoVaTenCon());
-            row.add(gd.getNamSinh());
-            row.add(gd.getThanhTich());
-            data.add(row);
-        }
         DefaultTableModel model = new DefaultTableModel(data, clums);
         TBL_print.setModel(model);
     }
             
-    public void BindingCanBo() {
-        listcbo = cb.getALL();
+    public void BindingCanBo(Vector data) {
         Vector clums = new Vector();
         clums.add("Mã Cán Bộ");
         clums.add("Tên Đăng Nhập");
@@ -438,6 +275,7 @@ public class PrintAdminView extends javax.swing.JFrame {
         clums.add("Giới Tính");
         clums.add("Nơi Công Tác");
         clums.add("Thời gian bắt đầu công tác");
+        clums.add("Trình Độ");
         clums.add("Số Tài Khoản");
         clums.add("Mã Số Thuế");
         clums.add("Địa Chỉ");
@@ -448,34 +286,11 @@ public class PrintAdminView extends javax.swing.JFrame {
 
                 
         model.setColumnIdentifiers(clums);
-        Vector data = new Vector();
-        
-            for (CanBo cbo : listcbo) {
-            Vector row = new Vector();
-            
-            row.add(cbo.getMa_CB());
-            row.add(cbo.getUserName());
-            row.add(cbo.getHoVaTen());
-            row.add(cbo.getNgaySinh());
-            row.add(cbo.getGioiTinh());
-            row.add(cbo.getNoiCongTac());
-            row.add(cbo.getThoiGianBDCT());
-            row.add(cbo.getSoTaiKhoan());
-            row.add(cbo.getMaSoThue());
-            row.add(cbo.getDiaChi());
-            row.add(cbo.getSoDienThoai());
-            row.add(cbo.getEmail());
-            row.add(cbo.getThanhTich());
-            row.add(cbo.getThongTinKhac());
-
-            data.add(row);
-        }
         DefaultTableModel model = new DefaultTableModel(data, clums);
         TBL_print.setModel(model);
     }
     
-    public void BindingGday(){
-        listgdy = gdy.getALL();
+    public void BindingGday(Vector data){
         Vector clums = new Vector();
         clums.add("Mã Môn Học");
         clums.add("Tên Môn Học");
@@ -485,24 +300,9 @@ public class PrintAdminView extends javax.swing.JFrame {
         clums.add("Học Kỳ");
         clums.add("Năm Học");
         clums.add("Phụ Cấp Giảng Dạy");
-
                 
         model.setColumnIdentifiers(clums);
-        Vector data = new Vector();
         
-            for (GiangDay gdy : listgdy) {
-            Vector row = new Vector();
-            
-            row.add(gdy.getMa_MH());
-            row.add(gdy.getTenMon());
-            row.add(gdy.getSoTinChi());
-            row.add(gdy.getLop());
-            row.add(gdy.getSoSinhVien());
-            row.add(gdy.getHocKy());
-            row.add(gdy.getNamHoc());
-            row.add(gdy.getPhuCap_GD());
-            data.add(row);
-        }
         DefaultTableModel model = new DefaultTableModel(data, clums);
         TBL_print.setModel(model);
     }
@@ -701,7 +501,7 @@ public class PrintAdminView extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -725,59 +525,7 @@ public class PrintAdminView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Cbx_bangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cbx_bangActionPerformed
-        ChangeView cw = new ChangeView();
-        LB_TenBang.setText(Cbx_bang.getSelectedItem().toString());
-        String item = Cbx_bang.getSelectedItem().toString();
-        switch(item){
-            case("Cán Bộ"):{
-                BindingCanBo();
-                break;
-            }
-            case("Gia Đình"):{
-                BindingGD();
-                break;
-            }
-            case("Lương"):{
-                BindingLuong();
-                break;
-            }
-            case("Đảng Phí"):{
-                BindingDangPhi();
-                break;
-            }
-            case("Đoàn Phí"):{
-                BindingDoanPhi();
-                break;
-            }
-            case("Công Đoàn Phí"):{
-                BindingCongDoanPhi();
-                break;
-            }
-            case("Chức Vụ"):{
-                BindingChucVu();
-                break;
-            }
-            case("Chức Danh"):{
-                BindingChucDanh();
-                break;
-            }
-            case("Nghiên Cứu Khoa Học"):{
-                BindingNCKH();
-                break;
-            }
-            case("Bài Báo - Tạp Chí"):{
-                BindingBB();
-                break;
-            }
-            case("Giáo trình"):{
-                BindingGiaoTrinh();
-                break;
-            }
-            case("Chấm Thi"):{
-                BindingChamThi();
-                break;
-            }
-        }
+      
     }//GEN-LAST:event_Cbx_bangActionPerformed
 
     private void CHBx_HeaderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CHBx_HeaderActionPerformed
@@ -823,67 +571,70 @@ public class PrintAdminView extends javax.swing.JFrame {
         }
     
     private void Print_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Print_BtnActionPerformed
-        if(RBtn_PDF.isSelected()){
-        MessageFormat header = null;
-        if(CHBx_Header.isSelected()){
-             header = new MessageFormat(Txt_Header.getText());
-        }
-        MessageFormat footer = null;
-        if(CHBx_Footer.isSelected()){
-            footer = new MessageFormat(Txt_Footer.getText());
-        }
         
-        boolean fitWidth = CHBx_Fit_Width.isSelected();
-        boolean showPrintDialog = CHBx_showprintdialog.isSelected();
-        boolean interactive = CHBx_Interative.isSelected();
-        
-        JTable.PrintMode mode = fitWidth ? JTable.PrintMode.FIT_WIDTH
-                                         : JTable.PrintMode.NORMAL;
-        try {
-            boolean complete = TBL_print.print(mode, header, footer, showPrintDialog, null, interactive, null);
-            if (complete) {
-                JOptionPane.showMessageDialog(this,
-                                              "Printing Complete",
-                                              "Printing Result",
-                                              JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(this,
-                                              "Printing Cancelled",
-                                              "Printing Result",
-                                              JOptionPane.INFORMATION_MESSAGE);
-            }
-        } catch (PrinterException pe) {
-            JOptionPane.showMessageDialog(this,
-                                          "Printing Failed: " + pe.getMessage(),
-                                          "Printing Result",
-                                          JOptionPane.ERROR_MESSAGE);
-        }
-        }
-        if(RBtn_Excel.isSelected()){
-            
-            JFileChooser fc = new JFileChooser();
-            int option = fc.showSaveDialog(PrintAdminView.this);
-            if(option == JFileChooser.APPROVE_OPTION){
-                String filename = fc.getSelectedFile().getName(); 
-                String path = fc.getSelectedFile().getParentFile().getPath();
-
-                int len = filename.length();
-                String ext = "";
-                String file = "";
-
-                if(len > 4){
-                    ext = filename.substring(len-4, len);
+            if(RBtn_PDF.isSelected()){
+                MessageFormat header = null;
+                if(CHBx_Header.isSelected()){
+                     header = new MessageFormat(Txt_Header.getText());
+                }
+                MessageFormat footer = null;
+                if(CHBx_Footer.isSelected()){
+                    footer = new MessageFormat(Txt_Footer.getText());
                 }
 
-                if(ext.equals(".xls")){
-                    file = path + "\\" + filename; 
-                }else{
-                    file = path + "\\" + filename + ".xls"; 
+                boolean fitWidth = CHBx_Fit_Width.isSelected();
+                boolean showPrintDialog = CHBx_showprintdialog.isSelected();
+                boolean interactive = CHBx_Interative.isSelected();
+
+                JTable.PrintMode mode = fitWidth ? JTable.PrintMode.FIT_WIDTH
+                                                 : JTable.PrintMode.NORMAL;
+                try {
+                    boolean complete = TBL_print.print(mode, header, footer, showPrintDialog, null, interactive, null);
+                    if (complete) {
+                        JOptionPane.showMessageDialog(null,
+                                                      "Printing Complete",
+                                                      "Printing Result",
+                                                      JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null,
+                                                      "Printing Cancelled",
+                                                      "Printing Result",
+                                                      JOptionPane.INFORMATION_MESSAGE);
+                    }
+                } catch (PrinterException pe) {
+                    JOptionPane.showMessageDialog(null,
+                                                  "Printing Failed: " + pe.getMessage(),
+                                                  "Printing Result",
+                                                  JOptionPane.ERROR_MESSAGE);
                 }
-                    toExcel(TBL_print, new File(file));
             }
-            
-        }
+                if(RBtn_Excel.isSelected()){
+
+                    JFileChooser fc = new JFileChooser();
+                    int option = fc.showSaveDialog(PrintAdminView.this);
+                    if(option == JFileChooser.APPROVE_OPTION){
+                        String filename = fc.getSelectedFile().getName(); 
+                        String path = fc.getSelectedFile().getParentFile().getPath();
+
+                        int len = filename.length();
+                        String ext = "";
+                        String file = "";
+
+                        if(len > 4){
+                            ext = filename.substring(len-4, len);
+                        }
+
+                        if(ext.equals(".xls")){
+                            file = path + "\\" + filename; 
+                        }else{
+                            file = path + "\\" + filename + ".xls"; 
+                        }
+                            toExcel(TBL_print, new File(file));
+                    }
+
+                }
+
+        
     }//GEN-LAST:event_Print_BtnActionPerformed
 
     private void RBtn_ExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBtn_ExcelActionPerformed
@@ -893,7 +644,16 @@ public class PrintAdminView extends javax.swing.JFrame {
     private void RBtn_PDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBtn_PDFActionPerformed
         RBtn_Excel.setSelected(false);
     }//GEN-LAST:event_RBtn_PDFActionPerformed
-
+    
+    public void PrintActionListener(ActionListener al){
+        Print_Btn.addActionListener(al);
+    }
+    
+    public void CBxTableActionListener(ActionListener al){
+        Cbx_bang.addActionListener(al);
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -937,7 +697,7 @@ public class PrintAdminView extends javax.swing.JFrame {
     public javax.swing.JCheckBox CHBx_Interative;
     public javax.swing.JCheckBox CHBx_showprintdialog;
     public javax.swing.JComboBox Cbx_bang;
-    private javax.swing.JLabel LB_TenBang;
+    public javax.swing.JLabel LB_TenBang;
     public javax.swing.JButton Print_Btn;
     public javax.swing.JRadioButton RBtn_Excel;
     public javax.swing.JRadioButton RBtn_PDF;

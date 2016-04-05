@@ -22,10 +22,10 @@ public class CanBo extends DBConnect implements java.io.Serializable {
     private final String GET_BYID_CBGD = "select canbo.* from canbo, canbo_giadinh where canbo.Ma_CB = canbo_giadinh.Ma_CB and canbo_giadinh.Ma_CB = ?  ";
     private final String GET_BYIDGD = "select canbo.* from canbo, canbo_giadinh,gia_dinh where canbo.Ma_CB = canbo_giadinh.Ma_CB and canbo_giadinh.Ma_GD = gia_dinh.Ma_GD and gia_dinh.Ma_GD = ?";
     private final String ADD_DATA = "insert into "
-            + "canbo(Ma_CB,UserName,Password,HoVaTen,NgaySinh,GioiTinh,NoiCongTac,ThoiGianBatDauCongTac,TrinhDo,MaSoThue,SoTaiKhoan,DiaChi,SoDienThoai,Email,ThanhTich,ThongTinKhac,)"
-            + "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            + "canbo(Ma_CB,UserName,Password,HoVaTen,NgaySinh,GioiTinh,NoiCongTac,ThoiGianBatDauCongTac,TrinhDo,MaSoThue,SoTaiKhoan,DiaChi,SoDienThoai,Email,ThanhTich,ThongTinKhac,DangVien,DoanVien,CongDoanVien)"
+            + "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     private final String UPDATE_DATA = "Update "
-            + "canbo set UserName=?,HoVaTen=?,NgaySinh=?,GioiTinh=?,NoiCongTac=?,ThoiGianBatDauCongTac =?,TrinhDo =?,MaSoThue=?,SoTaiKhoan=?,DiaChi=?,SoDienThoai=?,Email=?,ThanhTich=?,ThongTinKhac=? where Ma_CB=?";
+            + "canbo set UserName=?,HoVaTen=?,NgaySinh=?,GioiTinh=?,NoiCongTac=?,ThoiGianBatDauCongTac =?,TrinhDo =?,MaSoThue=?,SoTaiKhoan=?,DiaChi=?,SoDienThoai=?,Email=?,ThanhTich=?,ThongTinKhac=?,DangVien = ?, DoanVien = ?, CongDoanVien = ? where Ma_CB=?";
     private final String REMOVE_DATA = "Delete from canbo where Ma_CB=?";
     private final String UPDATE_PASS = "Update canbo set Password =? where UserName =?";
     

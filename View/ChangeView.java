@@ -4362,7 +4362,6 @@ public class ChangeView extends javax.swing.JFrame {
             TxtChiSoISSN.setText(listbb.get(row).getChiSo_ISSN());
             TxtHeSoIF.setText(listbb.get(row).getHeSo_IF());
             Cbx_Nam_BB.setSelectedItem(listbb.get(row).getThoiGianXuatBan());
-         
         }
     }//GEN-LAST:event_BaiBao_TBLMouseClicked
 

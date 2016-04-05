@@ -311,15 +311,32 @@ public class PhuPhiViewController {
             listcb = cb.getByID(ppv.Cbx_MaCB.getSelectedItem().toString());
             String chucdanh = cd.getByIDCB(ppv.Cbx_MaCB.getSelectedItem().toString());
             String chucvu = cv.getByTime(ppv.Cbx_MaCB.getSelectedItem().toString(),ppv.Cbx_Nam_TGBD.getSelectedItem().toString(),ppv.Cbx_Thang_TGBD.getSelectedItem().toString());
+            while (chucvu == ""){
+                int thang = Integer.parseInt(ppv.Cbx_Thang_TGBD.getSelectedItem().toString());
+                thang--;
+                chucvu = cv.getByTime(ppv.Cbx_MaCB.getSelectedItem().toString(),ppv.Cbx_Nam_TGBD.getSelectedItem().toString(), Integer.toString(thang));
+            }
             Double hsl = lg.getByTime(ppv.Cbx_MaCB.getSelectedItem().toString(),ppv.Cbx_Nam_TGBD.getSelectedItem().toString(),
                                                                             ppv.Cbx_Thang_TGBD.getSelectedItem().toString());
+            while (hsl == 0.0) {                
+                int thang = Integer.parseInt(ppv.Cbx_Thang_TGBD.getSelectedItem().toString());
+                thang--;
+                hsl = lg.getByTime(ppv.Cbx_MaCB.getSelectedItem().toString(), ppv.Cbx_Nam_TGBD.getSelectedItem().toString() , Integer.toString(thang));
+            }
+                
+            
             
             ppv.Txt_LCB.setText(Integer.toString(LCB));
 
             String sbt = ct.getSoBaiThi(ppv.Cbx_MaCB.getSelectedItem().toString(),ppv.Cbx_Nam_TGBD.getSelectedItem().toString(),ppv.Cbx_Thang_TGBD.getSelectedItem().toString());
+            try {
+                int tbt = 3500*Integer.parseInt(sbt);
+                ppv.Txt_TienChamThi.setText(Integer.toString(tbt));
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
             
-            int tbt = 3500*Integer.parseInt(sbt);
-            ppv.Txt_TienChamThi.setText(Integer.toString(tbt));
+            
             ppv.Txt_PCGD.setText("1");
             for(CanBo cbo :listcb){
                 ppv.Txt_HoVaTen.setText(cbo.getHoVaTen());
