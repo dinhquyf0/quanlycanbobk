@@ -2,7 +2,6 @@
 import Controller.LoginViewController;
 import Model.CanBo;
 import View.LoginView;
-import de.javasoft.plaf.synthetica.SyntheticaBlackEyeLookAndFeel;
 import de.javasoft.plaf.synthetica.SyntheticaPlainLookAndFeel;
 import java.text.ParseException;
 import java.util.logging.Level;
