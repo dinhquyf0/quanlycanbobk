@@ -168,7 +168,9 @@ public class MainViewController {
             GiangDay gdy = new GiangDay();
             CanBo cb = new CanBo();
             ChamThi ct = new ChamThi();
-            ListViewController lvc = new ListViewController(lw, cb, gd, gdy, ct, s);
+            NghienCuuKhoaHoc nckh = new NghienCuuKhoaHoc();
+            BaiBaoTapChi bb = new BaiBaoTapChi();
+            ListViewController lvc = new ListViewController(lw, cb, gd, gdy, ct, nckh, bb, s);
             lw.setVisible(true);
         }
     }

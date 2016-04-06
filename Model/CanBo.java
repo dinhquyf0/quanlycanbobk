@@ -21,6 +21,8 @@ public class CanBo extends DBConnect implements java.io.Serializable {
     private final String GET_BYUSER ="select * from canbo where  UserName=?";
     private final String GET_BYID_CBGD = "select canbo.* from canbo, canbo_giadinh where canbo.Ma_CB = canbo_giadinh.Ma_CB and canbo_giadinh.Ma_CB = ?  ";
     private final String GET_BYIDGD = "select canbo.* from canbo, canbo_giadinh,gia_dinh where canbo.Ma_CB = canbo_giadinh.Ma_CB and canbo_giadinh.Ma_GD = gia_dinh.Ma_GD and gia_dinh.Ma_GD = ?";
+     private final String GET_BYIDGDY = "select HoVaTen from canbo, canbo_giangday ,giang_day where giang_day.Ma_MH = canbo_giangday.Ma_MH and canbo_giangday.Ma_CB = canbo.Ma_CB and giang_day.Ma_MH =?";
+    private final String GET_BYIDBB = "select HoVaTen from canbo, giangvien_tapchi ,tap_chi where tap_chi.Ma_BaiBao = giangvien_tapchi.Ma_BaiBao and giangvien_tapchi.Ma_CB = canbo.Ma_CB and tap_chi.Ma_BaiBao =?";
     private final String ADD_DATA = "insert into "
             + "canbo(Ma_CB,UserName,Password,HoVaTen,NgaySinh,GioiTinh,NoiCongTac,ThoiGianBatDauCongTac,TrinhDo,MaSoThue,SoTaiKhoan,DiaChi,SoDienThoai,Email,ThanhTich,ThongTinKhac,DangVien,DoanVien,CongDoanVien)"
             + "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -85,6 +87,45 @@ public class CanBo extends DBConnect implements java.io.Serializable {
         }
         return objs;
     }
+    
+    public ArrayList<CanBo> getByIDGDY(String s){
+        ArrayList<CanBo> objs = new ArrayList<>();
+        try{
+            getConnect();
+            PreparedStatement ps = con.prepareStatement(GET_BYIDGDY);
+            ps.setString(1, s);
+            ResultSet rs = ps.executeQuery();
+            if(rs != null && rs.next() ){
+                CanBo item = new CanBo();
+                item.setHoVaTen(rs.getString("HoVaTen"));
+                objs.add(item);
+            }
+            getClose();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return objs;
+    }
+    
+    public ArrayList<CanBo> getByIDBB(String s){
+        ArrayList<CanBo> objs = new ArrayList<>();
+        try{
+            getConnect();
+            PreparedStatement ps = con.prepareStatement(GET_BYIDBB);
+            ps.setString(1, s);
+            ResultSet rs = ps.executeQuery();
+            if(rs != null && rs.next() ){
+                CanBo item = new CanBo();
+                item.setHoVaTen(rs.getString("HoVaTen"));
+                objs.add(item);
+            }
+            getClose();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return objs;
+    }
+    
     public ArrayList<CanBo> getALL() {
         ArrayList<CanBo> objs = new ArrayList<CanBo>();
         try {

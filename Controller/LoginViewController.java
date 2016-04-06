@@ -69,8 +69,8 @@ public class LoginViewController extends CheckEmpty {
                 frame.setSize(284, 584);
                 frame.setLocation(1623, 431);
                 frame.setVisible(true);
-
-                browser.loadURL("phuong-chat.herokuapp.com");
+                browser.loadURL("http://phuong-chat.herokuapp.com/chat.html?name="+u+"&room=chat");
+//                browser.loadURL("phuong-chat.herokuapp.com");
 
                 }else {
                     JOptionPane.showMessageDialog(lgv, "Tên đăng nhập hoặc mật khẩu không đúng. Đề nghị nhập lại.!");
