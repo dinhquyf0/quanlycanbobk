@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
+import javax.swing.DefaultListModel;
 /**
  *
  * @author DINHQUY
@@ -52,6 +53,7 @@ public class MainViewController {
             mw.AboutBtn.setEnabled(false);
             mw.ChangePassBtn.setEnabled(false);
             mw.PPBtn.setEnabled(false);
+            mw.ListBtn.setEnabled(false);
             
             }else{
             mw.ChangeBtn.setEnabled(false);
@@ -59,13 +61,17 @@ public class MainViewController {
     }
     
     public void BindingLog(){
-        ArrayList<Log> listlog = new ArrayList<>();
+        ArrayList<Log> listlog = new ArrayList<Log>();
         listlog = log.getALL();
-        String s;
+//        String s ;
+        String[] string = new String[5];
+        DefaultListModel dlm = new DefaultListModel();
         for(Log lg :listlog){
-            s = lg.getNoiDung();
-            mw.BindingLog(s);
+            
+            dlm.addElement(lg.getNoiDung().toString());
         }
+        mw.ListLog.setModel(dlm);
+
         
     }
     private  class getAboutBtnListener implements ActionListener {
@@ -160,7 +166,9 @@ public class MainViewController {
             mw.setVisible(false);
             GiaDinh gd = new GiaDinh();
             GiangDay gdy = new GiangDay();
-            ListViewController lvc = new ListViewController(lw, gd, gdy, s);
+            CanBo cb = new CanBo();
+            ChamThi ct = new ChamThi();
+            ListViewController lvc = new ListViewController(lw, cb, gd, gdy, ct, s);
             lw.setVisible(true);
         }
     }

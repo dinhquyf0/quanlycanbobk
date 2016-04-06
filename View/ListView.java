@@ -28,8 +28,7 @@ import javax.swing.table.TableRowSorter;
  */
 public class ListView extends javax.swing.JFrame {
     String s;
-    int tuoi = 16;
-    String thanhtich = "";
+
     /**
      * Creates new form ListView
      */
@@ -39,23 +38,8 @@ public class ListView extends javax.swing.JFrame {
     }
 
     private DefaultTableModel model;
-        CanBo canbo = new CanBo();
-        ArrayList<CanBo> listcbo = new ArrayList<>();
-        GiaDinh gd = new GiaDinh();
         
-        GiangDay gday = new GiangDay();
-        
-        ChamThi ct = new ChamThi();
-        ArrayList<ChamThi> listct = new ArrayList<>();
-    public void changeTuoi(int tuoi){
-        this.tuoi = tuoi;
-    }
-    
-    public void changeThanhTich(String thanhtich){
-        this.thanhtich = thanhtich;
-    }
-        
-    public void BindingQua(ArrayList<GiaDinh> listgd){
+    public void BindingQua(Vector data){
         
         Vector clums = new Vector();
         clums.add("Mã Cán Bộ");
@@ -65,35 +49,7 @@ public class ListView extends javax.swing.JFrame {
         clums.add("Tuổi");
         
         model.setColumnIdentifiers(clums);
-        Vector data = new Vector();
-        for (GiaDinh gd : listgd){
-            String ns = gd.getNamSinh();
-            int nsi = Integer.parseInt(ns);
-            int x;
-            int year = Calendar.getInstance().get(Calendar.YEAR);
-            x = year -nsi;
-            Vector row = new Vector();
-            listcbo = canbo.getByIDGD(gd.getMa_GD());
-
-            if(listcbo.size() > 0){
-                row.add(listcbo.get(0).getMa_CB());
-            }else{
-                row.add("isEmpty");
-            }
-            if(listcbo.size() > 0){
-                row.add(listcbo.get(0).getHoVaTen());
-            }else{
-                row.add("isEmpty");
-            }
-            row.add(gd.getMa_GD());
-            row.add(gd.getHoVaTenCon());
-            if(year - nsi < tuoi){
-                row.add(x);
-            }else{
-                row.removeAll(row);
-            }
-            data.add(row);
-            }
+        
         DefaultTableModel model = new DefaultTableModel(data, clums);
         TNTBL.setModel(model);
         TNTBL.setAutoCreateRowSorter(true);
@@ -112,8 +68,7 @@ public class ListView extends javax.swing.JFrame {
     
     }
         
-        
-    public void BindingThanhTichCao(ArrayList<GiaDinh> listgd){
+    public void BindingThanhTichCao(Vector data){
         
         Vector clums = new Vector();
         clums.add("Mã Cán Bộ");
@@ -124,32 +79,7 @@ public class ListView extends javax.swing.JFrame {
         clums.add("Thành Tích");
         
         model.setColumnIdentifiers(clums);
-        Vector data = new Vector();
-        for (GiaDinh gd : listgd){
-
-            Vector row = new Vector();
-            listcbo = canbo.getByIDGD(gd.getMa_GD());
-            if(listcbo.size() > 0){
-                row.add(listcbo.get(0).getMa_CB());
-            }else{
-                row.add("isEmpty");
-            }
-            if(listcbo.size() > 0){
-                row.add(listcbo.get(0).getHoVaTen());
-            }else{
-                row.add("isEmpty");
-            }
-            row.add(gd.getMa_GD());
-            row.add(gd.getHoVaTenCon());
-            row.add(gd.getNamSinh());
-            String ThanhTich = gd.getThanhTich();
-           if(ThanhTich.contains(thanhtich)){
-                row.add(gd.getThanhTich());
-            }else{
-                row.removeAll(row);
-            }
-            data.add(row);
-        }
+        
         DefaultTableModel model = new DefaultTableModel(data, clums);
         TTCTBL.setModel(model);
         TTCTBL.setAutoCreateRowSorter(true);
@@ -166,7 +96,8 @@ public class ListView extends javax.swing.JFrame {
                     }
                 });
     }
-    public void BindingDanhSachChamThi(ArrayList<GiangDay> listgdy){
+    
+    public void BindingDanhSachChamThi(Vector data){
 
         Vector clums = new Vector();
         clums.add("Mã Môn Học");
@@ -179,53 +110,7 @@ public class ListView extends javax.swing.JFrame {
         clums.add("Năm Học");
 
         model.setColumnIdentifiers(clums);
-        Vector data = new Vector();
-        for (GiangDay gday : listgdy){
-
-            Vector row = new Vector();
-            listct = ct.getByIDCT(gday.getMa_MH());
-            if(listct.size() > 0){
-                row.add(gday.getMa_MH());
-            }else{
-                row.removeAll(row);
-            }
-            if(listct.size() > 0){
-                row.add(gday.getTenMon());
-            }else{
-                row.removeAll(row);
-            }
-            if(listct.size() > 0){
-                row.add(gday.getLop());
-            }else{
-                row.removeAll(row);
-            }
-            if(listct.size() > 0){
-                row.add(gday.getSoSinhVien());
-            }else{
-                row.removeAll(row);
-            }
-            if(listct.size() > 0){
-                row.add(listct.get(0).getSoBaiThi());
-            }else{
-                row.add("isEmpty");
-            }
-           if(listct.size() > 0){
-                row.add(listct.get(0).getNgayNop());
-            }else{
-                row.add("isEmpty");
-            }
-           if(listct.size() > 0){
-                row.add(gday.getHocKy());
-            }else{
-                row.removeAll(row);
-            }
-           if(listct.size() > 0){
-                row.add(gday.getNamHoc());
-            }else{
-                row.removeAll(row);
-            }
-            data.add(row);
-        }
+        
         DefaultTableModel model = new DefaultTableModel(data, clums);
         BTTBL.setModel(model);
         BTTBL.setAutoCreateRowSorter(true);
@@ -276,11 +161,11 @@ public class ListView extends javax.swing.JFrame {
         Chbx_Interative = new javax.swing.JCheckBox();
         Print_Btn = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         TxtThanhTichCacChau = new javax.swing.JTextField();
         TxtTuoiNhanQua = new javax.swing.JTextField();
         ChangeBtn = new javax.swing.JButton();
+        Chbx_ChangeAge = new javax.swing.JCheckBox();
+        Chbx_Thaydoithanhtich = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -301,13 +186,13 @@ public class ListView extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1097, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1033, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 8, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Danh sách con cái nhận quà", jPanel1);
@@ -329,7 +214,7 @@ public class ListView extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1097, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1033, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -353,7 +238,8 @@ public class ListView extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Danh sách học sinh đạt thành tích cao", jScrollPane1);
 
-        BackBtn.setText("Quay Lại");
+        BackBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Quay lại.png"))); // NOI18N
+        BackBtn.setText("Quay lại giao diện chính");
         BackBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BackBtnActionPerformed(evt);
@@ -449,7 +335,8 @@ public class ListView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        Print_Btn.setText("In");
+        Print_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/In.png"))); // NOI18N
+        Print_Btn.setText("Xuất báo cáo");
         Print_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Print_BtnActionPerformed(evt);
@@ -458,11 +345,25 @@ public class ListView extends javax.swing.JFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Tùy chọn xem"));
 
-        jLabel1.setText("Độ tuổi nhận quà :");
+        TxtThanhTichCacChau.setEnabled(false);
 
-        jLabel2.setText("Thành tích các cháu :");
+        TxtTuoiNhanQua.setEnabled(false);
 
         ChangeBtn.setText("Thay đổi");
+
+        Chbx_ChangeAge.setText("Đổi độ tuổi");
+        Chbx_ChangeAge.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Chbx_ChangeAgeActionPerformed(evt);
+            }
+        });
+
+        Chbx_Thaydoithanhtich.setText("Thay đổi thành tích");
+        Chbx_Thaydoithanhtich.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Chbx_ThaydoithanhtichActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -473,9 +374,9 @@ public class ListView extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addGap(18, 18, 18)
+                            .addComponent(Chbx_ChangeAge)
+                            .addComponent(Chbx_Thaydoithanhtich))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(TxtThanhTichCacChau)
                             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -491,12 +392,12 @@ public class ListView extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(TxtTuoiNhanQua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TxtTuoiNhanQua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Chbx_ChangeAge))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(TxtThanhTichCacChau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TxtThanhTichCacChau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Chbx_Thaydoithanhtich))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ChangeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -506,20 +407,19 @@ public class ListView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(Print_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(75, 75, 75)
-                        .addComponent(BackBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(70, 70, 70)))
-                .addContainerGap())
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Print_Btn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BackBtn))
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -530,9 +430,9 @@ public class ListView extends javax.swing.JFrame {
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BackBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Print_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Print_Btn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BackBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -671,6 +571,24 @@ public class ListView extends javax.swing.JFrame {
 
     }//GEN-LAST:event_Print_BtnActionPerformed
 
+    private void Chbx_ChangeAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Chbx_ChangeAgeActionPerformed
+        if(Chbx_ChangeAge.isSelected()){
+            TxtTuoiNhanQua.setEnabled(true);
+        }else{
+            TxtTuoiNhanQua.setEnabled(false);
+        }
+    }//GEN-LAST:event_Chbx_ChangeAgeActionPerformed
+
+    private void Chbx_ThaydoithanhtichActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Chbx_ThaydoithanhtichActionPerformed
+
+        if(Chbx_Thaydoithanhtich.isSelected()){
+            TxtThanhTichCacChau.setEnabled(true);
+        }else{
+            TxtThanhTichCacChau.setEnabled(false);
+        }
+
+    }//GEN-LAST:event_Chbx_ThaydoithanhtichActionPerformed
+
     public void BackBtnActionListener(ActionListener al){
         BackBtn.addActionListener(al);
     }
@@ -718,8 +636,10 @@ public class ListView extends javax.swing.JFrame {
     public javax.swing.JTable BTTBL;
     public javax.swing.JButton BackBtn;
     private javax.swing.JButton ChangeBtn;
+    public javax.swing.JCheckBox Chbx_ChangeAge;
     public javax.swing.JCheckBox Chbx_HSG;
     public javax.swing.JCheckBox Chbx_Interative;
+    public javax.swing.JCheckBox Chbx_Thaydoithanhtich;
     public javax.swing.JCheckBox Chbx_baithi;
     public javax.swing.JCheckBox Chbx_fit;
     public javax.swing.JCheckBox Chbx_footer;
@@ -733,8 +653,6 @@ public class ListView extends javax.swing.JFrame {
     public javax.swing.JTextField TxtTuoiNhanQua;
     public javax.swing.JTextField Txt_Footer;
     public javax.swing.JTextField Txt_Header;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

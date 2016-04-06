@@ -17,6 +17,7 @@ import java.util.ArrayList;
  * @author dinhq
  */
 public class LuongController extends  CheckEmpty{
+    Insertlog isl = new Insertlog();
     LuongDAO ld = new LuongDAO();  
     public ChangeView cw;
     public Luong l;
@@ -41,6 +42,7 @@ public class LuongController extends  CheckEmpty{
         @Override
         public void actionPerformed(ActionEvent ae) {
             ld.DelLuong(cw.Luong_TBL);
+            isl.theQuery("INSERT INTO Log (NoiDung) value('Xóa thông tin lương của 1 cán bộ')");
             BindingLuong();
         }
     }
@@ -62,6 +64,7 @@ public class LuongController extends  CheckEmpty{
                                 +cw.CBx_Ngay_Luong_TGBD.getSelectedItem().toString();
             String Luong = cw.TxtTienLuong.getText();
             ld.UpdateLuong(Stt, Ma_CB, HeSoLuong, TGBD,Luong);
+            isl.theQuery("INSERT INTO Log (NoiDung) value('Cập nhật thông tin lương của 1 cán bộ')");
             BindingLuong();
         }
     }
@@ -79,6 +82,7 @@ public class LuongController extends  CheckEmpty{
             String Luong = cw.TxtTienLuong.getText();
             if(!checkEmpty(cw.TxtSoTTLuong,Stt, "Số Thứ Tự")){
                 ld.AddLuong(Stt, Ma_CB, HeSoLuong, TGBD, Luong);
+                isl.theQuery("INSERT INTO Log (NoiDung) value('Thêm thông tin lương của 1 cán bộ')");
                 BindingLuong();
             }
         }

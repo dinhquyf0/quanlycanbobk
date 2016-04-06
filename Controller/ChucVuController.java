@@ -18,6 +18,7 @@ import java.util.ArrayList;
  * @author dinhq
  */
 public class ChucVuController extends CheckEmpty {
+    Insertlog isl = new Insertlog();
     ChucVuDAO cvd = new ChucVuDAO();  
     CanBo cb = new CanBo();
     public ChangeView cw;
@@ -43,6 +44,7 @@ public class ChucVuController extends CheckEmpty {
         @Override
         public void actionPerformed(ActionEvent ae) {
             cvd.DelChucVu(cw.ChucVu_TBL);
+            isl.theQuery("INSERT INTO Log (NoiDung) value('Xóa 1 chức vụ của 1 cán bộ')");
             BindingChucVu();
         }
     }
@@ -63,6 +65,7 @@ public class ChucVuController extends CheckEmpty {
                                     +cw.Cbx_Thang_ChucVu.getSelectedItem().toString()+"-"
                                     +cw.Cbx_Ngay_ChucVu.getSelectedItem().toString();
             cvd.UpdateChucVu(Stt, Ma_CB, ChucVu, ThoiGianDong);
+            isl.theQuery("INSERT INTO Log (NoiDung) value('Cập nhật thông tin chức vụ 1 cán bộ')");
             BindingChucVu();
         }
     }
@@ -79,6 +82,7 @@ public class ChucVuController extends CheckEmpty {
                                     +cw.Cbx_Ngay_ChucVu.getSelectedItem().toString();
             if(!checkEmpty(cw.Txt_STT_ChucVu,Stt, "Số Thứ Tự")){
                 cvd.AddChucVu(Stt, Ma_CB, ChucVu, ThoiGianDong);
+                isl.theQuery("INSERT INTO Log (NoiDung) value('Thêm thông tin chức vụ 1 cán bộ')");
                 BindingChucVu();
             }
         }

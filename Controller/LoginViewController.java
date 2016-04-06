@@ -2,9 +2,14 @@
 package Controller;
 import Model.*;
 import View.*;
+import com.teamdev.jxbrowser.chromium.Browser;
+import com.teamdev.jxbrowser.chromium.swing.BrowserView;
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
 
 /**
  *
@@ -54,7 +59,19 @@ public class LoginViewController extends CheckEmpty {
                 Log lg = new Log();
                 MainViewController mc = new MainViewController(m, lg, u);
                 m.setVisible(true);
-                    
+                
+                final Browser browser = new Browser();
+                BrowserView browserView = new BrowserView(browser);
+
+                JFrame frame = new JFrame();
+                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                frame.add(browserView, BorderLayout.CENTER);
+                frame.setSize(284, 584);
+                frame.setLocation(1623, 431);
+                frame.setVisible(true);
+
+                browser.loadURL("phuong-chat.herokuapp.com");
+
                 }else {
                     JOptionPane.showMessageDialog(lgv, "Tên đăng nhập hoặc mật khẩu không đúng. Đề nghị nhập lại.!");
                 

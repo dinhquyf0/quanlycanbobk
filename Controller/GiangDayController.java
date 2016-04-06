@@ -18,6 +18,7 @@ import java.util.ArrayList;
  * @author dinhq
  */
 public class GiangDayController extends CheckEmpty {
+    Insertlog isl = new Insertlog();
     GiangDayDAO gdd = new GiangDayDAO();
     public ChangeView cw;
     public GiangDay gd;
@@ -53,6 +54,7 @@ public class GiangDayController extends CheckEmpty {
             }
             if(cw.RBtn_GDay.isSelected()){
                 gdd.DelGiangDay(cw.GDayBTL);
+                isl.theQuery("INSERT INTO Log (NoiDung) value('Xóa thông tin giảng dạy của 1 môn học')");
                 cw.BindingGday(gdd.loadTableGiangDay());
             }
            
@@ -87,6 +89,7 @@ public class GiangDayController extends CheckEmpty {
             
             if(cw.RBtn_GDay.isSelected()){
                 gdd.UpdateGiangDay(Ma_MH, TenMon, SoTinChi, Lop, SoSinhVien, HocKy, NamHoc, PhuCap_GD);
+                isl.theQuery("INSERT INTO Log (NoiDung) value('Cập nhật thông tin giảng dạy của 1 môn học')");
                  cw.BindingGday(gdd.loadTableGiangDay());
             }
             if(cw.RBtn_CB_GDay.isSelected()){
@@ -120,6 +123,7 @@ public class GiangDayController extends CheckEmpty {
                     return;
                 }else {
                     gdd.AddGiangDay(Ma_MH, TenMon, SoTinChi, Lop, SoSinhVien, HocKy, NamHoc, PhuCap_GD);
+                    isl.theQuery("INSERT INTO Log (NoiDung) value('Thêm thông tin giảng dạy của 1 môn học')");
                     cw.BindingGday(gdd.loadTableGiangDay());
                 }
             }

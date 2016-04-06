@@ -18,6 +18,7 @@ import java.util.ArrayList;
  * @author dinhq
  */
 public class CongDoanVienController extends CheckEmpty{
+    Insertlog isl = new Insertlog();
     CanBoCongDoanVienDAO cdvd = new CanBoCongDoanVienDAO();  
     public ChangeView cw;
     public CanBoCongDoanVien cdv;
@@ -42,6 +43,7 @@ public class CongDoanVienController extends CheckEmpty{
         @Override
         public void actionPerformed(ActionEvent ae) {
             cdvd.DelCanBo_CongDoanVien(cw.CongDoanPhi_TBL);
+            isl.theQuery("INSERT INTO Log (NoiDung) value('Xóa thông tin công đoàn phí 1 cán bộ')");
              BindingCongDoanPhi();
         }
     }
@@ -62,6 +64,7 @@ public class CongDoanVienController extends CheckEmpty{
                                     +cw.Cbx_Thang_CongDoanPhi.getSelectedItem().toString()+"-"
                                     +cw.Cbx_Ngay_CongDoanPhi.getSelectedItem().toString();
             cdvd.UpdateCongDoanVien(Stt, Ma_CB, SoTienDong, ThoiGianDong);
+            isl.theQuery("INSERT INTO Log (NoiDung) value('Cập nhật thông tin công đoàn phí 1 cán bộ')");
             BindingCongDoanPhi();
         }
     }
@@ -78,6 +81,7 @@ public class CongDoanVienController extends CheckEmpty{
                                     +cw.Cbx_Ngay_CongDoanPhi.getSelectedItem().toString();
             if(!checkEmpty(cw.TxtSoThuTuCongDoanVien,Stt, "Số Thứ Tự")){
                 cdvd.AddCongDoanVien(Stt, Ma_CB, SoTienDong, SoTienDong);
+                isl.theQuery("INSERT INTO Log (NoiDung) value('thêm thông tin công đoàn phí 1 cán bộ')");
                  BindingCongDoanPhi();
             }
         }

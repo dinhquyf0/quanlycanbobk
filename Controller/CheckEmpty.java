@@ -15,9 +15,10 @@ import javax.swing.JTextField;
 public class CheckEmpty {
         public boolean checkEmpty(JTextField tfField, String value, String field) {
         if(value.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "field: " + field + " could not be empty", "Empty field",  JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Trường " + field + " không được trống", "Trường trống",  JOptionPane.ERROR_MESSAGE);
             tfField.requestFocus();
         }
         return true;
     }
+        
 }

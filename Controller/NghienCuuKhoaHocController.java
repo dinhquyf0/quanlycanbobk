@@ -18,8 +18,8 @@ import java.util.ArrayList;
  * @author dinhq
  */
 public class NghienCuuKhoaHocController extends CheckEmpty{
+    Insertlog isl = new Insertlog();
     NghienCuuKhoaHocDAO nckhd = new NghienCuuKhoaHocDAO();
-    
     public ChangeView cw;
     public NghienCuuKhoaHoc nckh;
     public GiangVien_NghienCuuKhoaHoc gvnckh;
@@ -53,6 +53,7 @@ public class NghienCuuKhoaHocController extends CheckEmpty{
             }
             if(cw.RBtn_NCKH.isSelected()){
                 nckhd.DelNghienCuuKhoaHoc(cw.NCKH_TBL);
+                isl.theQuery("INSERT INTO Log (NoiDung) value('Xóa thông tin 1 đề tài NCKH')");
                 cw.BindingNCKH(nckhd.loadTableNCKH());
             }
            
@@ -92,6 +93,7 @@ public class NghienCuuKhoaHocController extends CheckEmpty{
             
             if(cw.RBtn_NCKH.isSelected()){
                 nckhd.UpdateNghienCuuKhoaHoc(Ma_DT, TenDeTai, Cap, KinhPhi, ThoiGianBatDau, ThoiGianKetThuc, ChuTriDeTai, TinhTrang, KetQua);
+                isl.theQuery("INSERT INTO Log (NoiDung) value('cập nhật thông tin 1 đề tài NCKH')");
                 cw.BindingNCKH(nckhd.loadTableNCKH());
             }
             if(cw.RBtn_GV_NCKH.isSelected()){
@@ -130,6 +132,7 @@ public class NghienCuuKhoaHocController extends CheckEmpty{
                     return;
                 }else {
                     nckhd.AddNghienCuuKhoaHoc(Ma_DT, TenDeTai, Cap, KinhPhi, ThoiGianBatDau, ThoiGianKetThuc, ChuTriDeTai, TinhTrang, KetQua);
+                    isl.theQuery("INSERT INTO Log (NoiDung) value('Thêm mới thông tin 1 đề tài NCKH')");
                     cw.BindingNCKH(nckhd.loadTableNCKH());
                 }
             }

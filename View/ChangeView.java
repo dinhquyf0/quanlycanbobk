@@ -124,6 +124,7 @@ public class ChangeView extends javax.swing.JFrame {
             Cbx_Thang_CongDoanPhi.addItem(month);
             Cbx_Thang_NCKH_TGKT.addItem(month);
             Cbx_Thang_NCKH_TGBD.addItem(month);
+            Cbx_Thang_baiBao.addItem(month);
             
        }
     }
@@ -872,6 +873,7 @@ public class ChangeView extends javax.swing.JFrame {
         jLabel35 = new javax.swing.JLabel();
         TxtHeSoIF = new javax.swing.JTextField();
         jLabel31 = new javax.swing.JLabel();
+        Cbx_Thang_baiBao = new javax.swing.JComboBox();
         jPanel37 = new javax.swing.JPanel();
         AddBBBtn = new javax.swing.JButton();
         UpdateBBBtn = new javax.swing.JButton();
@@ -4081,6 +4083,8 @@ public class ChangeView extends javax.swing.JFrame {
 
         jLabel31.setText("Tên Tạp Chí");
 
+        Cbx_Thang_baiBao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tháng" }));
+
         javax.swing.GroupLayout jPanel36Layout = new javax.swing.GroupLayout(jPanel36);
         jPanel36.setLayout(jPanel36Layout);
         jPanel36Layout.setHorizontalGroup(
@@ -4104,12 +4108,15 @@ public class ChangeView extends javax.swing.JFrame {
                         .addGroup(jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(TxtChiSoISSN, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(TxtMaBaiBao)
-                                .addComponent(Cbx_Nam_BB, 0, 214, Short.MAX_VALUE)
+                                .addComponent(TxtMaBaiBao, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
                                 .addComponent(TxtSo)
-                                .addComponent(TxtTenTapChi))
+                                .addComponent(TxtTenTapChi)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel36Layout.createSequentialGroup()
+                                    .addComponent(Cbx_Thang_baiBao, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Cbx_Nam_BB, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(TxtHeSoIF, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 366, Short.MAX_VALUE))))
+                        .addGap(0, 285, Short.MAX_VALUE))))
         );
 
         jPanel36Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel33, jLabel34});
@@ -4134,7 +4141,8 @@ public class ChangeView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Cbx_Nam_BB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel33))
+                    .addComponent(jLabel33)
+                    .addComponent(Cbx_Thang_baiBao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TxtChiSoISSN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -4331,20 +4339,20 @@ public class ChangeView extends javax.swing.JFrame {
     }//GEN-LAST:event_AddGDyBtnActionPerformed
 
     private void GDayBTLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GDayBTLMouseClicked
-//        if (GDayBTL.getSelectedRow() != -1) {
-//            int row = GDayBTL.getSelectedRow();
-//            listgdy = gdy.getALL();
-//
-//
-//            TxtMa_MH.setText(listgdy.get(row).getMa_MH());
-//            TxtTenMon.setText(listgdy.get(row).getTenMon());
-//            TxtSoTinChi.setText(listgdy.get(row).getSoTinChi());
-//            TxtLop.setText(listgdy.get(row).getLop());
-//            TxtSoSinhVien.setText(listgdy.get(row).getSoSinhVien());
-//            TxtHocKy.setText(listgdy.get(row).getHocKy());
-//            TxtNamHoc.setText(listgdy.get(row).getNamHoc());
-//            TxtPhuCap.setText(listgdy.get(row).getPhuCap_GD());
-//        }
+        if (GDayBTL.getSelectedRow() != -1) {
+            int row = GDayBTL.getSelectedRow();
+            listgdy = gdy.getALL();
+
+
+            TxtMa_MH.setText(listgdy.get(row).getMa_MH());
+            TxtTenMon.setText(listgdy.get(row).getTenMon());
+            TxtSoTinChi.setText(listgdy.get(row).getSoTinChi());
+            TxtLop.setText(listgdy.get(row).getLop());
+            TxtSoSinhVien.setText(listgdy.get(row).getSoSinhVien());
+            TxtHocKy.setText(listgdy.get(row).getHocKy());
+            TxtNamHoc.setText(listgdy.get(row).getNamHoc());
+            TxtPhuCap.setText(listgdy.get(row).getPhuCap_GD());
+        }
     }//GEN-LAST:event_GDayBTLMouseClicked
 
     private void DelBBBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelBBBtnActionPerformed
@@ -4360,7 +4368,8 @@ public class ChangeView extends javax.swing.JFrame {
             TxtSo.setText(listbb.get(row).getSo());
             TxtChiSoISSN.setText(listbb.get(row).getChiSo_ISSN());
             TxtHeSoIF.setText(listbb.get(row).getHeSo_IF());
-            Cbx_Nam_BB.setSelectedItem(listbb.get(row).getThoiGianXuatBan());
+            Cbx_Nam_BB.setSelectedItem(listbb.get(row).getThoiGianXuatBan().substring(0,4));
+            Cbx_Thang_baiBao.setSelectedItem(listbb.get(row).getThoiGianXuatBan().substring(5, 7));
         }
     }//GEN-LAST:event_BaiBao_TBLMouseClicked
 
@@ -5196,6 +5205,7 @@ public class ChangeView extends javax.swing.JFrame {
     public javax.swing.JComboBox Cbx_Thang_Luong_TGBD;
     public javax.swing.JComboBox Cbx_Thang_NCKH_TGBD;
     public javax.swing.JComboBox Cbx_Thang_NCKH_TGKT;
+    public javax.swing.JComboBox Cbx_Thang_baiBao;
     public javax.swing.JTable Chamthi_TBL;
     public javax.swing.JTable ChucDanh_TBL;
     public javax.swing.JTable ChucVu_TBL;

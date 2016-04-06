@@ -18,6 +18,7 @@ import java.util.ArrayList;
  * @author dinhq
  */
 public class GiaoTrinhController extends CheckEmpty {
+    Insertlog isl = new Insertlog();
     GiaoTrinhDAO gtd = new GiaoTrinhDAO();
     public ChangeView cw;
     public GiaoTrinh gt;
@@ -52,6 +53,7 @@ public class GiaoTrinhController extends CheckEmpty {
             }
             if(cw.RBtn_GiaoTrinh.isSelected()){
                 gtd.DelGiaoTrinh(cw.GiaoTrinh_TBL);
+                isl.theQuery("INSERT INTO Log (NoiDung) value('Xóa thông tin của 1 giáo trình')");
                 cw.BindingGiaoTrinh(gtd.loadTableGiaoTrinh());
             }
            
@@ -83,6 +85,7 @@ public class GiaoTrinhController extends CheckEmpty {
             
             if(cw.RBtn_GiaoTrinh.isSelected()){
                 gtd.UpdateGiaoTrinh(Ma_GT, TenGiaoTrinh, TenTacGia, NamXuatBan, NhaXuatBan);
+                isl.theQuery("INSERT INTO Log (NoiDung) value('Cập nhật thông tin giáo trình của 1 giáo viên')");
                 cw.BindingGiaoTrinh(gtd.loadTableGiaoTrinh());
             }
             if(cw.RBtn_CB_GTrinh.isSelected()){
@@ -113,6 +116,7 @@ public class GiaoTrinhController extends CheckEmpty {
                     return;
                 }else {
                     gtd.AddGiaoTrinh(Ma_GT, TenGiaoTrinh, TenTacGia, NamXuatBan, NhaXuatBan);
+                    isl.theQuery("INSERT INTO Log (NoiDung) value('Thêm thông tin giáo trình của 1 giảng viên')");
                     cw.BindingGiaoTrinh(gtd.loadTableGiaoTrinh());
                 }
             }

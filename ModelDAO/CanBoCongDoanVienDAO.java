@@ -48,6 +48,8 @@ public class CanBoCongDoanVienDAO {
         return data;
     }
     
+    
+    
     public void AddCongDoanVien(String Stt, String ma_canbo, String SoTienDong, 
                                 String ThoiGianDong){
         

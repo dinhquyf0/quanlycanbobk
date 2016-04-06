@@ -21,6 +21,7 @@ public class CanBoController extends CheckEmpty{
     public ChangeView cw;
     public CanBo cb;
     ArrayList<CanBo> listcbo = new ArrayList<>();
+    Insertlog isl = new Insertlog();
     public CanBoController(ChangeView cw, CanBo cb, CanBoDAO cbd) {
         this.cb = cb;
         this.cbd = cbd;
@@ -40,6 +41,7 @@ public class CanBoController extends CheckEmpty{
         @Override
         public void actionPerformed(ActionEvent ae) {
             cbd.DelCanBo(cw.CanBo_TBL);
+            isl.theQuery("INSERT INTO Log (NoiDung) value('xóa cán bộ')");
             cw.BindingCanBo(cbd.loadTableCanBo());
         }
     }
@@ -95,6 +97,7 @@ public class CanBoController extends CheckEmpty{
             }
             
             cbd.UpdateCanBo(Ma_CB, user, HovaTen, NgaySinh, GioiTinh, NoiCongTac, ThoiGianBatDau, TrinhDo, MaSoThue, SoTaiKhoan, DiaChi, SoDienThoai, Email, ThanhTich, ThongTinKhac, Dgv, dv,cdv);
+            isl.theQuery("INSERT INTO Log (NoiDung) value('Cập nhật thông tin cán bộ')");
             cw.BindingCanBo(cbd.loadTableCanBo());            
         }
     }
@@ -150,6 +153,7 @@ public class CanBoController extends CheckEmpty{
                 return;
             }else {
             cbd.AddCanBo(Ma_CB, user, Password, HovaTen, NgaySinh, GioiTinh, NoiCongTac, ThoiGianBatDau, TrinhDo, MaSoThue, SoTaiKhoan, DiaChi, SoDienThoai, Email, ThanhTich, ThongTinKhac,Dgv,dv,cdv);
+            isl.theQuery("INSERT INTO Log (NoiDung) value('Thêm cán bộ')");
             }
             cw.BindingCanBo(cbd.loadTableCanBo());
         }

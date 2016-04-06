@@ -24,6 +24,7 @@ import javax.swing.JOptionPane;
  * @author dinhq
  */
 public class PhuPhiViewController {
+    Insertlog isl = new Insertlog();
     String user;
     int LCB = 1500000;
     private PhuPhiView ppv;
@@ -70,8 +71,6 @@ public class PhuPhiViewController {
             
         }
     }
-    
-    
     
     public double PhuCapChucVu(String ChucVu){
         double pccv = 0;
@@ -207,7 +206,24 @@ public class PhuPhiViewController {
         }
         return hstd;
     }
-
+    
+    public int SoGioDay(String MaCanBo,String Thang,String Nam){
+        int sogio = 0;
+        int thang = Integer.parseInt(Thang);
+        String hocky="1" ;
+        if(8<=thang && thang<=1){
+            hocky = "1";
+        }else if(2<= thang && thang<= 5){
+            hocky = "2";
+        }
+        ArrayList<GiangDay> listgdy = gdy.getByIDCBTIME(MaCanBo, hocky, Nam);
+        for(GiangDay gday : listgdy){
+            String sogioday = gday.getSoGioDay();
+            sogio = Integer.parseInt(sogioday);
+        }
+        return sogio;
+    }
+    
     public void theQuery(String query) {
         Connection con = null;
         Statement st = null;
@@ -358,7 +374,9 @@ public class PhuPhiViewController {
 
             listcb = cb.getByID(ma_canbo);
             listbb = bb.getByIDCB(ma_canbo);
-            
+            int sogioday = SoGioDay(ma_canbo, ppv.Cbx_Thang_TGBD.getSelectedItem().toString(), ppv.Cbx_Nam_TGBD.getSelectedItem().toString());
+            String tienday = Integer.toString(60000*sogioday);
+            ppv.TxtTienGiangDay.setText(tienday);
             String chucdanh = cd.getByIDCB(ma_canbo);
             String chucvu = cv.getByTime(ma_canbo,ppv.Cbx_Nam_TGBD.getSelectedItem().toString(),ppv.Cbx_Thang_TGBD.getSelectedItem().toString());
             while (chucvu == ""){

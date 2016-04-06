@@ -17,6 +17,7 @@ import java.util.ArrayList;
  * @author dinhq
  */
 public class DoanPhiController extends CheckEmpty{
+    Insertlog isl = new Insertlog();
     CanBoDoanVienDAO dvd = new CanBoDoanVienDAO();  
     public ChangeView cw;
     public CanBoDoanVien dv;
@@ -41,6 +42,7 @@ public class DoanPhiController extends CheckEmpty{
         @Override
         public void actionPerformed(ActionEvent ae) {
             dvd.DelCanBoDoanVien(cw.DoanPhi_TBL);
+            isl.theQuery("INSERT INTO Log (NoiDung) value('Xóa thông tin đoàn phí của 1 cán bộ')");
             BindingDoanPhi();
         }
     }
@@ -61,6 +63,7 @@ public class DoanPhiController extends CheckEmpty{
                                     +cw.Cbx_Thang_DoanPhi.getSelectedItem().toString()+"-"
                                     +cw.Cbx_Ngay_DoanPhi.getSelectedItem().toString();
             dvd.UpdateDoanien(Stt, Ma_CB, SoTienDong, ThoiGianDong);
+            isl.theQuery("INSERT INTO Log (NoiDung) value('Cập nhật thông tin đoàn phí của 1 cán bộ')");
             BindingDoanPhi();
         }
     }
@@ -77,6 +80,7 @@ public class DoanPhiController extends CheckEmpty{
                                     +cw.Cbx_Ngay_DoanPhi.getSelectedItem().toString();
             if(!checkEmpty(cw.TxtStt_DoanVien,Stt, "Số Thứ Tự")){
                 dvd.AddDoanVien(Stt, Ma_CB, SoTienDong, ThoiGianDong);
+                isl.theQuery("INSERT INTO Log (NoiDung) value('thêm thông tin đoàn phí của 1 cán bộ')");
                 BindingDoanPhi();
             }
         }

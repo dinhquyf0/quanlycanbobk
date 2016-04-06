@@ -18,6 +18,7 @@ import java.util.ArrayList;
  * @author dinhq
  */
 public class ChucDanhController extends CheckEmpty {
+    Insertlog isl = new Insertlog();
     ChucDanhDAO cdd = new ChucDanhDAO();  
     CanBo cb  = new CanBo();
     public ChangeView cw;
@@ -43,6 +44,7 @@ public class ChucDanhController extends CheckEmpty {
         @Override
         public void actionPerformed(ActionEvent ae) {
             cdd.DelChucDanh(cw.ChucDanh_TBL);
+            isl.theQuery("INSERT INTO Log (NoiDung) value('xóa 1 chức danh')");
             BindingChucDanh();
         }
     }
@@ -63,6 +65,7 @@ public class ChucDanhController extends CheckEmpty {
                                     +cw.Cbx_Thang_ChucDanh.getSelectedItem().toString()+"-"
                                     +cw.Cbx_Ngay_ChucDanh.getSelectedItem().toString();
             cdd.UpdateChucDanh(Stt, Ma_CB, ChucVu, ThoiGianDong);
+            isl.theQuery("INSERT INTO Log (NoiDung) value('Cập nhật 1 chức danh')");
             BindingChucDanh();
         }
     }
@@ -79,6 +82,7 @@ public class ChucDanhController extends CheckEmpty {
                                     +cw.Cbx_Ngay_ChucDanh.getSelectedItem().toString();
             if(!checkEmpty(cw.Txt_Stt_ChucDanh,Stt, "Số Thứ Tự")){
                 cdd.AddChucDanh(Stt, Ma_CB, ChucVu, ThoiGianDong);
+                isl.theQuery("INSERT INTO Log (NoiDung) value('Thêm mới 1 chức danh')");
                 BindingChucDanh();
             }
         }

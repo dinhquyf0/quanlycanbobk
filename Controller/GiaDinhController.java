@@ -19,8 +19,8 @@ import javax.swing.JOptionPane;
  * @author dinhq
  */
 public class GiaDinhController extends CheckEmpty {
+    Insertlog isl = new Insertlog();
     GiaDinhDAO gdd = new GiaDinhDAO();
-    
     public ChangeView cw;
     public GiaDinh gd;
     public CanBo_GiaDinh cbgd;
@@ -54,6 +54,7 @@ public class GiaDinhController extends CheckEmpty {
             }
             if(cw.RBtn_GD.isSelected()){
                 gdd.DelGiaDinh(cw.GiaDinhTBL);
+                isl.theQuery("INSERT INTO Log (NoiDung) value('Xóa thông tin gia đình của 1 cán bộ')");
                 cw.BindingCanBo_GiaDinh(gdd.loadTableCanBo_GiaDinh());
             }
            
@@ -86,6 +87,7 @@ public class GiaDinhController extends CheckEmpty {
             
             if(cw.RBtn_GD.isSelected()){
                 gdd.UpdateGiaDinh(Stt, Ma_GD, HoVaTenCon, NamSinhCon, ThanhTichCon);
+                isl.theQuery("INSERT INTO Log (NoiDung) value('Cập nhật thông tin gia đình 1 cán bộ')");
                 cw.BindingGD(gdd.loadTableGiaDinh());
             }else{
                 JOptionPane.showMessageDialog(null, "Đề nghị chọn bảng sẽ cập nhật");
@@ -121,6 +123,7 @@ public class GiaDinhController extends CheckEmpty {
                     return;
                 }else {
                     gdd.AddGiaDinh(Stt, Ma_GD, HoVaTenCon, NamSinhCon, ThanhTichCon);
+                    isl.theQuery("INSERT INTO Log (NoiDung) value('Thêm thông tin gia đình 1 cán bộ')");
                     cw.BindingGD(gdd.loadTableGiaDinh());
                 }
             }

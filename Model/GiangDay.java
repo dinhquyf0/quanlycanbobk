@@ -25,6 +25,8 @@ public class GiangDay extends DBConnect{
     String SoGioDay;
     private final String GET_BY_ID = "select * from giang_day where Ma_MH =?";
     private final String GET_BY_IDCB = "select giang_day.* from canbo, canbo_giangday ,giang_day where giang_day.Ma_MH = canbo_giangday.Ma_MH and canbo_giangday.Ma_CB = canbo.Ma_CB and canbo.Ma_CB =?";
+    private final String GET_BY_IDCB_AND_TIME ="select giang_day.* from canbo, canbo_giangday ,giang_day "
+            + "where giang_day.Ma_MH = canbo_giangday.Ma_MH and canbo_giangday.Ma_CB = canbo.Ma_CB and canbo.Ma_CB =? and HocKy =? and NamHoc =?";
     private final String GET_ALL = "select * from giang_day";
     private final String ADD_DATA = "insert into "
             + "giang_day(Ma_MH,TenMon,SoTinChi,Lop,SoSinhVien,HocKy,NamHoc,PhuCap_GD,SoGioDay)"
@@ -32,6 +34,38 @@ public class GiangDay extends DBConnect{
     private final String UPDATE_DATA = "Update "
             + "giang_day set TenMon=?,SoTinChi=?,Lop=?,SoSinhVien=?,HocKy=?,NamHoc=?,PhuCap_GD=?, SoGioDay=? where Ma_MH=?";
     private final String REMOVE_DATA = "Delete from giang_day where Ma_MH=?";
+    
+    public ArrayList<GiangDay> getByIDCBTIME(String id,String hky, String Nam){
+        ArrayList<GiangDay> objs = new ArrayList<>();
+        try {
+            getConnect();
+            PreparedStatement ps = con.prepareStatement(GET_BY_IDCB_AND_TIME);
+            ps.setString(1, id);
+            ps.setString(2, hky);
+            ps.setString(3, Nam);
+            ResultSet rs = ps.executeQuery();
+            if(rs!= null && rs.next()){
+                GiangDay item = new GiangDay();
+                
+                item.setMa_MH(rs.getString("Ma_MH"));
+                item.setTenMon(rs.getString("TenMon"));
+                item.setSoTinChi(rs.getString("SoTinChi"));
+                item.setLop(rs.getString("Lop"));
+                item.setSoSinhVien(rs.getString("SoSinhVien"));
+                item.setHocKy(rs.getString("HocKy"));
+                item.setNamHoc(rs.getString("NamHoc"));
+                item.setPhuCap_GD(rs.getString("PhuCap_GD"));
+                item.setSoGioDay(rs.getString("SoGioDay"));
+                
+                objs.add(item);
+                
+            }
+            getClose();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return objs;
+    }
     
     public ArrayList<GiangDay> getByIDCB(String id){
         ArrayList<GiangDay> objs = new ArrayList<>();

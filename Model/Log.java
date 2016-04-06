@@ -54,11 +54,10 @@ public class Log extends DBConnect{
             if(rs != null ){
                 while (rs.next()) {                    
                     Log item = new Log();
-                    item.setStt(rs.getString("Stt"));
                     item.setNoiDung(rs.getString("NoiDung"));
-                    item.setThoiGian(rs.getString("ThoiGian"));
                     objs.add(item);
                 }
+                    
             }
         } catch (Exception e) {
             e.printStackTrace();

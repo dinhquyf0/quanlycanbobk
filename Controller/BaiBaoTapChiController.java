@@ -26,6 +26,7 @@ public class BaiBaoTapChiController extends CheckEmpty{
     
     ArrayList<BaiBaoTapChi> listbb = new ArrayList<>();
     ArrayList<GiangVien_TapChi> listgvtc = new ArrayList<>();
+    Insertlog isl = new Insertlog();
     
     public BaiBaoTapChiController(ChangeView cw, BaiBaoTapChi bb,GiangVien_TapChi gvtc, BaiBaoTapChiDAO bbd) {
         this.bb = bb;
@@ -49,10 +50,12 @@ public class BaiBaoTapChiController extends CheckEmpty{
         public void actionPerformed(ActionEvent ae) {
             if(cw.RBtn_CB_BB.isSelected()){
                 bbd.DelCanBo_TapChi(cw.CB_BB_TBL);
+                isl.theQuery(null);
                 cw.BindingGiangVien_BBTC(bbd.loadTableGiangVien_TapChi());
             }
             if(cw.RBtn_BBao.isSelected()){
                 bbd.DelBaiBao_TapChi(cw.BaiBao_TBL);
+                isl.theQuery("INSERT INTO Log (NoiDung) value('Xóa bài báo')");
                 cw.BindingBB(bbd.loadTabelBaiBao_TapChi());
             }
            
@@ -60,7 +63,7 @@ public class BaiBaoTapChiController extends CheckEmpty{
            
     }
     
- 
+    
     
     private  class UpdateBaiBaoListener implements ActionListener {
 
@@ -85,6 +88,7 @@ public class BaiBaoTapChiController extends CheckEmpty{
             
             if(cw.RBtn_BBao.isSelected()){
                 bbd.UpdateBaiBaoTapChi(Ma_BB, TenTapChi, So, ThoiGianXuatBan, ChiSoISSN, HeSoIF);
+                isl.theQuery("INSERT INTO Log (NoiDung) value('Cập nhật bài báo')");
                 cw.BindingBB(bbd.loadTabelBaiBao_TapChi());
             }
             if(cw.RBtn_CB_BB.isSelected()){
@@ -95,6 +99,8 @@ public class BaiBaoTapChiController extends CheckEmpty{
             
         }
     }
+    
+
 
     private class AddBaiBaoListener implements ActionListener {
 
@@ -104,7 +110,7 @@ public class BaiBaoTapChiController extends CheckEmpty{
             String Ma_BB = cw.TxtMaBaiBao.getText();
             String TenTapChi = cw.TxtTenTapChi.getText();
             String So = cw.TxtSo.getText();
-            String ThoiGianXuatBan = cw.Cbx_Nam_BB.getSelectedItem().toString();
+            String ThoiGianXuatBan = cw.Cbx_Nam_BB.getSelectedItem().toString()+"-"+cw.Cbx_Thang_baiBao.getSelectedItem().toString()+"-"+"1";
             String ChiSoISSN = cw.TxtChiSoISSN.getText();
             String HeSoIF = cw.TxtHeSoIF.getText();
            
@@ -117,6 +123,7 @@ public class BaiBaoTapChiController extends CheckEmpty{
                     return;
                 }else {
                     bbd.AddBaiBaoTapChi(Ma_BB, TenTapChi, So, ThoiGianXuatBan, ChiSoISSN, HeSoIF);
+                    isl.theQuery("INSERT INTO Log (NoiDung) value('Thêm mới bài báo')");
                     cw.BindingBB(bbd.loadTabelBaiBao_TapChi());
                 }
             }
@@ -128,7 +135,7 @@ public class BaiBaoTapChiController extends CheckEmpty{
                     cw.BindingGiangVien_BBTC(bbd.loadTableGiangVien_TapChi());   
                 }
             }
-       
+            
         
         }
         
