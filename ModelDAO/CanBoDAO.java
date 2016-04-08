@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package ModelDAO;
+
 import Model.CanBo;
 import Model.ChucDanh;
 import Model.ChucVu;
@@ -29,7 +30,7 @@ public class CanBoDAO {
 
     public void CBbxMaCB(JComboBox CBx1,JComboBox CBx2,JComboBox CBx3,JComboBox CBx4,
                             JComboBox CBx5, JComboBox CBx6, JComboBox CBx7, JComboBox CBx8,
-                            JComboBox CBx9, JComboBox CBx10, JComboBox CBx11, JComboBox CBx12, JComboBox CBx13){
+                            JComboBox CBx9, JComboBox CBx10, JComboBox CBx11, JComboBox CBx12){
         listcb = cb.getALL();
         for (CanBo cb : listcb) {
             CBx1.addItem(cb.getMa_CB());
@@ -44,7 +45,6 @@ public class CanBoDAO {
             CBx10.addItem(cb.getMa_CB());
             CBx11.addItem(cb.getMa_CB());
             CBx12.addItem(cb.getMa_CB());
-            CBx13.addItem(cb.getMa_CB());
         }
     }
     
@@ -163,6 +163,7 @@ public class CanBoDAO {
         cb.setGioiTinh(GioiTinh);
         cb.setNoiCongTac(NoiCongTac);
         cb.setThoiGianBDCT(ThoiGianBatDau);
+        cb.setTrinhDo(TrinhDo);
         cb.setMaSoThue(MaSoThue);
         cb.setSoTaiKhoan(SoTaiKhoan);
         cb.setDiaChi(DiaChi);

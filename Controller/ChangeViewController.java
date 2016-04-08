@@ -71,7 +71,9 @@ public class ChangeViewController {
         this.cw.BackBtnActionListener(new ChangeViewController.BackBtnActionListener());
         this.cw.PrintBtnActionListener(new ChangeViewController.PrintActionListener());
     }
-
+    
+    
+    
     private class PrintActionListener implements ActionListener {
 
         public PrintActionListener() {

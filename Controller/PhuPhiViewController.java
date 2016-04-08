@@ -37,6 +37,9 @@ public class PhuPhiViewController {
     private LuongDAO ld;
     private ChamThiDAO ctd;
     
+    ArrayList<Luong> listl = new ArrayList<>();
+    ArrayList<CanBo> listcb = new ArrayList<>();
+    ArrayList<ChamThi> listct = new ArrayList<>();
     
     public PhuPhiViewController(PhuPhiView ppv, CanBo cb,Luong lg, GiangDay gdy, ChucDanh cd, ChucVu cv, ChamThi ct,LuongDAO ld,ChamThiDAO ctd, String s){
         this.ppv = ppv;
@@ -70,7 +73,14 @@ public class PhuPhiViewController {
             }
             
         }
+        BindingLuong();
+        
     }
+    
+    public void BindingLuong(){
+        ppv.BindingLuong(ld.loadTableLuong());
+    }
+    
     
     public double PhuCapChucVu(String ChucVu){
         double pccv = 0;
@@ -224,6 +234,15 @@ public class PhuPhiViewController {
         return sogio;
     }
     
+    public double HeSoLuongHienTai(String MaCanBo){
+        double hsl =0;
+        Double HSL = lg.getByIDandTime(MaCanBo);
+        String NamCT = cb.getThoiGianBatDauCongTac(MaCanBo).substring(0, 4);
+        int namhientai = Calendar.getInstance().get(Calendar.YEAR);
+        hsl = HSL+(((namhientai - Integer.parseInt(NamCT))/3)*0.33);
+        return  hsl;
+    }
+    
     public void theQuery(String query) {
         Connection con = null;
         Statement st = null;
@@ -237,10 +256,6 @@ public class PhuPhiViewController {
         }
 }  
     
-    ArrayList<Luong> listl = new ArrayList<>();
-    ArrayList<CanBo> listcb = new ArrayList<>();
-    ArrayList<ChamThi> listct = new ArrayList<>();
-
     private class GetTableChamThiListener implements ActionListener {
 
         @Override
@@ -253,6 +268,7 @@ public class PhuPhiViewController {
             
         }
     }
+    
     private class GetTableLuongListener implements ActionListener {
 
         @Override
@@ -271,14 +287,16 @@ public class PhuPhiViewController {
         }
     }
 
-
-
     private class Cbx_MaCbListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
 
             String macb = ppv.Cbx_MaCB.getSelectedItem().toString();
+            listcb = cb.getByID(macb);
+            for(CanBo cbo : listcb){
+            ppv.Txt_HoVaTen.setText(cbo.getHoVaTen());
+            }
         }
     }
     
@@ -299,7 +317,6 @@ public class PhuPhiViewController {
             String DangPhi = ppv.Txt_DP.getText();
             String CDPhi = ppv.Txt_CDP.getText();
             
-            int sttluong = lg.getStt().length();
         
             try {
                 theQuery("insert into luong (Luong) values ('" + Luong +"')where ma_canbo = "+ppv.Cbx_MaCB.getSelectedItem().toString()+" "
@@ -340,7 +357,7 @@ public class PhuPhiViewController {
             Double hsl = Double.parseDouble(ppv.Txt_HSL.getText());
             Double pccv = Double.parseDouble(ppv.Txt_PCCV.getText());
             Double lcb = Double.parseDouble(ppv.Txt_LCB.getText());
-            Double pcgd = Double.parseDouble(ppv.Txt_TienChamThi.getText());
+            Double pcgd = Double.parseDouble(ppv.Txt_PCGD.getText());
             Double hstl = Double.parseDouble(ppv.Txt_HeSoThamLien.getText());
             Double pccd = Double.parseDouble(ppv.Txt_PCCDanh.getText());
             
@@ -368,46 +385,20 @@ public class PhuPhiViewController {
             BaiBaoTapChi bb= new BaiBaoTapChi();
             
             ArrayList<CanBo> listcb = new ArrayList<>();
-            ArrayList<BaiBaoTapChi> listbb = new ArrayList<>();
             
             String ma_canbo = ppv.Cbx_MaCB.getSelectedItem().toString();
 
             listcb = cb.getByID(ma_canbo);
-            listbb = bb.getByIDCB(ma_canbo);
-            int sogioday = SoGioDay(ma_canbo, ppv.Cbx_Thang_TGBD.getSelectedItem().toString(), ppv.Cbx_Nam_TGBD.getSelectedItem().toString());
-            String tienday = Integer.toString(60000*sogioday);
-            ppv.TxtTienGiangDay.setText(tienday);
             String chucdanh = cd.getByIDCB(ma_canbo);
-            String chucvu = cv.getByTime(ma_canbo,ppv.Cbx_Nam_TGBD.getSelectedItem().toString(),ppv.Cbx_Thang_TGBD.getSelectedItem().toString());
-            while (chucvu == ""){
-                int thang = Integer.parseInt(ppv.Cbx_Thang_TGBD.getSelectedItem().toString());
-                thang--;
-                chucvu = cv.getByTime(ma_canbo,ppv.Cbx_Nam_TGBD.getSelectedItem().toString(), Integer.toString(thang));
-            }
-            Double hsl = lg.getByIDandTime(ma_canbo,ppv.Cbx_Nam_TGBD.getSelectedItem().toString(),
-                                                                            ppv.Cbx_Thang_TGBD.getSelectedItem().toString());
-            while (hsl == 0.0) {                
-                int thang = Integer.parseInt(ppv.Cbx_Thang_TGBD.getSelectedItem().toString());
-                thang--;
-                hsl = lg.getByIDandTime(ma_canbo, ppv.Cbx_Nam_TGBD.getSelectedItem().toString() , Integer.toString(thang));
-            }
-                
-            
+            String chucvu = cv.getByTime(ma_canbo);
+            Double hsl = HeSoLuongHienTai(ma_canbo);
+            System.out.println(hsl);
             
             ppv.Txt_LCB.setText(Integer.toString(LCB));
-
-            String sbt = ct.getSoBaiThi(ma_canbo,ppv.Cbx_Nam_TGBD.getSelectedItem().toString(),ppv.Cbx_Thang_TGBD.getSelectedItem().toString());
-            try {
-                int tbt = 10000*Integer.parseInt(sbt);
-                ppv.Txt_TienChamThi.setText(Integer.toString(tbt));
-            } catch (Exception e) {
-                System.out.println(e.toString());
-            }
-            
             
             ppv.Txt_PCGD.setText("1");
             for(CanBo cbo :listcb){
-                ppv.Txt_HoVaTen.setText(cbo.getHoVaTen());
+                
                 String gioitinh = cbo.getGioiTinh();
                 String macanbo = cbo.getMa_CB();
                 double k3 = HeSoThamLien(gioitinh, macanbo);

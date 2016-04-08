@@ -5,13 +5,15 @@
  */
 package Controller;
 
+import Model.CanBo;
 import Model.CanBoCongDoanVien;
-import Model.ChamThi;
 import ModelDAO.CanBoCongDoanVienDAO;
 import View.ChangeView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -22,20 +24,49 @@ public class CongDoanVienController extends CheckEmpty{
     CanBoCongDoanVienDAO cdvd = new CanBoCongDoanVienDAO();  
     public ChangeView cw;
     public CanBoCongDoanVien cdv;
+    private CanBo cb;
     ArrayList<CanBoCongDoanVien> listcdv = new ArrayList<>();
+    ArrayList<CanBo> listcbo = new ArrayList<>();
     
-    public CongDoanVienController(ChangeView cw, CanBoCongDoanVien cdv, CanBoCongDoanVienDAO cdvd) {
+    public CongDoanVienController(ChangeView cw, CanBoCongDoanVien cdv, CanBoCongDoanVienDAO cdvd, CanBo cb) {
         this.cdv = cdv;
         this.cdvd = cdvd;
         this.cw = cw;
+        this.cb = cb;
         this.cw.AddCongDoanPhiBtnActionListener(new CongDoanVienController.AddCongDoanVienListener());
         this.cw.UpdateCongDoanPhiBtnActionListener(new CongDoanVienController.UpdateCongDoanVienListener());
         this.cw.DelCongDoanPhiBtnActionListener(new CongDoanVienController.DelCongDoanVienListener());
+        this.cw.ClickTableCongDoanPhi(new CongDoanVienController.ClickTableListener());
         BindingCongDoanPhi();
     }
 
     private void BindingCongDoanPhi(){
         cw.BindingCongDoanPhi(cdvd.loadTableCongDoanPhi());
+    }
+
+    private class ClickTableListener implements ListSelectionListener {
+
+        @Override
+        public void valueChanged(ListSelectionEvent lse) {
+        
+            if (cw.CongDoanPhi_TBL.getSelectedRow() != -1) {
+            int row = cw.CongDoanPhi_TBL.getSelectedRow();
+            listcdv = cdv.getALL();
+            listcbo =cb.getByID(listcdv.get(row).getma_canbo());
+            cw.TxtSoThuTuCongDoanVien.setText(listcdv.get(row).getStt());
+            cw.Cb_MaCB_CDV.setSelectedItem(listcdv.get(row).getma_canbo());
+            cw.TxtTenCb_CDV.setText(listcbo.get(0).getHoVaTen());
+            cw.TxtSoTienDong_CDV.setText(listcdv.get(row).getSoTienDong());
+            String nam = listcdv.get(row).getThoiGianDong().substring(0,4);
+            String thang = listcdv.get(row).getThoiGianDong().substring(5,7);
+            String ngay = listcdv.get(row).getThoiGianDong().substring(8,10);
+            cw.Cbx_Nam_CongDoanPhi.setSelectedItem(nam);
+            cw.Cbx_Thang_CongDoanPhi.setSelectedItem(thang);
+            cw.Cbx_Ngay_CongDoanPhi.setSelectedItem(ngay);
+                    
+        }
+            
+        }
     }
 
     private  class DelCongDoanVienListener implements ActionListener {

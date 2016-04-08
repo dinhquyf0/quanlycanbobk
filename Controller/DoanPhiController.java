@@ -5,12 +5,15 @@
  */
 package Controller;
 
+import Model.CanBo;
 import Model.CanBoDoanVien;
 import ModelDAO.CanBoDoanVienDAO;
 import View.ChangeView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -21,20 +24,49 @@ public class DoanPhiController extends CheckEmpty{
     CanBoDoanVienDAO dvd = new CanBoDoanVienDAO();  
     public ChangeView cw;
     public CanBoDoanVien dv;
+    private CanBo cb;
     ArrayList<CanBoDoanVien> listdv = new ArrayList<>();
+    ArrayList<CanBo> listcb = new ArrayList<>();
     
-    public DoanPhiController(ChangeView cw, CanBoDoanVien dv, CanBoDoanVienDAO dvd ) {
+    public DoanPhiController(ChangeView cw, CanBoDoanVien dv, CanBoDoanVienDAO dvd, CanBo cb ) {
         this.dv = dv;
         this.dvd = dvd;
         this.cw = cw;
+        this.cb = cb;
         this.cw.AddDoanPhiBtnActionListener(new DoanPhiController.AddDoanPhiListener());
         this.cw.UpdateDoanPhiBtnActionListener(new DoanPhiController.UpdateDoanPhiListener());
         this.cw.DelDoanPhiBtnActionListener(new DoanPhiController.DelDoanPhiListener());
+        this.cw.ClickTableDoanPhi(new DoanPhiController.ClickTableListener());
         BindingDoanPhi();
     }
 
     private void BindingDoanPhi(){
         cw.BindingDoanPhi(dvd.loadTableDoanVien());
+    }
+
+    private class ClickTableListener implements ListSelectionListener {
+
+        @Override
+        public void valueChanged(ListSelectionEvent lse) {
+
+            if (cw.DoanPhi_TBL.getSelectedRow() != -1) {
+            int row = cw.DoanPhi_TBL.getSelectedRow();
+            listdv = dv.getALL();
+            listcb =cb.getByID(listdv.get(row).getma_canbo());
+            cw.TxtStt_DoanVien.setText(listdv.get(row).getStt());
+            cw.CB_MaCB_DoanVien.setSelectedItem(listdv.get(row).getma_canbo());
+            cw.Txt_TenCanBo_DoanVien.setText(listcb.get(0).getHoVaTen());
+            cw.TxtSoTienDong_DoanVien.setText(listdv.get(row).getSoTien());
+            String nam = listdv.get(row).getThoiGian().substring(0,4);
+            String thang = listdv.get(row).getThoiGian().substring(5,7);
+            String ngay = listdv.get(row).getThoiGian().substring(8,10);
+            cw.Cbx_Nam_DoanPhi.setSelectedItem(nam);
+            cw.Cbx_Thang_DoanPhi.setSelectedItem(thang);
+            cw.Cbx_Ngay_DoanPhi.setSelectedItem(ngay);
+        }
+
+        }
+
     }
 
     private  class DelDoanPhiListener implements ActionListener {

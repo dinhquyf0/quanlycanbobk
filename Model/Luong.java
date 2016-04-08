@@ -18,16 +18,15 @@ public class Luong extends DBConnect{
     String ma_canbo;
     String HeSoLuong;
     String ThoiGianBatDau;
-    String Luong;
     private final String GET_BY_ID = "select * from luong where ma_canbo =?";
     private final String GET_ALL = "select * from luong";
-    private final String GET_ID_AND_TIME = "select HeSoLuong from luong where ma_canbo = ? and year(ThoiGianBatDau) = ? and month(ThoiGianBatDau) =?";
+    private final String GET_ID_AND_TIME = "select HeSoLuong from luong where ma_canbo = ?";
     private final String GET_BY_TIME = "select * from luong where year(ThoiGianBatDau) = ? and month(ThoiGianBatDau) =?";
     private final String ADD_DATA = "insert into "
-            + "luong(Stt,ma_canbo,HeSoLuong,ThoiGianBatDau,Luong)"
-            + "values (?,?,?,?,?)";
+            + "luong(Stt,ma_canbo,HeSoLuong,ThoiGianBatDau)"
+            + "values (?,?,?,?)";
     private final String UPDATE_DATA = "Update "
-            + "luong set ma_canbo=?,HeSoLuong=?,ThoiGianBatDau=?,Luong = ? where Stt=?";
+            + "luong set ma_canbo=?,HeSoLuong=?,ThoiGianBatDau=?where Stt=?";
     private final String REMOVE_DATA = "Delete from luong where Stt=?";
     
     public ArrayList<Luong> getByTime(String year,String month){
@@ -46,7 +45,6 @@ public class Luong extends DBConnect{
                 item.setma_canbo(rs.getString("ma_canbo"));
                 item.setHeSoLuong(rs.getString("HeSoLuong"));
                 item.setThoiGianBatDau(rs.getString("ThoiGianBatDau"));
-                item.setLuong(rs.getString("Luong"));
                 
                 objs.add(item);
                 }
@@ -58,14 +56,12 @@ public class Luong extends DBConnect{
         return objs;
     }
     
-    public double getByIDandTime(String macb, String yearbd, String monthbd) {
+    public double getByIDandTime(String macb) {
         double hsl = 0;
         try {
             getConnect();
             PreparedStatement ps = con.prepareStatement(GET_ID_AND_TIME);
             ps.setString(1, macb);
-            ps.setString(2, yearbd);
-            ps.setString(3, monthbd);
             ResultSet rs = ps.executeQuery();
             if (rs != null) {
                 while (rs.next()) {
@@ -96,7 +92,6 @@ public class Luong extends DBConnect{
                 item.setma_canbo(rs.getString("ma_canbo"));
                 item.setHeSoLuong(rs.getString("HeSoLuong"));
                 item.setThoiGianBatDau(rs.getString("ThoiGianBatDau"));
-                item.setLuong(rs.getString("Luong"));
                 
                 objs.add(item);
                 }
@@ -122,7 +117,6 @@ public class Luong extends DBConnect{
                     item.setma_canbo(rs.getString("ma_canbo"));
                     item.setHeSoLuong(rs.getString("HeSoLuong"));
                     item.setThoiGianBatDau(rs.getString("ThoiGianBatDau"));
-                    item.setLuong(rs.getString("Luong"));
                     objs.add(item);
                 }
             }
@@ -142,7 +136,6 @@ public class Luong extends DBConnect{
             ps.setString(2, lg.getma_canbo());
             ps.setString(3, lg.getHeSoLuong());
             ps.setString(4, lg.getThoiGianBatDau());
-            ps.setString(5, lg.getLuong());
             int rs = ps.executeUpdate();
             if(rs > 0){
                 check = true;
@@ -180,8 +173,7 @@ public class Luong extends DBConnect{
             ps.setString(1, lg.getma_canbo());
             ps.setString(2, lg.getHeSoLuong());
             ps.setString(3, lg.getThoiGianBatDau());
-            ps.setString(4, lg.getLuong());
-            ps.setString(5, lg.getStt());
+            ps.setString(4, lg.getStt());
             int rs = ps.executeUpdate();
             if(rs > 0){
                 check = true;
@@ -226,15 +218,5 @@ public class Luong extends DBConnect{
     public void setThoiGianBatDau(String ThoiGianBatDau) {
         this.ThoiGianBatDau = ThoiGianBatDau;
     }
-
-    public String getLuong() {
-        return Luong;
-    }
-
-    public void setLuong(String Luong) {
-        this.Luong = Luong;
-    }
-    
-    
     
 }

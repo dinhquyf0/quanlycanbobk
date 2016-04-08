@@ -5,9 +5,6 @@
  */
 package View;
 
-import de.javasoft.plaf.synthetica.SyntheticaBlackEyeLookAndFeel;
-import de.javasoft.plaf.synthetica.SyntheticaMauveMetallicLookAndFeel;
-import de.javasoft.plaf.synthetica.SyntheticaOrangeMetallicLookAndFeel;
 import de.javasoft.plaf.synthetica.SyntheticaPlainLookAndFeel;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
@@ -157,78 +154,6 @@ public class LoginView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        String select = jComboBox1.getSelectedItem().toString();
-        switch(select) {
-            case "Đen": {
-                this.setVisible(false);
-                try {
-                    UIManager.setLookAndFeel(new SyntheticaBlackEyeLookAndFeel());
-                    //</editor-fold>
-                } catch (ParseException ex) {
-                    Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (UnsupportedLookAndFeelException ex) {
-                Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-                /* Create and display the form */
-                java.awt.EventQueue.invokeLater(new Runnable() {
-                    public void run() {
-                        new LoginView().setVisible(true);
-                    }
-                });
-                break;
-            }
-            case "Trắng": {
-            this.setVisible(false);
-            try {
-                UIManager.setLookAndFeel(new SyntheticaPlainLookAndFeel());
-            } catch (ParseException ex) {
-                Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (UnsupportedLookAndFeelException ex) {
-                Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
-            }
-                java.awt.EventQueue.invokeLater(new Runnable() {
-                    public void run() {
-                        new LoginView().setVisible(true);
-                    }
-                });
-            break;
-            }
-            
-            case "Hồng": {
-                this.setVisible(false);
-                try {
-                    UIManager.setLookAndFeel(new SyntheticaMauveMetallicLookAndFeel());
-                } catch (ParseException ex) {
-                    Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (UnsupportedLookAndFeelException ex) {
-                    Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                java.awt.EventQueue.invokeLater(new Runnable() {
-                    public void run() {
-                        new LoginView().setVisible(true);
-                    }
-                });
-                break;
-            }
-            
-            case "Cam": {
-                this.setVisible(false);
-                try {
-                    UIManager.setLookAndFeel(new SyntheticaOrangeMetallicLookAndFeel());
-                } catch (ParseException ex) {
-                    Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (UnsupportedLookAndFeelException ex) {
-                    Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                java.awt.EventQueue.invokeLater(new Runnable() {
-                    public void run() {
-                        new LoginView().setVisible(true);
-                    }
-                });
-                break;
-            }
-        }
         
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
@@ -244,8 +169,8 @@ public class LoginView extends javax.swing.JFrame {
         loginBtn.addActionListener(listenerForGetBtn );
     }   
     
-    public String getjComboBox1() {
-        return jComboBox1.getSelectedItem().toString();
+    public void CbxChangeThemeActionListener(ActionListener al){
+        jComboBox1.addActionListener(al);
     }
     
     public void GuestLoginActionListener(ActionListener al){

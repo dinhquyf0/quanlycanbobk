@@ -126,19 +126,19 @@ public class MainViewController {
             LuongDAO ld = new LuongDAO();
             NghienCuuKhoaHocDAO nckhd = new NghienCuuKhoaHocDAO();
             
-            BaiBaoTapChiController bbc = new BaiBaoTapChiController(cw, bb, gvtc, bbd);
-            CanBoController cbc = new CanBoController(cw, cb, cbd);
-            ChamThiController ctc = new ChamThiController(cw, ct, ctd);
-            ChucDanhController cdc = new ChucDanhController(cw, cd, cdd);
-            ChucVuController cvc = new ChucVuController(cw, cv, cvd);
-            CongDoanVienController cdvc = new CongDoanVienController(cw, cdv, cdvd);
-            DangPhiController dgc = new DangPhiController(cw, dgv, dgvd);
-            DoanPhiController dc = new DoanPhiController(cw, dv, dvd);
-            GiaDinhController gdc = new GiaDinhController(gd, cbgd, gdd, cw);
-            GiangDayController gdyc = new GiangDayController(gdy, gvgd, gdyd, cw);
-            GiaoTrinhController gtc = new GiaoTrinhController(gt, gvgt, gtd, cw);
-            LuongController lc = new LuongController(l, ld, cw);
-            NghienCuuKhoaHocController nckhc = new NghienCuuKhoaHocController(cw, nckh, gvnckh, nckhd);
+            BaiBaoTapChiController bbc = new BaiBaoTapChiController(cw, bb, gvtc, bbd, cb);
+            CanBoController cbc = new CanBoController(cw, cb, cbd,ld,l);
+            ChamThiController ctc = new ChamThiController(cw, ct, ctd,cb);
+            ChucDanhController cdc = new ChucDanhController(cw, cd, cdd,cb);
+            ChucVuController cvc = new ChucVuController(cw, cv, cvd,cb);
+            CongDoanVienController cdvc = new CongDoanVienController(cw, cdv, cdvd,cb);
+            DangPhiController dgc = new DangPhiController(cw, dgv, dgvd,cb);
+            DoanPhiController dc = new DoanPhiController(cw, dv, dvd,cb);
+            GiaDinhController gdc = new GiaDinhController(gd, cbgd, gdd, cw,cb);
+            GiangDayController gdyc = new GiangDayController(gdy, gvgd, gdyd, cw,cb);
+            GiaoTrinhController gtc = new GiaoTrinhController(gt, gvgt, gtd, cw,cb);
+            LuongController lc = new LuongController(l, ld, cw,cb);
+            NghienCuuKhoaHocController nckhc = new NghienCuuKhoaHocController(cw, nckh, gvnckh, nckhd,cb);
             
             ChangeViewController cvwc = new ChangeViewController(cw, bbc, cbc, ctc, cdc, cvc, cdvc, dgc, dc, gdc, gdyc, gtc, lc, nckhc, s);
             

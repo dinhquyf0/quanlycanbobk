@@ -6,12 +6,15 @@
 package Controller;
 
 import Model.BaiBaoTapChi;
+import Model.CanBo;
 import Model.GiangVien_TapChi;
 import ModelDAO.BaiBaoTapChiDAO;
 import View.ChangeView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -23,25 +26,80 @@ public class BaiBaoTapChiController extends CheckEmpty{
     public ChangeView cw;
     public BaiBaoTapChi bb;
     public GiangVien_TapChi gvtc;
+    public CanBo cb;
     
     ArrayList<BaiBaoTapChi> listbb = new ArrayList<>();
     ArrayList<GiangVien_TapChi> listgvtc = new ArrayList<>();
+    ArrayList<CanBo> listcb = new ArrayList<>();
     Insertlog isl = new Insertlog();
     
-    public BaiBaoTapChiController(ChangeView cw, BaiBaoTapChi bb,GiangVien_TapChi gvtc, BaiBaoTapChiDAO bbd) {
+    public BaiBaoTapChiController(ChangeView cw, BaiBaoTapChi bb,GiangVien_TapChi gvtc, BaiBaoTapChiDAO bbd, CanBo cb) {
         this.bb = bb;
         this.gvtc = gvtc;
         this.bbd = bbd;
         this.cw = cw;
+        this.cb = cb;
         this.cw.AddBBBtnActionListener(new BaiBaoTapChiController.AddBaiBaoListener());
         this.cw.UpdateBBBtnActionListener(new BaiBaoTapChiController.UpdateBaiBaoListener());
         this.cw.DelBBBtnActionListener(new BaiBaoTapChiController.DelBaiBaoListener());
+        this.cw.ClickTableBaiBao(new BaiBaoTapChiController.ClickTableBaiBaoListener());
+        this.cw.ClickTableCanBo_BB(new BaiBaoTapChiController.ClickTableCB_BBListener());
         BindingBaiBao();
+        BindingMaBB();
     }
-
+    
+    public void BindingMaBB(){
+        listbb = bb.getALL();
+        for(BaiBaoTapChi bbo : listbb){
+            cw.CB_MaBB.addItem(bbo.getMa_BaiBao());
+        }
+    }
+    
     private void BindingBaiBao(){
         cw.BindingBB(bbd.loadTabelBaiBao_TapChi());
         cw.BindingGiangVien_BBTC(bbd.loadTableGiangVien_TapChi());
+    }
+
+    private class ClickTableBaiBaoListener implements ListSelectionListener {
+
+        @Override
+        public void valueChanged(ListSelectionEvent lse) {
+             if (cw.BaiBao_TBL.getSelectedRow() != -1) {
+            int row = cw.BaiBao_TBL.getSelectedRow();
+            listbb = bb.getALL();
+
+            cw.TxtMaBaiBao.setText(listbb.get(row).getMa_BaiBao());
+            cw.TxtTenTapChi.setText(listbb.get(row).getTenTapChi());
+            cw.TxtSo.setText(listbb.get(row).getSo());
+            cw.TxtChiSoISSN.setText(listbb.get(row).getChiSo_ISSN());
+            cw.TxtHeSoIF.setText(listbb.get(row).getHeSo_IF());
+            cw.Cbx_Nam_BB.setSelectedItem(listbb.get(row).getThoiGianXuatBan().substring(0,4));
+            cw.Cbx_Thang_baiBao.setSelectedItem(listbb.get(row).getThoiGianXuatBan().substring(5, 7));
+        }
+        
+        }
+    }
+
+    private class ClickTableCB_BBListener implements ListSelectionListener {
+
+        @Override
+        public void valueChanged(ListSelectionEvent lse) {
+            if (cw.CB_BB_TBL.getSelectedRow() != -1) {
+            int row = cw.CB_BB_TBL.getSelectedRow();
+
+            listgvtc = gvtc.getALLGVBB();
+            listcb = cb.getByID(listgvtc.get(row).getMa_CB());
+            if (listcb.size() > 0) {
+                cw.CB_MaCB_BB.setSelectedItem(listcb.get(0).getMa_CB());
+            } else {
+                cw.CB_MaCB_BB.setSelectedIndex(0);
+            }
+            cw.Txt_Stt_BB.setText(listgvtc.get(row).getStt());
+            cw.CB_MaBB.setSelectedItem(listgvtc.get(row).getMa_BB());
+            cw.TxtTen_CBBB.setText(listcb.get(0).getHoVaTen());
+        }
+        }
+
     }
 
     private  class DelBaiBaoListener implements ActionListener {

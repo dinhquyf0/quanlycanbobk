@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import Model.CanBo;
 import Model.GiangDay;
 import Model.GiangVien_GiangDay;
 import ModelDAO.GiangDayDAO;
@@ -12,6 +13,8 @@ import View.ChangeView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -23,25 +26,79 @@ public class GiangDayController extends CheckEmpty {
     public ChangeView cw;
     public GiangDay gd;
     public GiangVien_GiangDay gvgd;
+    private CanBo cb;
     
     ArrayList<GiangDay> listgd = new ArrayList<>();
     ArrayList<GiangVien_GiangDay> listgvgd = new ArrayList<>();
+    ArrayList<CanBo> listcbo = new ArrayList<>();
     
-    public GiangDayController(GiangDay gd, GiangVien_GiangDay gvgd, GiangDayDAO gdd, ChangeView cw) {
+    public GiangDayController(GiangDay gd, GiangVien_GiangDay gvgd, GiangDayDAO gdd, ChangeView cw, CanBo cb) {
         this.gd = gd;
         this.gvgd = gvgd;
         this.gdd = gdd;
         this.cw = cw;
+        this.cb = cb;
         this.cw.AddGiangDayBtnActionListener(new GiangDayController.AddGiangDayListener());
         this.cw.UpdateGiangDayBtnActionListener(new GiangDayController.UpdateGiangDayListener());
         this.cw.DelGiangDayBtnActionListener(new GiangDayController.DelGiangDayListener());
+        this.cw.ClickTableCB_GiangDay(new GiangDayController.ClickTableCanBo_GiangDay());
+        this.cw.ClickTableGiangDay(new GiangDayController.ClickTableGiangDay());
         
         BindingGiangDay();
+        cw.BindingMaMH(gd.getALL());
     }
 
     private void BindingGiangDay(){
         cw.BindingGday(gdd.loadTableGiangDay());
         cw.BindingGV_GiangDay(gdd.loadTableGiangVien_GiangDay());
+    }
+
+    private class ClickTableCanBo_GiangDay implements ListSelectionListener {
+
+        @Override
+        public void valueChanged(ListSelectionEvent lse) {
+             if (cw.CB_GDay_TBL.getSelectedRow() != -1) {
+            int row = cw.CB_GDay_TBL.getSelectedRow();
+
+            listgvgd = gvgd.getALLGVGD();
+            listcbo = cb.getByID(listgvgd.get(row).getMa_CB());
+            if (listcbo.size() > 0) {
+                cw.CB_MaCB_Gday.setSelectedItem(listcbo.get(0).getMa_CB());
+            } else {
+                cw.CB_MaCB_Gday.setSelectedIndex(0);
+            }
+            cw.Txt_STT_CB_GDay.setText(listgvgd.get(row).getStt());
+            cw.TxtTen_GV.setText(listcbo.get(0).getHoVaTen());
+            cw.CB_Ma_MH.setSelectedItem(listgvgd.get(row).getMa_MH());
+            
+        }
+        
+        }
+
+    }
+
+    private class ClickTableGiangDay implements ListSelectionListener {
+
+        @Override
+        public void valueChanged(ListSelectionEvent lse) {
+
+            if (cw.GDayBTL.getSelectedRow() != -1) {
+                int row = cw.GDayBTL.getSelectedRow();
+                listgd = gd.getALL();
+
+
+                cw.TxtMa_MH.setText(listgd.get(row).getMa_MH());
+                cw.TxtTenMon.setText(listgd.get(row).getTenMon());
+                cw.TxtSoTinChi.setText(listgd.get(row).getSoTinChi());
+                cw.TxtLop.setText(listgd.get(row).getLop());
+                cw.TxtSoSinhVien.setText(listgd.get(row).getSoSinhVien());
+                cw.TxtHocKy.setText(listgd.get(row).getHocKy());
+                cw.TxtNamHoc.setText(listgd.get(row).getNamHoc());
+                cw.TxtPhuCap.setText(listgd.get(row).getPhuCap_GD());
+            }
+        
+        }
+
     }
 
     private  class DelGiangDayListener implements ActionListener {

@@ -14,6 +14,8 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.ListModel;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -38,62 +40,9 @@ public class ChangeView extends javax.swing.JFrame {
         model = new DefaultTableModel();
     }
     
-    CanBo cb = new CanBo();
-    ArrayList<CanBo> listcbo = new ArrayList<>();
-    
-    GiaDinh gd = new GiaDinh();
-    ArrayList<GiaDinh> listgd = new  ArrayList<>();
-    
-    GiangDay gdy = new GiangDay();
-    ArrayList<GiangDay> listgdy = new ArrayList<>();
-    
-    NghienCuuKhoaHoc nckh = new NghienCuuKhoaHoc();
-    ArrayList<NghienCuuKhoaHoc> listnnck = new ArrayList<>();
-    
-    BaiBaoTapChi bb = new BaiBaoTapChi();
-    ArrayList<BaiBaoTapChi> listbb = new ArrayList<>();
-    
-    Luong l = new Luong();
-    ArrayList<Luong> listl = new ArrayList<>();
-    
-    CanBoCongDoanVien cdv = new CanBoCongDoanVien();
-    ArrayList<CanBoCongDoanVien> listcdv = new ArrayList<>();
-    
-    CanBoDangVien dgv = new CanBoDangVien();
-    ArrayList<CanBoDangVien> listdgv = new ArrayList<>();
-    
-    CanBoDoanVien dv = new CanBoDoanVien();
-    ArrayList<CanBoDoanVien> listdv = new ArrayList<>();
-    
-    GiaoTrinh gt = new GiaoTrinh();
-    ArrayList<GiaoTrinh> listgt = new ArrayList<>();
-    
-    CanBo_GiaDinh cbgd = new CanBo_GiaDinh();
-    ArrayList<CanBo_GiaDinh> listcbgd = new ArrayList<>();
-    
-    GiangVien_NghienCuuKhoaHoc gvnckh = new GiangVien_NghienCuuKhoaHoc();
-    ArrayList<GiangVien_NghienCuuKhoaHoc> listgvnckh = new ArrayList<>();
-    
-    GiangVien_TapChi gvtc = new GiangVien_TapChi();
-    ArrayList<GiangVien_TapChi> listgvtc = new ArrayList<>();
-    
-    GiangVien_GiaoTrinh gvgt = new GiangVien_GiaoTrinh();
-    ArrayList<GiangVien_GiaoTrinh> listgvgt = new ArrayList<>();
-    
-    ChamThi ct = new ChamThi();
-    ArrayList<ChamThi> listct = new ArrayList<>();
-    
-    GiangVien_GiangDay gvgd = new GiangVien_GiangDay();
-    ArrayList<GiangVien_GiangDay> listgvgd = new ArrayList<>();
-    
-    ChucVu cv = new ChucVu();
-    ArrayList<ChucVu> listcv = new ArrayList<>();
-    
-    ChucDanh cd = new ChucDanh();
-    ArrayList<ChucDanh> listcd = new ArrayList<>();
     
     public void BindingCBxNam(){
-        for(int years=Calendar.getInstance().get(Calendar.YEAR);years>=1950;years--){
+        for(int years=Calendar.getInstance().get(Calendar.YEAR);years >= 1950;years--){
             Cbx_NamSinh_CB.addItem(years);
             CBx_Nam_Ctac.addItem(years);
             Cbx_NamSinh_Con.addItem(years);
@@ -152,8 +101,7 @@ public class ChangeView extends javax.swing.JFrame {
     }
     
     public void BindingMaNCKH(ArrayList<NghienCuuKhoaHoc> listnckh){
-        listnnck = nckh.getALL();
-        for(NghienCuuKhoaHoc nckh : listnnck){
+        for(NghienCuuKhoaHoc nckh : listnckh){
             CB_Ma_DTai.addItem(nckh.getMa_DT());
         }
     }
@@ -358,7 +306,6 @@ public class ChangeView extends javax.swing.JFrame {
         clums.add("Tên Cán Bộ");
         clums.add("Hệ Số Lương");
         clums.add("Thời Gian Bắt Đầu");
-        clums.add("Tiền Lương");
         
         model.setColumnIdentifiers(clums);
         
@@ -513,10 +460,10 @@ public class ChangeView extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel107 = new javax.swing.JLabel();
         jLabel108 = new javax.swing.JLabel();
-        TxtTrinhDo = new javax.swing.JTextField();
         Rbtn_DangVien = new javax.swing.JRadioButton();
         RBtn_CongDoanVien = new javax.swing.JRadioButton();
         RBtn_DoanVien = new javax.swing.JRadioButton();
+        Cbx_TrinhDo = new javax.swing.JComboBox();
         jScrollPane19 = new javax.swing.JScrollPane();
         CanBo_TBL = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
@@ -569,9 +516,9 @@ public class ChangeView extends javax.swing.JFrame {
         Cbx_Thang_Luong_TGBD = new javax.swing.JComboBox();
         Cbx_Nam_Luong_TGBD = new javax.swing.JComboBox();
         jLabel49 = new javax.swing.JLabel();
-        jLabel53 = new javax.swing.JLabel();
-        TxtTienLuong = new javax.swing.JTextField();
         TxtTen_CBLuong = new javax.swing.JTextField();
+        jLabel53 = new javax.swing.JLabel();
+        Txt_TrinhDo_Luong = new javax.swing.JTextField();
         jPanel25 = new javax.swing.JPanel();
         AddLuongBtn = new javax.swing.JButton();
         UpdateLuongBtn = new javax.swing.JButton();
@@ -956,7 +903,7 @@ public class ChangeView extends javax.swing.JFrame {
                 .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel110, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(DelCbBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         jPanel18Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {DelCbBtn, UpdateCbBtn});
@@ -977,13 +924,10 @@ public class ChangeView extends javax.swing.JFrame {
 
         jLabel14.setText("Thông Tin Khác");
 
-        Cbx_NamSinh_CB.setEditable(true);
         Cbx_NamSinh_CB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Năm" }));
 
-        Cbx_ThangSinh_CB.setEditable(true);
         Cbx_ThangSinh_CB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tháng" }));
 
-        Cbx_NgaySinh_CB.setEditable(true);
         Cbx_NgaySinh_CB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ngày" }));
 
         Rbtn_Nam.setText("Nam");
@@ -1000,13 +944,10 @@ public class ChangeView extends javax.swing.JFrame {
             }
         });
 
-        CBx_Nam_Ctac.setEditable(true);
         CBx_Nam_Ctac.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Năm" }));
 
-        CBx_Thang_Ctac.setEditable(true);
         CBx_Thang_Ctac.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tháng" }));
 
-        CBx_Ngay_Ctac.setEditable(true);
         CBx_Ngay_Ctac.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ngày" }));
 
         jLabel1.setText("Mã Cán Bộ   (* )  ");
@@ -1040,6 +981,8 @@ public class ChangeView extends javax.swing.JFrame {
                 RBtn_DoanVienActionPerformed(evt);
             }
         });
+
+        Cbx_TrinhDo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "THPT", "Cao đẳng", "Đại học", "Thạc sĩ", "Tiến sĩ", "Phó giáo sư", "Giáo sư", "Kỹ sư", "Cử nhân", "Chuyên viên" }));
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
@@ -1101,16 +1044,15 @@ public class ChangeView extends javax.swing.JFrame {
                     .addComponent(TxtSoDienThoai, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
                     .addComponent(TxtEmail)
                     .addComponent(TxtThanhTich)
-                    .addComponent(TxtTrinhDo, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Cbx_TrinhDo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel19Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {TxtDiaChi, TxtEmail, TxtMaSoThue, TxtSoDienThoai, TxtSoTaiKhoan, TxtThanhTich, TxtThongTinKhac, TxtTrinhDo});
+        jPanel19Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {TxtDiaChi, TxtEmail, TxtMaSoThue, TxtSoDienThoai, TxtSoTaiKhoan, TxtThanhTich, TxtThongTinKhac});
 
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel19Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel19Layout.createSequentialGroup()
                         .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1179,9 +1121,10 @@ public class ChangeView extends javax.swing.JFrame {
                         .addComponent(CBx_Ngay_Ctac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(CBx_Thang_Ctac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(CBx_Nam_Ctac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel108)
-                    .addComponent(TxtTrinhDo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel108)
+                        .addComponent(Cbx_TrinhDo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 49, Short.MAX_VALUE))
         );
 
         CanBo_TBL.setModel(new javax.swing.table.DefaultTableModel(
@@ -1220,10 +1163,11 @@ public class ChangeView extends javax.swing.JFrame {
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addComponent(jScrollPane19, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE))
-                .addGap(0, 16, Short.MAX_VALUE))
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 23, Short.MAX_VALUE))
+                    .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -1236,9 +1180,7 @@ public class ChangeView extends javax.swing.JFrame {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 21, Short.MAX_VALUE))
+            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, 611, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Cán Bộ", jPanel5);
@@ -1437,7 +1379,6 @@ public class ChangeView extends javax.swing.JFrame {
 
         jLabel78.setText("Số thứ tự(*)");
 
-        CB_MaCB_GDinh.setEditable(true);
         CB_MaCB_GDinh.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "" }));
 
         TxtTen_CBGiaDinh.setEditable(false);
@@ -1448,7 +1389,6 @@ public class ChangeView extends javax.swing.JFrame {
 
         jLabel79.setText("Mã gia đình");
 
-        CB_Ma_GD.setEditable(true);
         CB_Ma_GD.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "" }));
 
         javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
@@ -1533,7 +1473,7 @@ public class ChangeView extends javax.swing.JFrame {
                     .addComponent(jPanel21, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel20, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -1577,20 +1517,19 @@ public class ChangeView extends javax.swing.JFrame {
 
         jLabel51.setText("Thời Gian Bắt Đầu");
 
-        CBx_Ngay_Luong_TGBD.setEditable(true);
         CBx_Ngay_Luong_TGBD.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ngày" }));
 
-        Cbx_Thang_Luong_TGBD.setEditable(true);
         Cbx_Thang_Luong_TGBD.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tháng" }));
 
-        Cbx_Nam_Luong_TGBD.setEditable(true);
         Cbx_Nam_Luong_TGBD.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Năm" }));
 
         jLabel49.setText("Tên Cán Bộ");
 
-        jLabel53.setText("Thành Tiền");
-
         TxtTen_CBLuong.setEditable(false);
+
+        jLabel53.setText("Trình độ");
+
+        Txt_TrinhDo_Luong.setEditable(false);
 
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
         jPanel22.setLayout(jPanel22Layout);
@@ -1618,13 +1557,13 @@ public class ChangeView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Cbx_Nam_Luong_TGBD, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(60, 60, 60)
-                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel49)
-                    .addComponent(jLabel53))
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel49, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel53, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(70, 70, 70)
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(TxtTienLuong, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
-                    .addComponent(TxtTen_CBLuong, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE))
+                    .addComponent(TxtTen_CBLuong, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+                    .addComponent(Txt_TrinhDo_Luong))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel22Layout.setVerticalGroup(
@@ -1641,7 +1580,7 @@ public class ChangeView extends javax.swing.JFrame {
                     .addComponent(jLabel48)
                     .addComponent(CB_MaCB_Luong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel53)
-                    .addComponent(TxtTienLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Txt_TrinhDo_Luong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel50)
@@ -1652,7 +1591,7 @@ public class ChangeView extends javax.swing.JFrame {
                     .addComponent(CBx_Ngay_Luong_TGBD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Cbx_Thang_Luong_TGBD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Cbx_Nam_Luong_TGBD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(137, Short.MAX_VALUE))
         );
 
         jPanel25.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Chức năng", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION));
@@ -1719,7 +1658,7 @@ public class ChangeView extends javax.swing.JFrame {
                 .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DelLuongBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel117, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -1770,13 +1709,10 @@ public class ChangeView extends javax.swing.JFrame {
 
         jPanel29.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông tin", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
-        Cbx_Nam_DoanPhi.setEditable(true);
         Cbx_Nam_DoanPhi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Năm" }));
 
-        Cbx_Thang_DoanPhi.setEditable(true);
         Cbx_Thang_DoanPhi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tháng" }));
 
-        Cbx_Ngay_DoanPhi.setEditable(true);
         Cbx_Ngay_DoanPhi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ngày" }));
 
         jLabel69.setText("Số Tiền Đóng");
@@ -1933,8 +1869,8 @@ public class ChangeView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel30, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(60, Short.MAX_VALUE))
+                    .addComponent(jPanel30, javax.swing.GroupLayout.PREFERRED_SIZE, 301, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Đoàn Phí", jPanel10);
@@ -1975,13 +1911,10 @@ public class ChangeView extends javax.swing.JFrame {
 
         jLabel99.setText("Chức vụ");
 
-        Cbx_Ngay_ChucVu.setEditable(true);
         Cbx_Ngay_ChucVu.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ngày" }));
 
-        Cbx_Thang_ChucVu.setEditable(true);
         Cbx_Thang_ChucVu.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tháng" }));
 
-        Cbx_Nam_ChucVu.setEditable(true);
         Cbx_Nam_ChucVu.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Năm" }));
 
         javax.swing.GroupLayout jPanel31Layout = new javax.swing.GroupLayout(jPanel31);
@@ -2138,7 +2071,7 @@ public class ChangeView extends javax.swing.JFrame {
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel32, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
                     .addComponent(jPanel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 50, Short.MAX_VALUE))
+                .addGap(0, 36, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Chức vụ", jPanel16);
@@ -2163,7 +2096,6 @@ public class ChangeView extends javax.swing.JFrame {
 
         jPanel28.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông tin", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
-        Cbx_Nam_CongDoanPhi.setEditable(true);
         Cbx_Nam_CongDoanPhi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Năm" }));
         Cbx_Nam_CongDoanPhi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2171,10 +2103,8 @@ public class ChangeView extends javax.swing.JFrame {
             }
         });
 
-        Cbx_Thang_CongDoanPhi.setEditable(true);
         Cbx_Thang_CongDoanPhi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tháng" }));
 
-        Cbx_Ngay_CongDoanPhi.setEditable(true);
         Cbx_Ngay_CongDoanPhi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ngày" }));
 
         jLabel64.setText("Số Tiền Đóng");
@@ -2355,7 +2285,7 @@ public class ChangeView extends javax.swing.JFrame {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel35, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
                     .addComponent(jPanel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Công Đoàn Phí", jPanel9);
@@ -2386,20 +2316,18 @@ public class ChangeView extends javax.swing.JFrame {
 
         jLabel104.setText("Tên Cán Bộ");
 
-        CBx_MaCB_ChucDanh.setEditable(true);
+        Txt_tenCB_ChucDanh.setEditable(false);
+
         CBx_MaCB_ChucDanh.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "" }));
 
         jLabel105.setText("Chức Danh");
 
         jLabel106.setText("Thời Gian Nhận");
 
-        Cbx_Ngay_ChucDanh.setEditable(true);
         Cbx_Ngay_ChucDanh.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ngày" }));
 
-        Cbx_Thang_ChucDanh.setEditable(true);
         Cbx_Thang_ChucDanh.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tháng" }));
 
-        Cbx_Nam_ChucDanh.setEditable(true);
         Cbx_Nam_ChucDanh.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Năm" }));
 
         javax.swing.GroupLayout jPanel33Layout = new javax.swing.GroupLayout(jPanel33);
@@ -2552,7 +2480,7 @@ public class ChangeView extends javax.swing.JFrame {
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel34, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Chức danh", jPanel17);
@@ -2579,13 +2507,10 @@ public class ChangeView extends javax.swing.JFrame {
 
         jLabel58.setText("Thời Gian Đóng");
 
-        Cbx_Ngay_DangPhi.setEditable(true);
         Cbx_Ngay_DangPhi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ngày" }));
 
-        Cbx_Thang_DangPhi.setEditable(true);
         Cbx_Thang_DangPhi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tháng" }));
 
-        Cbx_Nam_DangPhi.setEditable(true);
         Cbx_Nam_DangPhi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Năm" }));
 
         jLabel57.setText("Số Tiền Đóng");
@@ -2652,6 +2577,7 @@ public class ChangeView extends javax.swing.JFrame {
                             .addComponent(jLabel57)
                             .addComponent(TxtSoTienDongDangVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(38, 38, 38)))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel56)
                     .addComponent(TxtTen_CBDangVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -2746,7 +2672,7 @@ public class ChangeView extends javax.swing.JFrame {
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Đảng Phí", jPanel8);
@@ -2761,9 +2687,7 @@ public class ChangeView extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jTabbedPane2)
         );
 
         jTabbedPane1.addTab("Quản Lý Cán Bộ", jPanel1);
@@ -2859,7 +2783,6 @@ public class ChangeView extends javax.swing.JFrame {
 
         jLabel81.setText("Mã Lớp");
 
-        CB_MaCB_ChamThi.setEditable(true);
         CB_MaCB_ChamThi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "" }));
 
         jLabel82.setText("Mã giảng viên");
@@ -3012,6 +2935,9 @@ public class ChangeView extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 CB_GiaoTrinh_TBLMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CB_GiaoTrinh_TBLMouseEntered(evt);
+            }
         });
         jScrollPane15.setViewportView(CB_GiaoTrinh_TBL);
 
@@ -3087,7 +3013,6 @@ public class ChangeView extends javax.swing.JFrame {
 
         jLabel76.setText("Mã Cán Bộ");
 
-        CB_MaCB_GiaoTrinh.setEditable(true);
         CB_MaCB_GiaoTrinh.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "" }));
 
         jLabel91.setText("Tên Cán Bộ");
@@ -3096,7 +3021,6 @@ public class ChangeView extends javax.swing.JFrame {
 
         jLabel92.setText("Mã Giáo Trình");
 
-        CB_Ma_GTrinh.setEditable(true);
         CB_Ma_GTrinh.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "" }));
 
         javax.swing.GroupLayout jPanel41Layout = new javax.swing.GroupLayout(jPanel41);
@@ -3316,7 +3240,6 @@ public class ChangeView extends javax.swing.JFrame {
 
         jLabel36.setText("Mã Cán Bộ");
 
-        CB_MaCB_NCKH.setEditable(true);
         CB_MaCB_NCKH.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "" }));
 
         jLabel37.setText("Tên Cán Bộ");
@@ -3325,7 +3248,6 @@ public class ChangeView extends javax.swing.JFrame {
 
         jLabel88.setText("Mã Đề Tài");
 
-        CB_Ma_DTai.setEditable(true);
         CB_Ma_DTai.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "" }));
 
         javax.swing.GroupLayout jPanel44Layout = new javax.swing.GroupLayout(jPanel44);
@@ -3678,7 +3600,6 @@ public class ChangeView extends javax.swing.JFrame {
 
         jLabel3.setText("Mã Cán Bộ");
 
-        CB_MaCB_BB.setEditable(true);
         CB_MaCB_BB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "" }));
 
         jLabel29.setText("Tên Cán Bộ");
@@ -3687,7 +3608,6 @@ public class ChangeView extends javax.swing.JFrame {
 
         jLabel90.setText("Mã Bài Báo(Tạp Chí)");
 
-        CB_MaBB.setEditable(true);
         CB_MaBB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "" }));
 
         javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
@@ -4133,7 +4053,6 @@ public class ChangeView extends javax.swing.JFrame {
 
         jPanel48.setBorder(javax.swing.BorderFactory.createTitledBorder("Thông tin cán bộ - giảng dạy"));
 
-        CB_Ma_MH.setEditable(true);
         CB_Ma_MH.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "" }));
 
         jLabel94.setText("Mã Môn Học");
@@ -4142,7 +4061,6 @@ public class ChangeView extends javax.swing.JFrame {
 
         TxtTen_GV.setEditable(false);
 
-        CB_MaCB_Gday.setEditable(true);
         CB_MaCB_Gday.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "" }));
 
         jLabel59.setText("Mã Giảng Viên");
@@ -4302,16 +4220,7 @@ public class ChangeView extends javax.swing.JFrame {
     }//GEN-LAST:event_addGDBtnActionPerformed
 
     private void GiaDinhTBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GiaDinhTBLMouseClicked
-        if (GiaDinhTBL.getSelectedRow() != -1) {
-            int row = GiaDinhTBL.getSelectedRow();
 
-            listgd = gd.getALL();
-            TxtStt_GD.setText(listgd.get(row).getStt());
-            TxtMa_GD.setText(listgd.get(row).getMa_GD());
-            TxtTenCon.setText(listgd.get(row).getHoVaTenCon());
-            TxtThanhTichCon.setText(listgd.get(row).getThanhTich());
-            Cbx_NamSinh_Con.setSelectedItem(listgd.get(row).getNamSinh());
-        }
     }//GEN-LAST:event_GiaDinhTBLMouseClicked
 
     private void DelGDyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelGDyBtnActionPerformed
@@ -4324,38 +4233,14 @@ public class ChangeView extends javax.swing.JFrame {
     }//GEN-LAST:event_AddGDyBtnActionPerformed
 
     private void GDayBTLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GDayBTLMouseClicked
-        if (GDayBTL.getSelectedRow() != -1) {
-            int row = GDayBTL.getSelectedRow();
-            listgdy = gdy.getALL();
 
-
-            TxtMa_MH.setText(listgdy.get(row).getMa_MH());
-            TxtTenMon.setText(listgdy.get(row).getTenMon());
-            TxtSoTinChi.setText(listgdy.get(row).getSoTinChi());
-            TxtLop.setText(listgdy.get(row).getLop());
-            TxtSoSinhVien.setText(listgdy.get(row).getSoSinhVien());
-            TxtHocKy.setText(listgdy.get(row).getHocKy());
-            TxtNamHoc.setText(listgdy.get(row).getNamHoc());
-            TxtPhuCap.setText(listgdy.get(row).getPhuCap_GD());
-        }
     }//GEN-LAST:event_GDayBTLMouseClicked
 
     private void DelBBBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelBBBtnActionPerformed
     }//GEN-LAST:event_DelBBBtnActionPerformed
 
     private void BaiBao_TBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BaiBao_TBLMouseClicked
-        if (BaiBao_TBL.getSelectedRow() != -1) {
-            int row = BaiBao_TBL.getSelectedRow();
-            listbb = bb.getALL();
-
-            TxtMaBaiBao.setText(listbb.get(row).getMa_BaiBao());
-            TxtTenTapChi.setText(listbb.get(row).getTenTapChi());
-            TxtSo.setText(listbb.get(row).getSo());
-            TxtChiSoISSN.setText(listbb.get(row).getChiSo_ISSN());
-            TxtHeSoIF.setText(listbb.get(row).getHeSo_IF());
-            Cbx_Nam_BB.setSelectedItem(listbb.get(row).getThoiGianXuatBan().substring(0,4));
-            Cbx_Thang_baiBao.setSelectedItem(listbb.get(row).getThoiGianXuatBan().substring(5, 7));
-        }
+       
     }//GEN-LAST:event_BaiBao_TBLMouseClicked
 
     private void AddBBBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBBBtnActionPerformed
@@ -4374,33 +4259,7 @@ public class ChangeView extends javax.swing.JFrame {
     }//GEN-LAST:event_DelNCKHBtnActionPerformed
 
     private void NCKH_TBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NCKH_TBLMouseClicked
-        if (NCKH_TBL.getSelectedRow() != -1) {
-            int row = NCKH_TBL.getSelectedRow();
-            listnnck = nckh.getALL();
-
-            Txt_MaDT.setText(listnnck.get(row).getMa_DT());
-            TxtTenDT.setText(listnnck.get(row).getTenDeTai());
-            TxtCap.setText(listnnck.get(row).getCap());
-            TxtKinhPhi.setText(listnnck.get(row).getKinhPhi());
-            TxtChuTri.setText(listnnck.get(row).getChuTriDeTai());
-            TxtTinhTrang.setText(listnnck.get(row).getTinhTrang());
-            TxtKetQua.setText(listnnck.get(row).getKetQua());
-                
-            String nam_bd = listnnck.get(row).getThoiGianBatDau().substring(0, 4);
-            String thang_bd = listnnck.get(row).getThoiGianBatDau().substring(5, 7);
-            String ngay_bd = listnnck.get(row).getThoiGianBatDau().substring(8, 10);
-            String nam_kt = listnnck.get(row).getThoiGianKetThuc().substring(0, 4);
-            String thang_kt = listnnck.get(row).getThoiGianKetThuc().substring(5, 7);
-            String ngay_kt = listnnck.get(row).getThoiGianKetThuc().substring(8, 10);
-            
-            CBx_Nam_NCKH_TGBD.setSelectedItem(nam_bd);
-            Cbx_Thang_NCKH_TGBD.setSelectedItem(thang_bd);
-            Cbx_Ngay_NCKH_TGBD.setSelectedItem(ngay_bd);
-            Cbx_Nam_NCKH_TGKT.setSelectedItem(nam_kt);
-            Cbx_Thang_NCKH_TGKT.setSelectedItem(thang_kt);
-            Cbx_Ngay_NCKH_TGKT.setSelectedItem(ngay_kt);
-            
-        }    
+        
             }//GEN-LAST:event_NCKH_TBLMouseClicked
 
     private void UpdateCDVBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateCDVBtnActionPerformed
@@ -4411,24 +4270,7 @@ public class ChangeView extends javax.swing.JFrame {
     }//GEN-LAST:event_DelCDVBtnActionPerformed
 
     private void DangPhi_TBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DangPhi_TBLMouseClicked
-        if (DangPhi_TBL.getSelectedRow() != -1) {
-            int row = DangPhi_TBL.getSelectedRow();
-            listdgv = dgv.getALL();
-            listcbo =cb.getByID(listdgv.get(row).getma_canbo());
-            CB_MaCb_DangVien.setSelectedItem(listdgv.get(row).getma_canbo());
-            TxtSttDangVien.setText(listdgv.get(row).getStt());
-            TxtTen_CBDangVien.setText(listcbo.get(0).getHoVaTen());
-            TxtSoTienDongDangVien.setText(listdgv.get(row).getSoTienThu());
-            
-            String nam = listdgv.get(row).getThoiGianDong().substring(0, 4);
-            String thang = listdgv.get(row).getThoiGianDong().substring(5, 7);
-            String ngay = listdgv.get(row).getThoiGianDong().substring(8, 10);
-            
-            Cbx_Nam_DangPhi.setSelectedItem(nam);
-            Cbx_Thang_DangPhi.setSelectedItem(thang);
-            Cbx_Ngay_DangPhi.setSelectedItem(ngay);
-            
-        }
+        
 
     }//GEN-LAST:event_DangPhi_TBLMouseClicked
 
@@ -4468,151 +4310,38 @@ public class ChangeView extends javax.swing.JFrame {
     }//GEN-LAST:event_DelGiaoTrinhBtnActionPerformed
 
     private void GiaoTrinh_TBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GiaoTrinh_TBLMouseClicked
-        if (GiaoTrinh_TBL.getSelectedRow() != -1) {
-            int row = GiaoTrinh_TBL.getSelectedRow();
-            listgt = gt.getALL();
-            
-            TxtMa_GT.setText(listgt.get(row).getMa_GT());
-            TxtTenGiaoTrinh.setText(listgt.get(row).getTenGiaoTrinh());
-            TxtTenTacGia.setText(listgt.get(row).getTenTacGia());
-            TxtNhaXuatBan.setText(listgt.get(row).getNhaXuatBan());
-            Cbx_Nam_GiaoTrinh.setSelectedItem(listgt.get(row).getNamXuatBan());
-        }
+        
     }//GEN-LAST:event_GiaoTrinh_TBLMouseClicked
 
     private void CB_GD_TBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CB_GD_TBLMouseClicked
-        if (CB_GD_TBL.getSelectedRow() != -1) {
-            int row = CB_GD_TBL.getSelectedRow();
 
-            listcbgd = cbgd.getALLCBGD();
-            listcbo = cb.getByIDCBGD(listcbgd.get(row).getMa_CB());
-            if (listcbo.size() > 0) {
-                CB_MaCB_GDinh.setSelectedItem(listcbo.get(0).getMa_CB());
-            } else {
-                CB_MaCB_GDinh.setSelectedIndex(0);
-            }
-            TxtStt_CBGD.setText(listcbgd.get(row).getstt());
-            CB_Ma_GD.setSelectedItem(listcbgd.get(row).getMa_GD());
-            TxtTen_CBGiaDinh.setText(listcbo.get(0).getHoVaTen());
-        }
     }//GEN-LAST:event_CB_GD_TBLMouseClicked
 
     private void CongDoanPhi_TBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CongDoanPhi_TBLMouseClicked
-            if (CongDoanPhi_TBL.getSelectedRow() != -1) {
-            int row = CongDoanPhi_TBL.getSelectedRow();
-            listcdv = cdv.getALL();
-            listcbo =cb.getByID(listcdv.get(row).getma_canbo());
-            TxtSoThuTuCongDoanVien.setText(listcdv.get(row).getStt());
-            Cb_MaCB_CDV.setSelectedItem(listcdv.get(row).getma_canbo());
-            TxtTenCb_CDV.setText(listcbo.get(0).getHoVaTen());
-            TxtSoTienDong_CDV.setText(listcdv.get(row).getSoTienDong());
-            String nam = listcdv.get(row).getThoiGianDong().substring(0,4);
-            String thang = listcdv.get(row).getThoiGianDong().substring(5,7);
-            String ngay = listcdv.get(row).getThoiGianDong().substring(8,10);
-            Cbx_Nam_CongDoanPhi.setSelectedItem(nam);
-            Cbx_Thang_CongDoanPhi.setSelectedItem(thang);
-            Cbx_Ngay_CongDoanPhi.setSelectedItem(ngay);
-                    
-        }
+            
     }//GEN-LAST:event_CongDoanPhi_TBLMouseClicked
 
     private void DoanPhi_TBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DoanPhi_TBLMouseClicked
-        if (DoanPhi_TBL.getSelectedRow() != -1) {
-            int row = DoanPhi_TBL.getSelectedRow();
-            listdv = dv.getALL();
-            listcbo =cb.getByID(listdv.get(row).getma_canbo());
-            TxtStt_DoanVien.setText(listdv.get(row).getStt());
-            CB_MaCB_DoanVien.setSelectedItem(listdv.get(row).getma_canbo());
-            Txt_TenCanBo_DoanVien.setText(listcbo.get(0).getHoVaTen());
-            TxtSoTienDong_DoanVien.setText(listdv.get(row).getSoTien());
-            String nam = listdv.get(row).getThoiGian().substring(0,4);
-            String thang = listdv.get(row).getThoiGian().substring(5,7);
-            String ngay = listdv.get(row).getThoiGian().substring(8,10);
-            Cbx_Nam_DoanPhi.setSelectedItem(nam);
-            Cbx_Thang_DoanPhi.setSelectedItem(thang);
-            Cbx_Ngay_DoanPhi.setSelectedItem(ngay);
-        }
-
+        
     }//GEN-LAST:event_DoanPhi_TBLMouseClicked
 
     private void GV_NCKH_TBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GV_NCKH_TBLMouseClicked
-        if (GV_NCKH_TBL.getSelectedRow() != -1) {
-            int row = GV_NCKH_TBL.getSelectedRow();
-
-            listgvnckh = gvnckh.getALLGVDT();
-            listcbo = cb.getByID(listgvnckh.get(row).getma_canbo());
-            if (listcbo.size() > 0) {
-                CB_MaCB_NCKH.setSelectedItem(listcbo.get(0).getMa_CB());
-            } else {
-                CB_MaCB_NCKH.setSelectedIndex(0);
-            }
-            Txt_Stt_NCKH.setText(listcbgd.get(row).getstt());
-            CB_Ma_DTai.setSelectedItem(listgvnckh.get(row).getMa_DT());
-            TxtTen_CBNCKH.setText(listcbo.get(0).getHoVaTen());
-        }
+        
 
     }//GEN-LAST:event_GV_NCKH_TBLMouseClicked
 
     private void CB_BB_TBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CB_BB_TBLMouseClicked
-        if (CB_BB_TBL.getSelectedRow() != -1) {
-            int row = CB_BB_TBL.getSelectedRow();
-
-            listgvtc = gvtc.getALLGVBB();
-            listcbo = cb.getByID(listgvtc.get(row).getMa_CB());
-            if (listcbo.size() > 0) {
-                CB_MaCB_BB.setSelectedItem(listcbo.get(0).getMa_CB());
-            } else {
-                CB_MaCB_BB.setSelectedIndex(0);
-            }
-            Txt_Stt_BB.setText(listgvtc.get(row).getStt());
-            CB_MaBB.setSelectedItem(listgvtc.get(row).getMa_BB());
-            TxtTen_CBBB.setText(listcbo.get(0).getHoVaTen());
-        }
+        
 
     }//GEN-LAST:event_CB_BB_TBLMouseClicked
 
     private void CB_GiaoTrinh_TBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CB_GiaoTrinh_TBLMouseClicked
-        if (CB_GiaoTrinh_TBL.getSelectedRow() != -1) {
-            int row = CB_GiaoTrinh_TBL.getSelectedRow();
-
-            listgvgt = gvgt.getALLGVGT();
-            listcbo = cb.getByID(listgvgt.get(row).getMa_CB());
-            if (listcbo.size() > 0) {
-                CB_MaCB_GiaoTrinh.setSelectedItem(listcbo.get(0).getMa_CB());
-            } else {
-                CB_MaCB_GiaoTrinh.setSelectedIndex(0);
-            }
-            Txt_Stt_CBGTrinh.setText(listgvgt.get(row).getStt());
-            CB_Ma_GTrinh.setSelectedItem(listgvgt.get(row).getMa_GT());
-            Txt_TenCB_GTrinh.setText(listcbo.get(0).getHoVaTen());
-        }
+        
 
     }//GEN-LAST:event_CB_GiaoTrinh_TBLMouseClicked
 
     private void Chamthi_TBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Chamthi_TBLMouseClicked
-        if (Chamthi_TBL.getSelectedRow() != -1) {
-            int row = Chamthi_TBL.getSelectedRow();
-
-            listct = ct.getALL();
-            listcbo = cb.getByID(listct.get(row).getma_canbo());
-            if (listcbo.size() > 0) {
-                CB_MaCB_ChamThi.setSelectedItem(listcbo.get(0).getMa_CB());
-            } else {
-                CB_MaCB_ChamThi.setSelectedIndex(0);
-            }
-            TxtMa_ChamThi.setText(listct.get(row).getMa_ChamThi());
-            TxtMa_MH_ChamThi.setText(listct.get(row).getMa_MH());
-            TxtMa_Lop.setText(listct.get(row).getMa_lop());
-            
-            TxtSoBaiThi.setText(listct.get(row).getSoBaiThi());
-            TxtTen_CB_ChamThi.setText(listcbo.get(0).getHoVaTen());
-            String nam = listct.get(row).getNgayNop().substring(0,4);
-            String thang = listct.get(row).getNgayNop().substring(5,7);
-            String ngay = listct.get(row).getNgayNop().substring(8,10);
-            Cbx_Nam_ChamThi.setSelectedItem(nam);
-            Cbx_Thang_ChamThi.setSelectedItem(thang);
-            Cbx_Ngay_ChamThi.setSelectedItem(ngay);
-        }
+    
     }//GEN-LAST:event_Chamthi_TBLMouseClicked
 
     private void AddChamThi_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddChamThi_BtnActionPerformed
@@ -4626,52 +4355,14 @@ public class ChangeView extends javax.swing.JFrame {
     }//GEN-LAST:event_DelChamThi_BtnActionPerformed
 
     private void CB_GDay_TBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CB_GDay_TBLMouseClicked
-        if (CB_GDay_TBL.getSelectedRow() != -1) {
-            int row = CB_GDay_TBL.getSelectedRow();
-
-            listgvgd = gvgd.getALLGVGD();
-            listcbo = cb.getByID(listgvgd.get(row).getMa_CB());
-            if (listcbo.size() > 0) {
-                CB_MaCB_Gday.setSelectedItem(listcbo.get(0).getMa_CB());
-            } else {
-                CB_MaCB_Gday.setSelectedIndex(0);
-            }
-            Txt_STT_CB_GDay.setText(listgvgd.get(row).getStt());
-            TxtTen_GV.setText(listcbo.get(0).getHoVaTen());
-            CB_Ma_MH.setSelectedItem(listgvgd.get(row).getMa_MH());
-            
-        }
+       
     }//GEN-LAST:event_CB_GDay_TBLMouseClicked
 
     private void AddChucVu_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddChucVu_BtnActionPerformed
     }//GEN-LAST:event_AddChucVu_BtnActionPerformed
 
     private void ChucVu_TBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChucVu_TBLMouseClicked
-        if (ChucVu_TBL.getSelectedRow() != -1) {
-            int row = ChucVu_TBL.getSelectedRow();
-
-            listcv = cv.getALL();
-            listcbo = cb.getByID(listcv.get(row).getMa_CB());
-            if (listcbo.size() > 0) {
-                CBx_MaCB_ChucVu.setSelectedItem(listcbo.get(0).getMa_CB());
-            } else {
-                CBx_MaCB_ChucVu.setSelectedIndex(0);
-            }
-            Txt_STT_ChucVu.setText(listcv.get(row).getStt());
-            Txt_TenCB_ChucVu.setText(listcbo.get(0).getHoVaTen());
-            CBx_MaCB_ChucVu.setSelectedItem(listcv.get(row).getMa_CB());
-            Txt_ChucVu.setText(listcv.get(row).getChucVu());
-            Txt_PhuCap_CVu.setText(listcv.get(row).getPhuCap_ChucVu());
-            
-            String nam = listcv.get(row).getThoiGianNhan().substring(0,4);
-            String thang = listcv.get(row).getThoiGianNhan().substring(5,7);
-            String ngay = listcv.get(row).getThoiGianNhan().substring(8,10);
-            
-            Cbx_Nam_ChucVu.setSelectedItem(nam);
-            Cbx_Thang_ChucVu.setSelectedItem(thang);
-            Cbx_Ngay_ChucVu.setSelectedItem(ngay);
-            
-        }
+        
     }//GEN-LAST:event_ChucVu_TBLMouseClicked
 
     private void UpdateChucVu_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateChucVu_BtnActionPerformed
@@ -4681,29 +4372,7 @@ public class ChangeView extends javax.swing.JFrame {
     }//GEN-LAST:event_DelChucVu_BtnActionPerformed
 
     private void ChucDanh_TBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChucDanh_TBLMouseClicked
-        if (ChucDanh_TBL.getSelectedRow() != -1) {
-            int row = ChucDanh_TBL.getSelectedRow();
-
-            listcd = cd.getALL();
-            listcbo = cb.getByID(listcd.get(row).getMa_CB());
-            if (listcbo.size() > 0) {
-                CBx_MaCB_ChucDanh.setSelectedItem(listcbo.get(0).getMa_CB());
-            } else {
-                CBx_MaCB_ChucDanh.setSelectedIndex(0);
-            }
-            Txt_Stt_ChucDanh.setText(listcd.get(row).getStt());
-            Txt_tenCB_ChucDanh.setText(listcbo.get(0).getHoVaTen());
-            CBx_MaCB_ChucDanh.setSelectedItem(listcd.get(row).getMa_CB());
-            Txt_ChucDanh.setText(listcd.get(row).getChucDanh());
-            String nam = listcd.get(row).getThoiGianNhan().substring(0,4);
-            String thang = listcd.get(row).getThoiGianNhan().substring(5,7);
-            String ngay = listcd.get(row).getThoiGianNhan().substring(8,10);
-            
-            Cbx_Nam_ChucDanh.setSelectedItem(nam);
-            Cbx_Thang_ChucDanh.setSelectedItem(thang);
-            Cbx_Ngay_ChucDanh.setSelectedItem(ngay);
-            
-        }
+        
     }//GEN-LAST:event_ChucDanh_TBLMouseClicked
 
     private void AddChucDanh_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddChucDanh_BtnActionPerformed
@@ -4739,90 +4408,11 @@ public class ChangeView extends javax.swing.JFrame {
     }//GEN-LAST:event_Print_BtnActionPerformed
 
     private void CanBo_TBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CanBo_TBLMouseClicked
-         if (CanBo_TBL.getSelectedRow() != -1) {
-            int row = CanBo_TBL.getSelectedRow();
 
-            listcbo = cb.getALL();
-            TxtCanBoID.setText(listcbo.get(row).getMa_CB());
-            TxtTenDangNhap.setText(listcbo.get(row).getUserName());
-            TxtTenCanBo.setText(listcbo.get(row).getHoVaTen());
-            
-            String genre = listcbo.get(row).getGioiTinh();
-            switch(genre){
-                case("nam"):{
-                    Rbtn_Nam.setSelected(true);
-                    RBtn_Nu.setSelected(false);
-                    break;
-                }
-                case("nu"):{
-                    RBtn_Nu.setSelected(true);
-                    Rbtn_Nam.setSelected(false);
-                    break;
-                }
-            }
-            int dgv = listcbo.get(row).getDangVien();
-            int dv = listcbo.get(row).getDoanVien();
-            int cdv = listcbo.get(row).getCongDoanVien();
-             System.out.println(dgv + dv + cdv);
-            if(dgv == 1){
-                Rbtn_DangVien.setSelected(true);
-            }else if(dgv == 0){
-                Rbtn_DangVien.setSelected(false);
-            }
-            
-            if(dv == 1){
-                RBtn_DoanVien.setSelected(true);
-            }else if(dv == 0){
-                RBtn_DoanVien.setSelected(false);
-            }
-            
-            if(cdv == 1){
-                RBtn_CongDoanVien.setSelected(true);
-            }else if(cdv == 0){
-                RBtn_CongDoanVien.setSelected(false);
-            }
-            TxtNoiCongTac.setText(listcbo.get(row).getNoiCongTac());
-            TxtMaSoThue.setText(listcbo.get(row).getMaSoThue());
-            TxtSoTaiKhoan.setText(listcbo.get(row).getSoTaiKhoan());
-            TxtDiaChi.setText(listcbo.get(row).getDiaChi());
-            TxtSoDienThoai.setText(listcbo.get(row).getSoDienThoai());
-            TxtEmail.setText(listcbo.get(row).getEmail());
-            TxtThanhTich.setText(listcbo.get(row).getThanhTich());
-            TxtThongTinKhac.setText(listcbo.get(row).getThongTinKhac());
-            TxtTrinhDo.setText(listcbo.get(row).getTrinhDo());
-            
-            String nam = listcbo.get(row).getNgaySinh().substring(0, 4);
-            String thang = listcbo.get(row).getNgaySinh().substring(5, 7);
-            String ngay = listcbo.get(row).getNgaySinh().substring(8, 10);
-            
-            Cbx_NamSinh_CB.setSelectedItem(nam);
-            Cbx_ThangSinh_CB.setSelectedItem(thang);
-            Cbx_NgaySinh_CB.setSelectedItem(ngay);
-            CBx_Nam_Ctac.setSelectedItem(listcbo.get(row).getThoiGianBDCT().substring(0, 4));
-            CBx_Thang_Ctac.setSelectedItem(listcbo.get(row).getThoiGianBDCT().substring(5, 7));
-            CBx_Ngay_Ctac.setSelectedItem(listcbo.get(row).getThoiGianBDCT().substring(8, 10));
-        }
     }//GEN-LAST:event_CanBo_TBLMouseClicked
 
     private void Luong_TBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Luong_TBLMouseClicked
-        if (Luong_TBL.getSelectedRow() != -1) {
-            int row = Luong_TBL.getSelectedRow();
-            listl = l.getALL();
-            listcbo =cb.getByID(listl.get(row).getma_canbo());
-            TxtSoTTLuong.setText(listl.get(row).getStt());
-            CB_MaCB_Luong.setSelectedItem(listl.get(row).getma_canbo());
-            TxtHeSoLuong.setText(listl.get(row).getHeSoLuong());
-            TxtTienLuong.setText("Empty");
-            TxtTen_CBLuong.setText(listcbo.get(0).getHoVaTen());
-
-            String nam_bd = listl.get(row).getThoiGianBatDau().substring(0, 4);
-            String thang_bd = listl.get(row).getThoiGianBatDau().substring(5, 7);
-            String ngay_bd = listl.get(row).getThoiGianBatDau().substring(8, 10);
-
-            Cbx_Nam_Luong_TGBD.setSelectedItem(nam_bd);
-            Cbx_Thang_Luong_TGBD.setSelectedItem(thang_bd);
-            CBx_Ngay_Luong_TGBD.setSelectedItem(ngay_bd);
-        }
+       
     }//GEN-LAST:event_Luong_TBLMouseClicked
 
     private void DelLuongBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelLuongBtnActionPerformed
@@ -4854,6 +4444,10 @@ public class ChangeView extends javax.swing.JFrame {
     private void RBtn_DoanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBtn_DoanVienActionPerformed
         Rbtn_DangVien.setSelected(false);
     }//GEN-LAST:event_RBtn_DoanVienActionPerformed
+
+    private void CB_GiaoTrinh_TBLMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CB_GiaoTrinh_TBLMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CB_GiaoTrinh_TBLMouseEntered
     
     public void GiangDayTBLActionListener(MouseListener me){
         GDayBTL.addMouseListener(me);
@@ -5074,12 +4668,100 @@ public class ChangeView extends javax.swing.JFrame {
         Print_Btn.addActionListener(al);
     }
     
-    private boolean checkEmpty(JTextField tfField, String value, String field) {
-        if(value.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "field: " + field + " could not be empty", "Empty field",  JOptionPane.ERROR_MESSAGE);
-            tfField.requestFocus();
-        }
-        return true;
+    public void ClickTableCanBoListener(ListSelectionListener lsl) {
+       CanBo_TBL.getSelectionModel().addListSelectionListener(lsl);
+    }
+    
+    public void ClickTableCanBo_GiaDinh(ListSelectionListener lsl){
+        CB_GD_TBL.getSelectionModel().addListSelectionListener(lsl);
+    }
+    
+    public void ClickTableGiaDinh(ListSelectionListener lsl){
+        GiaDinhTBL.getSelectionModel().addListSelectionListener(lsl);
+    }
+    
+    public void ClickTableLuong(ListSelectionListener lsl){
+        Luong_TBL.getSelectionModel().addListSelectionListener(lsl);
+    }
+    
+    public void ClickTableChucVu(ListSelectionListener lsl){
+        ChucVu_TBL.getSelectionModel().addListSelectionListener(lsl);
+    }
+    
+    public void ClickTableChucDanh(ListSelectionListener lsl){
+        ChucDanh_TBL.getSelectionModel().addListSelectionListener(lsl);
+    }
+    
+    public void ClickTableCongDoanPhi(ListSelectionListener lsl){
+        CongDoanPhi_TBL.getSelectionModel().addListSelectionListener(lsl);
+    }
+    
+    public void ClickTableDoanPhi(ListSelectionListener lsl){
+        DoanPhi_TBL.getSelectionModel().addListSelectionListener(lsl);
+    }
+    
+    public void ClickTableDangPhi(ListSelectionListener lsl){
+        DangPhi_TBL.getSelectionModel().addListSelectionListener(lsl);
+    }
+    
+    public void ClickTableChamThi(ListSelectionListener lsl){
+        Chamthi_TBL.getSelectionModel().addListSelectionListener(lsl);
+    }
+    
+    public void ClickTableCanBo_NCKH(ListSelectionListener lsl){
+        GV_NCKH_TBL.getSelectionModel().addListSelectionListener(lsl);
+    }
+    
+    public void ClickTableNCKH(ListSelectionListener lsl){
+        NCKH_TBL.getSelectionModel().addListSelectionListener(lsl);
+    }
+    
+    public void ClickTableCanBo_BB(ListSelectionListener lsl){
+        CB_BB_TBL.getSelectionModel().addListSelectionListener(lsl);
+    }
+    
+    public void ClickTableBaiBao(ListSelectionListener lsl){
+        BaiBao_TBL.getSelectionModel().addListSelectionListener(lsl);
+    }
+    
+    public void ClickTableCanBo_GiaoTrinh(ListSelectionListener lsl){
+        CB_GiaoTrinh_TBL.getSelectionModel().addListSelectionListener(lsl);
+    }
+    
+    public  void ClickTableGiaoTrinh(ListSelectionListener lsl){
+        GiaoTrinh_TBL.getSelectionModel().addListSelectionListener(lsl);
+    }
+    
+    public void ClickTableGiangDay(ListSelectionListener lsl){
+        GDayBTL.getSelectionModel().addListSelectionListener(lsl);
+    }
+    
+    public void ClickTableCB_GiangDay(ListSelectionListener lsl){
+        CB_GDay_TBL.getSelectionModel().addListSelectionListener(lsl);
+    }
+    
+    public void Cbx_MaCBBBActionListener(ActionListener al){
+        CB_MaCB_BB.addActionListener(al);
+        
+        
+        CB_MaCB_GDinh.addActionListener(al);
+        CB_MaCB_Gday.addActionListener(al);
+        CB_MaCB_GiaoTrinh.addActionListener(al);
+        CB_MaCB_Luong.addActionListener(al);
+        CB_MaCB_NCKH.addActionListener(al);
+        CB_MaCb_DangVien.addActionListener(al);
+        Cb_MaCB_CDV.addActionListener(al);
+        CBx_MaCB_ChucDanh.addActionListener(al);
+        CBx_MaCB_ChucVu.addActionListener(al);
+        
+    }
+    
+    public void Cbx_MaCBChamThiActionListener(ActionListener al){
+        CB_MaCB_ChamThi.addActionListener(al);
+    }
+    
+    public void Cbx_MaCBDoanVienActionListener(ActionListener al){
+        CB_MaCB_DoanVien.addActionListener(al);
     }
     
     /**
@@ -5191,6 +4873,7 @@ public class ChangeView extends javax.swing.JFrame {
     public javax.swing.JComboBox Cbx_Thang_NCKH_TGBD;
     public javax.swing.JComboBox Cbx_Thang_NCKH_TGKT;
     public javax.swing.JComboBox Cbx_Thang_baiBao;
+    public javax.swing.JComboBox Cbx_TrinhDo;
     public javax.swing.JTable Chamthi_TBL;
     public javax.swing.JTable ChucDanh_TBL;
     public javax.swing.JTable ChucVu_TBL;
@@ -5290,9 +4973,7 @@ public class ChangeView extends javax.swing.JFrame {
     public javax.swing.JTextField TxtThanhTich;
     public javax.swing.JTextField TxtThanhTichCon;
     public javax.swing.JTextField TxtThongTinKhac;
-    public javax.swing.JTextField TxtTienLuong;
     public javax.swing.JTextField TxtTinhTrang;
-    public javax.swing.JTextField TxtTrinhDo;
     public javax.swing.JTextField Txt_ChucDanh;
     public javax.swing.JTextField Txt_ChucVu;
     public javax.swing.JTextField Txt_MaDT;
@@ -5306,6 +4987,7 @@ public class ChangeView extends javax.swing.JFrame {
     public javax.swing.JTextField Txt_TenCB_ChucVu;
     public javax.swing.JTextField Txt_TenCB_GTrinh;
     public javax.swing.JTextField Txt_TenCanBo_DoanVien;
+    private javax.swing.JTextField Txt_TrinhDo_Luong;
     public javax.swing.JTextField Txt_tenCB_ChucDanh;
     public javax.swing.JButton UpdateBBBtn;
     public javax.swing.JButton UpdateCDVBtn;

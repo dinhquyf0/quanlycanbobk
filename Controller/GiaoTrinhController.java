@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import Model.CanBo;
 import Model.GiangVien_GiaoTrinh;
 import Model.GiaoTrinh;
 import ModelDAO.GiaoTrinhDAO;
@@ -12,6 +13,8 @@ import View.ChangeView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -23,24 +26,70 @@ public class GiaoTrinhController extends CheckEmpty {
     public ChangeView cw;
     public GiaoTrinh gt;
     public GiangVien_GiaoTrinh gvgt;
+    private CanBo cb;
     
     ArrayList<GiaoTrinh> listgt = new ArrayList<>();
     ArrayList<GiangVien_GiaoTrinh> listgvgt = new ArrayList<>();
+    ArrayList<CanBo> listcbo = new ArrayList<>();
     
-    public GiaoTrinhController(GiaoTrinh gt, GiangVien_GiaoTrinh gvgt, GiaoTrinhDAO gtd, ChangeView cw) {
+    public GiaoTrinhController(GiaoTrinh gt, GiangVien_GiaoTrinh gvgt, GiaoTrinhDAO gtd, ChangeView cw, CanBo cb) {
         this.gt = gt;
         this.gvgt = gvgt;
         this.gtd = gtd;
         this.cw = cw;
+        this.cb = cb;
         this.cw.AddGiaoTrinhBtnActionListener(new GiaoTrinhController.AddGiaoTrinhListener());
         this.cw.UpdateGiaoTrinhBtnActionListener(new GiaoTrinhController.UpdateGiaoTrinhListener());
         this.cw.DelGiaoTrinhBtnActionListener(new GiaoTrinhController.DelGiaoTrinhListener());
+        this.cw.ClickTableCanBo_GiaoTrinh(new GiaoTrinhController.ClickTableCanBo_GiaoTrinhListener());
+        this.cw.ClickTableGiaoTrinh(new GiaoTrinhController.ClickTableGiaoTrinhListener());
         BindinhGiaoTring();
+        cw.BindingMaGT(gt.getALL());
     }
 
     private void BindinhGiaoTring(){
         cw.BindingGiangVien_GT(gtd.loadTableCanBo_GiaoTrinh());
         cw.BindingGiaoTrinh(gtd.loadTableGiaoTrinh());
+    }
+
+    private class ClickTableCanBo_GiaoTrinhListener implements ListSelectionListener {
+
+        @Override
+        public void valueChanged(ListSelectionEvent lse) {
+            if (cw.CB_GiaoTrinh_TBL.getSelectedRow() != -1) {
+            int row = cw.CB_GiaoTrinh_TBL.getSelectedRow();
+
+            listgvgt = gvgt.getALLGVGT();
+            listcbo = cb.getByID(listgvgt.get(row).getMa_CB());
+            if (listcbo.size() > 0) {
+                cw.CB_MaCB_GiaoTrinh.setSelectedItem(listcbo.get(0).getMa_CB());
+            } else {
+                cw.CB_MaCB_GiaoTrinh.setSelectedIndex(0);
+            }
+            cw.Txt_Stt_CBGTrinh.setText(listgvgt.get(row).getStt());
+            cw.CB_Ma_GTrinh.setSelectedItem(listgvgt.get(row).getMa_GT());
+            cw.Txt_TenCB_GTrinh.setText(listcbo.get(0).getHoVaTen());
+        }
+        }
+
+    }
+
+    private class ClickTableGiaoTrinhListener implements ListSelectionListener {
+
+        @Override
+        public void valueChanged(ListSelectionEvent lse) {
+            if (cw.GiaoTrinh_TBL.getSelectedRow() != -1) {
+            int row = cw.GiaoTrinh_TBL.getSelectedRow();
+            listgt = gt.getALL();
+            
+            cw.TxtMa_GT.setText(listgt.get(row).getMa_GT());
+            cw.TxtTenGiaoTrinh.setText(listgt.get(row).getTenGiaoTrinh());
+            cw.TxtTenTacGia.setText(listgt.get(row).getTenTacGia());
+            cw.TxtNhaXuatBan.setText(listgt.get(row).getNhaXuatBan());
+            cw.Cbx_Nam_GiaoTrinh.setSelectedItem(listgt.get(row).getNamXuatBan());
+        }
+        
+        }
     }
 
     private class DelGiaoTrinhListener implements ActionListener {

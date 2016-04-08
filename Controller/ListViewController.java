@@ -20,7 +20,11 @@ public class ListViewController {
     Insertlog isl = new Insertlog();
     String user;
     int tuoi = 16;
+    int Hocky = 1;
+    int Namhoc = 2015;
     String thanhtich = "";
+    
+    
     
     private Main m;
     private ListView lv;
@@ -42,6 +46,7 @@ public class ListViewController {
         this.bb = bb;
         this.lv.BackBtnActionListener(new ListViewController.BackBtnListener());
         this.lv.ChangeBtnActionListener(new ListViewController.ChangeBtnListener());
+        this.lv.ChangCbxListTBLActionListener(new ListViewController.CbxListTBLListener());
         if(s.equals("admin")){
             lv.Chbx_ChangeAge.setEnabled(true);
             lv.Chbx_Thaydoithanhtich.setEnabled(true);
@@ -50,9 +55,17 @@ public class ListViewController {
             lv.Chbx_Thaydoithanhtich.setEnabled(false);
         }
         
-        Binding();
-        
+        BindingCbxListTBL();
 
+    }
+    
+    public void BindingCbxListTBL(){
+        lv.Cbx_ListTBL.addItem("Danh sách các cháu nhận quà trung thu");
+        lv.Cbx_ListTBL.addItem("Danh sách các cháu có thành tích cao");
+        lv.Cbx_ListTBL.addItem("Danh sách tình trạng chấm thi");
+        lv.Cbx_ListTBL.addItem("Danh sách các môn học trong 1 học kỳ");
+        lv.Cbx_ListTBL.addItem("Danh sách các đề tài nghiên cứu khoa học");
+        lv.Cbx_ListTBL.addItem("Danh sách các bài báo đã được công bố");
     }
     
     ArrayList<CanBo> listcbo = new ArrayList<>();
@@ -61,16 +74,6 @@ public class ListViewController {
     ArrayList<GiangDay> listgdy = new ArrayList<>();
     ArrayList<BaiBaoTapChi> listbb = new ArrayList<>();
     ArrayList<NghienCuuKhoaHoc> listnckh = new ArrayList<>();
-    
-    public void Binding(){
-        lv.BindingDanhSachChamThi(ChamThi());
-        lv.BindingQua(NhanQua());
-        lv.BindingThanhTichCao(ThanhTichCacChau());
-        lv.BindingDanhSachMonHoc(DanhSachMonHoc());
-        lv.BindingDeTai(DeTai());
-        lv.BindingBaiBao(BaiBao());
-        
-    }
     
     public Vector BaiBao(){
         Vector data = new Vector();
@@ -120,8 +123,8 @@ public class ListViewController {
         for (GiangDay gdy : listgdy){
             String namhoc = gdy.getNamHoc();
             int namhocint = Integer.parseInt(namhoc);
-            int year = Calendar.getInstance().get(Calendar.YEAR);
-
+            String hocky = gdy.getHocKy();
+            int hocki = Integer.parseInt(hocky);
             Vector row = new Vector();
             listcbo = cb.getByIDGDY(gdy.getMa_MH());
             if(listgdy.size() > 0){
@@ -144,12 +147,12 @@ public class ListViewController {
             }else{
                 row.removeAll(row);
             }
-           if(listgdy.size() > 0){
+           if(hocki == Hocky){
                 row.add(gdy.getHocKy());
             }else{
                 row.removeAll(row);
             }
-           if(namhocint >= year){
+           if(namhocint >= Namhoc){
                 row.add(gdy.getNamHoc());
             }else{
                 row.removeAll(row);
@@ -283,6 +286,48 @@ public class ListViewController {
     public void changeThanhTich(String thanhtich){
         this.thanhtich = thanhtich;
     }
+
+    public void changeNamHoc(int Namhoc){
+        this.Namhoc = Namhoc;
+    }
+    public void changeHocKy(int hocky){
+        this.Hocky = hocky;
+    }
+    
+    private class CbxListTBLListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            String chon = lv.Cbx_ListTBL.getSelectedItem().toString();
+            lv.LBL_List_TBL.setText(chon);
+            switch(chon){
+                case"Danh sách các cháu nhận quà trung thu":{
+                    lv.BindingQua(NhanQua());
+                    break;
+                }
+                case"Danh sách các cháu có thành tích cao":{
+                    lv.BindingThanhTichCao(ThanhTichCacChau());
+                    break;
+                }
+                case"Danh sách tình trạng chấm thi":{
+                    lv.BindingDanhSachChamThi(ChamThi());
+                    break;
+                }
+                case"Danh sách các môn học trong 1 học kì":{
+                    lv.BindingDanhSachMonHoc(DanhSachMonHoc());
+                    break;
+                }
+                case"Danh sách các đề tài nghiên cứu khoa học":{
+                    lv.BindingDeTai(DeTai());
+                    break;
+                }
+                case"Danh sách các bài báo đã được công bố":{
+                    lv.BindingBaiBao(BaiBao());
+                    break;
+                }
+            }
+            
+        }
+    }
     
     private class BackBtnListener implements ActionListener {
 
@@ -302,10 +347,19 @@ public class ListViewController {
         public void actionPerformed(ActionEvent ae) {
             if(lv.Chbx_ChangeAge.isSelected()){
                 changeTuoi(Integer.parseInt(lv.TxtTuoiNhanQua.getText().toString()));
-                Binding();
+                lv.BindingQua(NhanQua());
             }
             if(lv.Chbx_Thaydoithanhtich.isSelected()){
                 changeThanhTich(lv.TxtThanhTichCacChau.getText());
+                lv.BindingThanhTichCao(ThanhTichCacChau());
+            }
+            if(lv.Chbx_Nam.isSelected()){
+                changeNamHoc(Integer.parseInt(lv.Txt_NamHoc.getText()));
+                lv.BindingDanhSachMonHoc(DanhSachMonHoc());
+            }
+            if(lv.Chbx_Hocki.isSelected()){
+                changeHocKy(Integer.parseInt(lv.Txt_Hocki.getText()));
+                lv.BindingDanhSachMonHoc(DanhSachMonHoc());
             }
         }
     }

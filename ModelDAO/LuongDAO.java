@@ -40,12 +40,12 @@ public class LuongDAO {
             }
             row.add(l.getHeSoLuong());
             row.add(l.getThoiGianBatDau());
-            row.add(l.getLuong());
           
             data.add(row);
         }
         return data;
     }
+    
     
     public Vector loadTableLuong(){
         listl = l.getALL();
@@ -65,19 +65,17 @@ public class LuongDAO {
             }
             row.add(l.getHeSoLuong());
             row.add(l.getThoiGianBatDau());
-            row.add(l.getLuong());
           
             data.add(row);
         }
         return data;
     }
     
-    public void AddLuong(String Stt, String Ma_Cb, String HeSoluong, String ThoiGianBatDau,String Luong){
+    public void AddLuong(String Stt, String Ma_Cb, String HeSoluong, String ThoiGianBatDau){
         l.setStt(Stt);
         l.setma_canbo(Ma_Cb);
         l.setHeSoLuong(HeSoluong);
         l.setThoiGianBatDau(ThoiGianBatDau);
-        l.setLuong(Luong);
         if(Stt.length() != 0) {
             if (l.AddData(l)) {
                 JOptionPane.showMessageDialog(null, "Thêm mới thành công.!");
@@ -89,12 +87,11 @@ public class LuongDAO {
         }
     }
     
-    public void UpdateLuong(String Stt, String Ma_Cb, String HeSoluong, String ThoiGianBatDau,String Luong){
+    public void UpdateLuong(String Stt, String Ma_Cb, String HeSoluong, String ThoiGianBatDau){
         l.setStt(Stt);
         l.setma_canbo(Ma_Cb);
         l.setHeSoLuong(HeSoluong);
         l.setThoiGianBatDau(ThoiGianBatDau);
-        l.setLuong(Luong);
         if (l.Update(l)) {
             JOptionPane.showMessageDialog(null, "Cập nhật thành công.!");
         } else {
