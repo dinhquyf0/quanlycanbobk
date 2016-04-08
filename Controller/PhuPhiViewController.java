@@ -313,9 +313,9 @@ public class PhuPhiViewController {
     private class SaveListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent ae) {
-            String Luong = ppv.Txt_Luong.getText();
-            String DangPhi = ppv.Txt_DP.getText();
-            String CDPhi = ppv.Txt_CDP.getText();
+            String Luong = ppv.LBL_Luong.getText();
+            String DangPhi = ppv.LBL_DangPhi.getText();
+            String CDPhi = ppv.LBL_CongDoanPhi.getText();
             
         
             try {
@@ -323,10 +323,10 @@ public class PhuPhiViewController {
                         + "and year(ThoiGianBatDau) = "+ ppv.Cbx_Nam_TGBD.getSelectedItem().toString()+""
                         + "and month(ThoiGianBatDau)= "+ ppv.Cbx_Thang_TGBD.getSelectedItem().toString() +"");
                 theQuery("insert into canbo_congdoanvien(SoTienDong) values ('"+CDPhi+"') where ma_canbo = "+ppv.Cbx_MaCB.getSelectedItem().toString()+" "
-                        + "anhd year(ThoiGianDong) = "+ppv.Cbx_Nam_TGBD.getSelectedItem().toString()+" "
+                        + "and year(ThoiGianDong) = "+ppv.Cbx_Nam_TGBD.getSelectedItem().toString()+" "
                         + "and month(ThoiGianDong) = "+ppv.Cbx_Thang_TGBD.getSelectedItem().toString()+"");
                 theQuery("insert into canbo_dangvien(SoTienDong) values ('"+DangPhi+"') where ma_canbo = "+ppv.Cbx_MaCB.getSelectedItem().toString()+" "
-                        + "anhd year(ThoiGianDong) = "+ppv.Cbx_Nam_TGBD.getSelectedItem().toString()+" "
+                        + "and year(ThoiGianDong) = "+ppv.Cbx_Nam_TGBD.getSelectedItem().toString()+" "
                         + "and month(ThoiGianDong) = "+ppv.Cbx_Thang_TGBD.getSelectedItem().toString()+"");
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -361,13 +361,15 @@ public class PhuPhiViewController {
             Double hstl = Double.parseDouble(ppv.Txt_HeSoThamLien.getText());
             Double pccd = Double.parseDouble(ppv.Txt_PCCDanh.getText());
             
-            Double luong = (lcb*(hsl+pccd))+(M1+(pccv+hstl)*M2+M3);
-            Double dangphi = (((hsl+pccv)*lcb)+pcgd)*(1/100d);
-            Double congdoanphi = (((hsl)*lcb)+pcgd)*(1/100d);
+            int luong = (int) ((lcb*(hsl+pccd))+(M1+(pccv+hstl)*M2+M3));
+            System.out.println(luong);
+            int dangphi = (int) ((((hsl+pccv)*lcb)+pcgd)*(1/100d));
+            int congdoanphi = (int) ((((hsl)*lcb)+pcgd)*(1/100d));
             
-            ppv.Txt_Luong.setText(Double.toString(luong));
-            ppv.Txt_DP.setText(Double.toString(dangphi));
-            ppv.Txt_CDP.setText(Double.toString(congdoanphi));
+            ppv.LBL_Luong.setText(Integer.toString(luong));
+            
+            ppv.LBL_DangPhi.setText(Integer.toString(dangphi));
+            ppv.LBL_CongDoanPhi.setText(Integer.toString(congdoanphi));
         
         }
     }
@@ -379,10 +381,7 @@ public class PhuPhiViewController {
             
             ChucDanh cd = new ChucDanh();
             CanBo  cb = new CanBo();
-            Luong lg = new Luong();
             ChucVu cv = new ChucVu();
-            ChamThi ct = new ChamThi();
-            BaiBaoTapChi bb= new BaiBaoTapChi();
             
             ArrayList<CanBo> listcb = new ArrayList<>();
             

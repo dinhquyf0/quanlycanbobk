@@ -363,6 +363,7 @@ public class Main extends javax.swing.JFrame {
         jLabel8.setText("<html><body><u>CHỨC NĂNG CÁ NHÂN</body></html>");
 
         AboutBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/thông tin cán bộ.png"))); // NOI18N
+        AboutBtn.setToolTipText("Xem thông tin cá nhân");
         AboutBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AboutBtnActionPerformed(evt);
@@ -372,6 +373,7 @@ public class Main extends javax.swing.JFrame {
         jLabel26.setText("Thông tin cá nhân");
 
         LogoutBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/đăng xuất.png"))); // NOI18N
+        LogoutBtn.setToolTipText("Thoát khỏi chương trình");
         LogoutBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LogoutBtnActionPerformed(evt);
@@ -381,6 +383,7 @@ public class Main extends javax.swing.JFrame {
         jLabel27.setText("Đăng xuất");
 
         ChangePassBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/đổi mật khẩu.png"))); // NOI18N
+        ChangePassBtn.setToolTipText("Thay đổi mật khẩu tài khoản ");
         ChangePassBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ChangePassBtnActionPerformed(evt);
