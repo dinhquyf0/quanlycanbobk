@@ -90,35 +90,37 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                  <Component id="LB_Time" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="Cbx_Thang_TGBD" min="-2" pref="119" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="Cbx_Nam_TGBD" min="-2" pref="119" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                      <Component id="LB_Time" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="Txt_HoVaTen" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="Cbx_MaCB" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="Txt_LCB" alignment="1" min="-2" pref="275" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="Cbx_Thang_TGBD" min="-2" pref="119" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="Cbx_Nam_TGBD" min="-2" pref="119" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="Txt_HoVaTen" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="Cbx_MaCB" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="Txt_LCB" alignment="1" min="-2" pref="275" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="Txt_HeSoThamLien" min="-2" pref="77" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="198" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="Txt_HeSoThamLien" min="-2" pref="77" max="-2" attributes="0"/>
-                                  <Component id="Txt_HSL" min="-2" pref="150" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
+                              <Component id="Txt_HSL" min="-2" pref="150" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -149,13 +151,15 @@
                               <Component id="Txt_PCCV" min="-2" pref="80" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="917" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="LBL_DoanPhi" pref="235" max="32767" attributes="0"/>
-                                  <Component id="LBL_DangPhi" max="32767" attributes="0"/>
-                                  <Component id="LBL_Luong" max="32767" attributes="0"/>
-                                  <Component id="LBL_CongDoanPhi" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="LBL_DoanPhi" pref="235" max="32767" attributes="0"/>
+                                      <Component id="LBL_DangPhi" max="32767" attributes="0"/>
+                                      <Component id="LBL_CongDoanPhi" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="LBL_Luong" alignment="0" min="-2" pref="235" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
@@ -205,7 +209,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -219,6 +223,7 @@
                                           <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="Txt_HeSoThamLien" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="Txt_HSL" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -235,18 +240,18 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                               <Component id="LBL_Luong" linkSize="8" min="-2" pref="22" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="LBL_DoanPhi" linkSize="8" max="32767" attributes="0"/>
-                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                               <Component id="LBL_DangPhi" linkSize="8" min="-2" pref="20" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="LBL_CongDoanPhi" linkSize="8" pref="20" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="92" max="32767" attributes="0"/>
+                      <EmptySpace pref="102" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="PanelTuyChonTinh" alignment="0" max="32767" attributes="0"/>
                           <Component id="jPanel4" alignment="0" min="-2" max="-2" attributes="0"/>

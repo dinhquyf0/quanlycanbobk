@@ -924,10 +924,13 @@ public class ChangeView extends javax.swing.JFrame {
 
         jLabel14.setText("Thông Tin Khác");
 
+        Cbx_NamSinh_CB.setEditable(true);
         Cbx_NamSinh_CB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Năm" }));
 
+        Cbx_ThangSinh_CB.setEditable(true);
         Cbx_ThangSinh_CB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tháng" }));
 
+        Cbx_NgaySinh_CB.setEditable(true);
         Cbx_NgaySinh_CB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ngày" }));
 
         Rbtn_Nam.setText("Nam");
@@ -944,10 +947,13 @@ public class ChangeView extends javax.swing.JFrame {
             }
         });
 
+        CBx_Nam_Ctac.setEditable(true);
         CBx_Nam_Ctac.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Năm" }));
 
+        CBx_Thang_Ctac.setEditable(true);
         CBx_Thang_Ctac.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tháng" }));
 
+        CBx_Ngay_Ctac.setEditable(true);
         CBx_Ngay_Ctac.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ngày" }));
 
         jLabel1.setText("Mã Cán Bộ   (* )  ");
@@ -1517,10 +1523,13 @@ public class ChangeView extends javax.swing.JFrame {
 
         jLabel51.setText("Thời Gian Bắt Đầu");
 
+        CBx_Ngay_Luong_TGBD.setEditable(true);
         CBx_Ngay_Luong_TGBD.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ngày" }));
 
+        Cbx_Thang_Luong_TGBD.setEditable(true);
         Cbx_Thang_Luong_TGBD.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tháng" }));
 
+        Cbx_Nam_Luong_TGBD.setEditable(true);
         Cbx_Nam_Luong_TGBD.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Năm" }));
 
         jLabel49.setText("Tên Cán Bộ");
@@ -1709,10 +1718,13 @@ public class ChangeView extends javax.swing.JFrame {
 
         jPanel29.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông tin", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
+        Cbx_Nam_DoanPhi.setEditable(true);
         Cbx_Nam_DoanPhi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Năm" }));
 
+        Cbx_Thang_DoanPhi.setEditable(true);
         Cbx_Thang_DoanPhi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tháng" }));
 
+        Cbx_Ngay_DoanPhi.setEditable(true);
         Cbx_Ngay_DoanPhi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ngày" }));
 
         jLabel69.setText("Số Tiền Đóng");
@@ -1911,10 +1923,13 @@ public class ChangeView extends javax.swing.JFrame {
 
         jLabel99.setText("Chức vụ");
 
+        Cbx_Ngay_ChucVu.setEditable(true);
         Cbx_Ngay_ChucVu.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ngày" }));
 
+        Cbx_Thang_ChucVu.setEditable(true);
         Cbx_Thang_ChucVu.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tháng" }));
 
+        Cbx_Nam_ChucVu.setEditable(true);
         Cbx_Nam_ChucVu.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Năm" }));
 
         javax.swing.GroupLayout jPanel31Layout = new javax.swing.GroupLayout(jPanel31);
@@ -2096,6 +2111,7 @@ public class ChangeView extends javax.swing.JFrame {
 
         jPanel28.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông tin", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
+        Cbx_Nam_CongDoanPhi.setEditable(true);
         Cbx_Nam_CongDoanPhi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Năm" }));
         Cbx_Nam_CongDoanPhi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2103,8 +2119,10 @@ public class ChangeView extends javax.swing.JFrame {
             }
         });
 
+        Cbx_Thang_CongDoanPhi.setEditable(true);
         Cbx_Thang_CongDoanPhi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tháng" }));
 
+        Cbx_Ngay_CongDoanPhi.setEditable(true);
         Cbx_Ngay_CongDoanPhi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ngày" }));
 
         jLabel64.setText("Số Tiền Đóng");
@@ -2577,7 +2595,6 @@ public class ChangeView extends javax.swing.JFrame {
                             .addComponent(jLabel57)
                             .addComponent(TxtSoTienDongDangVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(38, 38, 38)))
-                .addGap(18, 18, 18)
                 .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel56)
                     .addComponent(TxtTen_CBDangVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -3678,6 +3695,7 @@ public class ChangeView extends javax.swing.JFrame {
 
         jLabel31.setText("Tên Tạp Chí");
 
+        Cbx_Thang_baiBao.setEditable(true);
         Cbx_Thang_baiBao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tháng" }));
 
         javax.swing.GroupLayout jPanel36Layout = new javax.swing.GroupLayout(jPanel36);

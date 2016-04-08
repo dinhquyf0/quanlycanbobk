@@ -94,12 +94,14 @@ public class CanBoController extends CheckEmpty{
             int cdv = listcbo.get(row).getCongDoanVien();
             if(dgv == 1){
                 cw.Rbtn_DangVien.setSelected(true);
+                cw.RBtn_DoanVien.setSelected(false);
             }else if(dgv == 0){
                 cw.Rbtn_DangVien.setSelected(false);
             }
             
             if(dv == 1){
                 cw.RBtn_DoanVien.setSelected(true);
+                cw.Rbtn_DangVien.setSelected(false);
             }else if(dv == 0){
                 cw.RBtn_DoanVien.setSelected(false);
             }
@@ -109,6 +111,7 @@ public class CanBoController extends CheckEmpty{
             }else if(cdv == 0){
                 cw.RBtn_CongDoanVien.setSelected(false);
             }
+            
             cw.TxtNoiCongTac.setText(listcbo.get(row).getNoiCongTac());
             cw.TxtMaSoThue.setText(listcbo.get(row).getMaSoThue());
             cw.TxtSoTaiKhoan.setText(listcbo.get(row).getSoTaiKhoan());
@@ -126,6 +129,7 @@ public class CanBoController extends CheckEmpty{
             cw.Cbx_NamSinh_CB.setSelectedItem(nam);
             cw.Cbx_ThangSinh_CB.setSelectedItem(thang);
             cw.Cbx_NgaySinh_CB.setSelectedItem(ngay);
+            
             cw.CBx_Nam_Ctac.setSelectedItem(listcbo.get(row).getThoiGianBDCT().substring(0, 4));
             cw.CBx_Thang_Ctac.setSelectedItem(listcbo.get(row).getThoiGianBDCT().substring(5, 7));
             cw.CBx_Ngay_Ctac.setSelectedItem(listcbo.get(row).getThoiGianBDCT().substring(8, 10));
@@ -154,8 +158,8 @@ public class CanBoController extends CheckEmpty{
             String Ma_CB = listcbo.get(row).getMa_CB();
             String user = cw.TxtTenDangNhap.getText();
             String HovaTen = cw.TxtTenCanBo.getText();
-            String NgaySinh = cw.Cbx_NamSinh_CB.getSelectedItem().toString()
-                                +cw.Cbx_ThangSinh_CB.getSelectedItem().toString()
+            String NgaySinh = cw.Cbx_NamSinh_CB.getSelectedItem().toString()+"-"
+                                +cw.Cbx_ThangSinh_CB.getSelectedItem().toString()+"-"
                                     +cw.Cbx_NgaySinh_CB.getSelectedItem().toString();
             String GioiTinh ="";
             if(cw.Rbtn_Nam.isSelected()){
@@ -164,8 +168,8 @@ public class CanBoController extends CheckEmpty{
                 GioiTinh = "nu\n";
             }
             String NoiCongTac = cw.TxtNoiCongTac.getText();
-            String ThoiGianBatDau  = cw.CBx_Nam_Ctac.getSelectedItem().toString()
-                                        +cw.CBx_Thang_Ctac.getSelectedItem().toString()
+            String ThoiGianBatDau  = cw.CBx_Nam_Ctac.getSelectedItem().toString()+"-"
+                                        +cw.CBx_Thang_Ctac.getSelectedItem().toString()+"-"
                                             +cw.CBx_Ngay_Ctac.getSelectedItem().toString();
             String TrinhDo = cw.Cbx_TrinhDo.getSelectedItem().toString();
             String MaSoThue = cw.TxtMaSoThue.getText();

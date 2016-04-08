@@ -133,23 +133,22 @@ public class BaiBaoTapChiController extends CheckEmpty{
             int row1 = cw.BaiBao_TBL.getSelectedRow();
             int row2 = cw.CB_BB_TBL.getSelectedRow();
             
-            String Ma_BB = listbb.get(row1).getMa_BaiBao();
-            String TenTapChi = cw.TxtTenTapChi.getText();
-            String So = cw.TxtSo.getText();
-            String ThoiGianXuatBan = cw.Cbx_Nam_BB.getSelectedItem().toString();
-            String ChiSoISSN = cw.TxtChiSoISSN.getText();
-            String HeSoIF = cw.TxtHeSoIF.getText();
-           
-            String Stt = listgvtc.get(row2).getStt();
-            String Ma_bb = cw.CB_MaBB.getSelectedItem().toString();
-            String Ma_cb = cw.CB_MaCB_BB.getSelectedItem().toString();
-            
             if(cw.RBtn_BBao.isSelected()){
+                String Ma_BB = listbb.get(row1).getMa_BaiBao();
+                String TenTapChi = cw.TxtTenTapChi.getText();
+                String So = cw.TxtSo.getText();
+                String ThoiGianXuatBan = cw.Cbx_Nam_BB.getSelectedItem().toString()+"-"
+                                            +cw.Cbx_Thang_baiBao.getSelectedItem().toString()+"-1";
+                String ChiSoISSN = cw.TxtChiSoISSN.getText();
+                String HeSoIF = cw.TxtHeSoIF.getText();
                 bbd.UpdateBaiBaoTapChi(Ma_BB, TenTapChi, So, ThoiGianXuatBan, ChiSoISSN, HeSoIF);
                 isl.theQuery("INSERT INTO Log (NoiDung) value('Cập nhật bài báo')");
                 cw.BindingBB(bbd.loadTabelBaiBao_TapChi());
             }
             if(cw.RBtn_CB_BB.isSelected()){
+                String Stt = listgvtc.get(row2).getStt();
+                String Ma_bb = cw.CB_MaBB.getSelectedItem().toString();
+                String Ma_cb = cw.CB_MaCB_BB.getSelectedItem().toString();
                 bbd.UpdateCanBo_TapChi(Stt,Ma_cb, Ma_bb);
                 cw.BindingGiangVien_BBTC(bbd.loadTableGiangVien_TapChi());
             }

@@ -131,25 +131,23 @@ public class GiangDayController extends CheckEmpty {
             int row1 = cw.GDayBTL.getSelectedRow();
             int row2 = cw.CB_GDay_TBL.getSelectedRow();
             
-            String Ma_MH = listgd.get(row1).getMa_MH();
-            String TenMon = cw.TxtMa_GD.getText();
-            String SoTinChi = cw.TxtTenCon.getText();
-            String Lop = cw.Cbx_NamSinh_Con.getSelectedItem().toString();
-            String SoSinhVien = cw.TxtThanhTichCon.getText();
-            String HocKy = cw.TxtHocKy.getText();
-            String NamHoc = cw.TxtNamHoc.getText();
-            String PhuCap_GD = cw.TxtPhuCap.getText();
-            
-            String stt = listgvgd.get(row2).getStt();
-            String Ma_mh = cw.CB_Ma_MH.getSelectedItem().toString();
-            String Ma_cb = cw.CB_MaCB_Gday.getSelectedItem().toString();
-            
             if(cw.RBtn_GDay.isSelected()){
+                String Ma_MH = listgd.get(row1).getMa_MH();
+                String TenMon = cw.TxtMa_GD.getText();
+                String SoTinChi = cw.TxtTenCon.getText();
+                String Lop = cw.Cbx_NamSinh_Con.getSelectedItem().toString();
+                String SoSinhVien = cw.TxtThanhTichCon.getText();
+                String HocKy = cw.TxtHocKy.getText();
+                String NamHoc = cw.TxtNamHoc.getText();
+                String PhuCap_GD = cw.TxtPhuCap.getText();
                 gdd.UpdateGiangDay(Ma_MH, TenMon, SoTinChi, Lop, SoSinhVien, HocKy, NamHoc, PhuCap_GD);
                 isl.theQuery("INSERT INTO Log (NoiDung) value('Cập nhật thông tin giảng dạy của 1 môn học')");
                  cw.BindingGday(gdd.loadTableGiangDay());
             }
             if(cw.RBtn_CB_GDay.isSelected()){
+                 String stt = listgvgd.get(row2).getStt();
+                String Ma_mh = cw.CB_Ma_MH.getSelectedItem().toString();
+                String Ma_cb = cw.CB_MaCB_Gday.getSelectedItem().toString();
                 gdd.UpdateGiangVien_GiangDay(stt, Ma_cb, Ma_mh);
                  cw.BindingGV_GiangDay(gdd.loadTableGiangVien_GiangDay());
             }

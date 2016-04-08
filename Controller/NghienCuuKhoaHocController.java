@@ -141,30 +141,28 @@ public class NghienCuuKhoaHocController extends CheckEmpty{
             int row1 = cw.NCKH_TBL.getSelectedRow();
             int row2 = cw.GV_NCKH_TBL.getSelectedRow();
             
-            String Ma_DT = listnckh.get(row1).getMa_DT();
-            String TenDeTai = cw.TxtTenDT.getText();
-            String Cap = cw.TxtCap.getText();
-            String KinhPhi = cw.TxtKinhPhi.getText();
-            String ThoiGianBatDau = cw.CBx_Nam_NCKH_TGBD.getSelectedItem().toString()+"-"
-                                        +cw.Cbx_Thang_NCKH_TGBD.getSelectedItem().toString()+"-"
-                                            +cw.Cbx_Ngay_NCKH_TGBD.getSelectedItem().toString();
-            String ThoiGianKetThuc = cw.Cbx_Nam_NCKH_TGKT.getSelectedItem().toString()+"-"
-                                        +cw.Cbx_Thang_NCKH_TGKT.getSelectedItem().toString()+"-"
-                                            +cw.Cbx_Ngay_NCKH_TGKT.getSelectedItem().toString();
-            String ChuTriDeTai = cw.TxtChuTri.getText();
-            String TinhTrang = cw.TxtTinhTrang.getText();
-            String KetQua = cw.TxtKetQua.getText();
-           
-            String Stt = listgvnckh.get(row2).getstt();
-            String Ma_dt = cw.CB_Ma_DTai.getSelectedItem().toString();
-            String Ma_cb = cw.CB_MaCB_NCKH.getSelectedItem().toString();
-            
             if(cw.RBtn_NCKH.isSelected()){
+                String Ma_DT = listnckh.get(row1).getMa_DT();
+                String TenDeTai = cw.TxtTenDT.getText();
+                String Cap = cw.TxtCap.getText();
+                String KinhPhi = cw.TxtKinhPhi.getText();
+                String ThoiGianBatDau = cw.CBx_Nam_NCKH_TGBD.getSelectedItem().toString()+"-"
+                                            +cw.Cbx_Thang_NCKH_TGBD.getSelectedItem().toString()+"-"
+                                                +cw.Cbx_Ngay_NCKH_TGBD.getSelectedItem().toString();
+                String ThoiGianKetThuc = cw.Cbx_Nam_NCKH_TGKT.getSelectedItem().toString()+"-"
+                                            +cw.Cbx_Thang_NCKH_TGKT.getSelectedItem().toString()+"-"
+                                                +cw.Cbx_Ngay_NCKH_TGKT.getSelectedItem().toString();
+                String ChuTriDeTai = cw.TxtChuTri.getText();
+                String TinhTrang = cw.TxtTinhTrang.getText();
+                String KetQua = cw.TxtKetQua.getText();
                 nckhd.UpdateNghienCuuKhoaHoc(Ma_DT, TenDeTai, Cap, KinhPhi, ThoiGianBatDau, ThoiGianKetThuc, ChuTriDeTai, TinhTrang, KetQua);
                 isl.theQuery("INSERT INTO Log (NoiDung) value('cập nhật thông tin 1 đề tài NCKH')");
                 cw.BindingNCKH(nckhd.loadTableNCKH());
             }
             if(cw.RBtn_GV_NCKH.isSelected()){
+                String Stt = listgvnckh.get(row2).getstt();
+                String Ma_dt = cw.CB_Ma_DTai.getSelectedItem().toString();
+                String Ma_cb = cw.CB_MaCB_NCKH.getSelectedItem().toString();
                 nckhd.UpdateGiangVien_NghienCuuKhoaHoc(Stt, Ma_cb, Ma_dt);
                 cw.BindingGiangVien_NCKH(nckhd.loadTableCanBo_NCKH());
             }

@@ -22,7 +22,7 @@ public class DBConnect {
     String use = "root";
     String pass = "";
     String driver = "com.mysql.jdbc.Driver";
-    String URL = "jdbc:mysql://localhost/quanlycanbobk";
+    String URL = "jdbc:mysql://localhost:3306/quanlycanbobk?useUnicode=yes&characterEncoding=UTF-8";
     
     public void getConnect(){
         try {

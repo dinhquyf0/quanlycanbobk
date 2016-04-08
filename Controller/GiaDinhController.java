@@ -131,18 +131,12 @@ public class GiaDinhController extends CheckEmpty {
             int row1 = cw.GiaDinhTBL.getSelectedRow();
             int row2 = cw.CB_GD_TBL.getSelectedRow();
             
-            String Stt = listgd.get(row1).getStt();
-            String Ma_GD = cw.TxtMa_GD.getText();
-            String HoVaTenCon = cw.TxtTenCon.getText();
-            String NamSinhCon = cw.Cbx_NamSinh_Con.getSelectedItem().toString();
-            String ThanhTichCon = cw.TxtThanhTichCon.getText();
-           
-            String stt = listcbgd.get(row2).getstt();
-            String Ma_gd = cw.CB_Ma_GD.getSelectedItem().toString();
-            String Ma_cb = cw.CB_MaCB_GDinh.getSelectedItem().toString();
-            
-            
             if(cw.RBtn_GD.isSelected()){
+                String Stt = listgd.get(row1).getStt();
+                String Ma_GD = cw.TxtMa_GD.getText();
+                String HoVaTenCon = cw.TxtTenCon.getText();
+                String NamSinhCon = cw.Cbx_NamSinh_Con.getSelectedItem().toString();
+                String ThanhTichCon = cw.TxtThanhTichCon.getText();
                 gdd.UpdateGiaDinh(Stt, Ma_GD, HoVaTenCon, NamSinhCon, ThanhTichCon);
                 isl.theQuery("INSERT INTO Log (NoiDung) value('Cập nhật thông tin gia đình 1 cán bộ')");
                 cw.BindingGD(gdd.loadTableGiaDinh());
@@ -151,6 +145,10 @@ public class GiaDinhController extends CheckEmpty {
             }
 
             if(cw.RBtn_CBGD.isSelected()){
+                
+                String stt = listcbgd.get(row2).getstt();
+                String Ma_gd = cw.CB_Ma_GD.getSelectedItem().toString();
+                String Ma_cb = cw.CB_MaCB_GDinh.getSelectedItem().toString();
                 gdd.UpdateCanBo_GiaDinh(stt, Ma_cb, Ma_gd);
                 cw.BindingCanBo_GiaDinh(gdd.loadTableCanBo_GiaDinh());
             }else{

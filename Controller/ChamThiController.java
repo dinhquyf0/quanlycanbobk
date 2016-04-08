@@ -48,7 +48,7 @@ public class ChamThiController extends CheckEmpty {
 
         @Override
         public void valueChanged(ListSelectionEvent lse) {
-                if (cw.Chamthi_TBL.getSelectedRow() != -1) {
+            if (cw.Chamthi_TBL.getSelectedRow() != -1) {
             int row = cw.Chamthi_TBL.getSelectedRow();
 
             listct = ct.getALL();

@@ -20,7 +20,7 @@ public class Insertlog {
         Connection con = null;
         Statement st = null;
         try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost/quanlycanbobk", "root", "");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/quanlycanbobk?useUnicode=yes&characterEncoding=UTF-8","root", "");
             st = con.createStatement();
             st.executeUpdate(query);
             JOptionPane.showMessageDialog(null, "Đã thêm bảng tin.! ");

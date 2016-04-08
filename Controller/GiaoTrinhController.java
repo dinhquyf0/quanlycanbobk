@@ -122,22 +122,20 @@ public class GiaoTrinhController extends CheckEmpty {
             int row1 = cw.GiaoTrinh_TBL.getSelectedRow();
             int row2 = cw.CB_GiaoTrinh_TBL.getSelectedRow();
             
-            String Ma_GT = listgt.get(row1).getMa_GT();
-            String TenGiaoTrinh = cw.TxtTenGiaoTrinh.getText();
-            String TenTacGia = cw.TxtTenTacGia.getText();
-            String NamXuatBan = cw.Cbx_Nam_GiaoTrinh.getSelectedItem().toString();
-            String NhaXuatBan = cw.TxtNhaXuatBan.getText();
-            
-            String stt = listgvgt.get(row2).getStt();
-            String Ma_gt = cw.CB_Ma_GTrinh.getSelectedItem().toString();
-            String Ma_cb = cw.CB_MaCB_GiaoTrinh.getSelectedItem().toString();
-            
             if(cw.RBtn_GiaoTrinh.isSelected()){
+                String Ma_GT = listgt.get(row1).getMa_GT();
+                String TenGiaoTrinh = cw.TxtTenGiaoTrinh.getText();
+                String TenTacGia = cw.TxtTenTacGia.getText();
+                String NamXuatBan = cw.Cbx_Nam_GiaoTrinh.getSelectedItem().toString();
+                String NhaXuatBan = cw.TxtNhaXuatBan.getText();
                 gtd.UpdateGiaoTrinh(Ma_GT, TenGiaoTrinh, TenTacGia, NamXuatBan, NhaXuatBan);
                 isl.theQuery("INSERT INTO Log (NoiDung) value('Cập nhật thông tin giáo trình của 1 giáo viên')");
                 cw.BindingGiaoTrinh(gtd.loadTableGiaoTrinh());
             }
             if(cw.RBtn_CB_GTrinh.isSelected()){
+                String stt = listgvgt.get(row2).getStt();
+                String Ma_gt = cw.CB_Ma_GTrinh.getSelectedItem().toString();
+                String Ma_cb = cw.CB_MaCB_GiaoTrinh.getSelectedItem().toString();
                 gtd.UpdateGiangVien_GiaoTrinh(stt, Ma_cb, Ma_gt);
                 cw.BindingGiangVien_GT(gtd.loadTableCanBo_GiaoTrinh());
             }
