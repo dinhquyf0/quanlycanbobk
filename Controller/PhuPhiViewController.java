@@ -6,6 +6,9 @@
 package Controller;
 import View.PhuPhiView;
 import Model.*;
+import ModelDAO.CanBoCongDoanVienDAO;
+import ModelDAO.CanBoDangVienDAO;
+import ModelDAO.CanBoDoanVienDAO;
 import ModelDAO.ChamThiDAO;
 import ModelDAO.LuongDAO;
 import View.Main;
@@ -27,6 +30,9 @@ public class PhuPhiViewController {
     Insertlog isl = new Insertlog();
     String user;
     int LCB = 1500000;
+    double M1 = 700000;
+    double M2 = 600000;
+    double M3 = 700000;
     private PhuPhiView ppv;
     private CanBo cb;
     private Luong lg;
@@ -60,6 +66,7 @@ public class PhuPhiViewController {
         this.ppv.CBx_MaCbActionListener(new PhuPhiViewController.Cbx_MaCbListener());
         this.ppv.GetTableLuongBtnActionListener(new PhuPhiViewController.GetTableLuongListener());
         this.ppv.GetTableChamThiBtnActionListener(new PhuPhiViewController.GetTableChamThiListener());
+        this.ppv.XemPhiBtnActionListener(new PhuPhiViewController.XemPhiBtnListener());
         if(s.equals("admin")){
            ppv.Cbx_MaCB.setEnabled(true);
         }else{
@@ -73,14 +80,38 @@ public class PhuPhiViewController {
             }
             
         }
-        BindingLuong();
         
     }
     
-    public void BindingLuong(){
-        ppv.BindingLuong(ld.loadTableLuong());
+    public PhuPhiViewController(Luong lg, CanBo cb, GiangDay gdy){
+        this.lg = lg;
+        this.cb = cb;
+        this.gdy = gdy;
     }
     
+    public Vector loadLuong(String thang, String nam, ArrayList<Luong> listl){
+        Vector data = new Vector();
+        for(Luong l : listl){
+            Vector row = new Vector();
+            listcb =cb.getByID(l.getma_canbo());
+            
+            row.add(l.getStt());
+            row.add(l.getma_canbo());
+            if(listcb.size() > 0){
+                row.add(listcb.get(0).getHoVaTen());
+            }else{
+                row.add("isEmpty");
+            }
+            row.add(thang+"-"+nam);
+            row.add(Luong(LCB, HeSoLuongtheonam(l.getma_canbo(),nam), HeSoChucDanh(l.getma_canbo()), PhuCapChucVu(l.getma_canbo()), HeSoThamniem(listcb.get(0).getGioiTinh(), l.getma_canbo())));
+            data.add(row);
+        }
+        return data;
+    }
+    
+    public void BindingTienChamtthi(){
+        ppv.BindingChamThi(ctd.loadTienChamThi());
+    }
     
     public double PhuCapChucVu(String ChucVu){
         double pccv = 0;
@@ -137,7 +168,7 @@ public class PhuPhiViewController {
         return pccv;
     }
     
-    public double HeSoThamLien(String gioitinh, String macanbo){
+    public double HeSoThamniem(String gioitinh, String macanbo){
         double k3 =0;
         int year = Calendar.getInstance().get(Calendar.YEAR);
         CanBo cb = new CanBo();
@@ -234,13 +265,29 @@ public class PhuPhiViewController {
         return sogio;
     }
     
-    public double HeSoLuongHienTai(String MaCanBo){
-        double hsl =0;
-        Double HSL = lg.getByIDandTime(MaCanBo);
+    public double HeSoLuongtheonam(String MaCanBo, String nam){
+        double HSL = lg.getHSL(MaCanBo);
         String NamCT = cb.getThoiGianBatDauCongTac(MaCanBo).substring(0, 4);
-        int namhientai = Calendar.getInstance().get(Calendar.YEAR);
-        hsl = HSL+(((namhientai - Integer.parseInt(NamCT))/3)*0.33);
-        return  hsl;
+        int namhientai = Integer.parseInt(nam);
+        HSL = HSL+(((namhientai - Integer.parseInt(NamCT))/3)*0.33);
+        return  HSL;
+    }
+    
+    public double HeSoGiangDay(String MaCanBo,String Thang, String Nam){
+        double pcgd =0;
+        int thang = Integer.parseInt(Thang);
+        String hocky="1" ;
+        if(8<=thang || thang<=1){
+            hocky = "1";
+        }else if(2<= thang && thang<= 5){
+            hocky = "2";
+        }
+        ArrayList<GiangDay> listgdy = gdy.getByIDCBTIME(MaCanBo, hocky, Nam);
+        for(GiangDay gday : listgdy){
+            String PCGD = gday.getPhuCap_GD();
+            pcgd = Double.parseDouble(PCGD);
+        }
+        return pcgd;
     }
     
     public void theQuery(String query) {
@@ -255,6 +302,30 @@ public class PhuPhiViewController {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
 }  
+
+    private class XemPhiBtnListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            CanBoDangVienDAO dgvd = new CanBoDangVienDAO();
+            CanBoDoanVienDAO dvd = new CanBoDoanVienDAO();
+            CanBoCongDoanVienDAO cdvd = new CanBoCongDoanVienDAO();
+            String phi = ppv.Cbx_D_CD_phi.getSelectedItem().toString();
+            switch (phi) {
+                case "đảng phí":
+                    ppv.BindingDongDangPhi(dgvd.loadTableDangPhidadong(ppv.Cbx_nam_phi.getSelectedItem().toString(), ppv.Cbx_thang_phi.getSelectedItem().toString()));
+                    break;
+                case "đoàn phí":
+                    ppv.BindingDongDoanPhi(dvd.loadTableDoanPhidadong(ppv.Cbx_nam_phi.getSelectedItem().toString(), ppv.Cbx_thang_phi.getSelectedItem().toString()));
+                    break;
+                case "công đoàn phí":
+                    ppv.BindingDongCongDoanPhi(cdvd.loadTableCongDoanPhidadong(ppv.Cbx_nam_phi.getSelectedItem().toString(), ppv.Cbx_thang_phi.getSelectedItem().toString()));
+                    break;
+            }
+            
+        
+        }
+    }
     
     private class GetTableChamThiListener implements ActionListener {
 
@@ -273,17 +344,10 @@ public class PhuPhiViewController {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            String thang = ppv.Cbx_Thang.getSelectedItem().toString();
-            String nam = ppv.Cbx_Nam.getSelectedItem().toString();
-
-            listl = lg.getByTime(nam, thang);
-            while (listl == null){
-                int ithang = Integer.parseInt(ppv.Cbx_Thang_TGBD.getSelectedItem().toString());
-                ithang--;
-                listl = lg.getByTime(nam, Integer.toString(ithang));
-            }
-
-            ppv.BindingLuong(ld.loadTableLuongMonth(listl));
+            String thang = ppv.Cbx_Thang_Luong.getSelectedItem().toString();
+            String nam = ppv.Cbx_Nam_Luong.getSelectedItem().toString();
+            listl = lg.getALL();
+            ppv.BindingLuong(loadLuong(thang, nam, listl));
         }
     }
 
@@ -345,73 +409,106 @@ public class PhuPhiViewController {
             m.setVisible(true);
         }
     }
+    
+    public String Luong(int lcb, Double hsl,Double pccd, Double pccv, Double hstn){
+        String luong = "";
+        int iluong = (int) ((lcb*(hsl+pccd))+(M1+(pccv+hstn)*M2+M3));
+        luong = Integer.toString(iluong);
+        return luong;
+    }
+    
+    public void TinhLuong(){
+        
+        String macb = ppv.Cbx_MaCB.getSelectedItem().toString();
+        listcb = cb.getByID(macb);
+        
+        
+        double hsl = Double.parseDouble(ppv.Txt_HSL.getText());
+        double pccv = Double.parseDouble(ppv.Txt_PCCV.getText());
+        double lcb = Double.parseDouble(ppv.Txt_LCB.getText());
+        double pcgd = Double.parseDouble(ppv.Txt_PCGD.getText());
+        double hstn = Double.parseDouble(ppv.Txt_HeSoThamniem.getText());
+        double pccd = Double.parseDouble(ppv.Txt_PCCDanh.getText());
 
+        int luong = (int) ((lcb*(hsl+pccd))+(M1+(pccv+hstn)*M2+M3));
+        int dangphi = (int) ((((hsl+pccv)*lcb)+pcgd)*(1/100d));
+        int doanphi = (int) ((hsl*lcb)*(1/100d));
+        int congdoanphi = (int) ((((hsl)*lcb)+pcgd)*(1/100d));
+
+        ppv.LBL_Luong.setText(Integer.toString(luong));
+        
+        
+        
+        for(CanBo cbo : listcb){
+            if(cbo.getDoanVien()==1){
+                    ppv.LBL_DoanPhi.setText(Integer.toString(doanphi));
+                }else{
+                    ppv.LBL_DoanPhi.setText("0");
+                }
+                if(cbo.getDangVien()==1){
+                    ppv.LBL_DangPhi.setText(Integer.toString(dangphi));
+                }else{
+                   ppv.LBL_DangPhi.setText("0");
+                }
+                if(cbo.getCongDoanVien()==1){
+                    ppv.LBL_CongDoanPhi.setText(Integer.toString(congdoanphi));
+                }else{
+                    ppv.LBL_CongDoanPhi.setText("0");
+                }
+        }
+    }
+    
     private class TinhListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-
-            double M1 = 700000;
-            double M2 = 600000;
-            double M3 = 700000;
-            Double hsl = Double.parseDouble(ppv.Txt_HSL.getText());
-            Double pccv = Double.parseDouble(ppv.Txt_PCCV.getText());
-            Double lcb = Double.parseDouble(ppv.Txt_LCB.getText());
-            Double pcgd = Double.parseDouble(ppv.Txt_PCGD.getText());
-            Double hstl = Double.parseDouble(ppv.Txt_HeSoThamLien.getText());
-            Double pccd = Double.parseDouble(ppv.Txt_PCCDanh.getText());
+            TinhLuong();
             
-            int luong = (int) ((lcb*(hsl+pccd))+(M1+(pccv+hstl)*M2+M3));
-            System.out.println(luong);
-            int dangphi = (int) ((((hsl+pccv)*lcb)+pcgd)*(1/100d));
-            int congdoanphi = (int) ((((hsl)*lcb)+pcgd)*(1/100d));
-            
-            ppv.LBL_Luong.setText(Integer.toString(luong));
-            
-            ppv.LBL_DangPhi.setText(Integer.toString(dangphi));
-            ppv.LBL_CongDoanPhi.setText(Integer.toString(congdoanphi));
-        
         }
     }
+    
+    public void displayData(String thang, String nam){
+        ChucDanh cd = new ChucDanh();
+        CanBo  cb = new CanBo();
+        ChucVu cv = new ChucVu();
 
+        ArrayList<CanBo> listcb = new ArrayList<>();
+
+        String ma_canbo = ppv.Cbx_MaCB.getSelectedItem().toString();
+
+        listcb = cb.getByID(ma_canbo);
+        String chucdanh = cd.getByIDCB(ma_canbo);
+        String chucvu = cv.getChucVuByTime(ma_canbo);
+        String namhientai = Integer.toString(Calendar.getInstance().get(Calendar.YEAR));
+        double hsl = HeSoLuongtheonam(ma_canbo,namhientai);
+        double pcgd = HeSoGiangDay(ma_canbo, thang, nam);
+        ppv.Txt_LCB.setText(Integer.toString(LCB));
+
+        ppv.Txt_PCGD.setText(Double.toString(pcgd));
+        for(CanBo cbo :listcb){
+
+            String gioitinh = cbo.getGioiTinh();
+            String macanbo = cbo.getMa_CB();
+            double k3 = HeSoThamniem(gioitinh, macanbo);
+            ppv.Txt_HeSoThamniem.setText(Double.toString(k3));
+
+        }
+            double pccv = PhuCapChucVu(chucvu);
+            ppv.Txt_PCCV.setText(Double.toString(pccv));
+
+            double pccd = HeSoChucDanh(chucdanh);
+            ppv.Txt_PCCDanh.setText(Double.toString(pccd));
+
+            ppv.Txt_HSL.setText(Double.toString(hsl));
+
+    }
+    
     private class GetDataListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
             
-            ChucDanh cd = new ChucDanh();
-            CanBo  cb = new CanBo();
-            ChucVu cv = new ChucVu();
-            
-            ArrayList<CanBo> listcb = new ArrayList<>();
-            
-            String ma_canbo = ppv.Cbx_MaCB.getSelectedItem().toString();
-
-            listcb = cb.getByID(ma_canbo);
-            String chucdanh = cd.getByIDCB(ma_canbo);
-            String chucvu = cv.getByTime(ma_canbo);
-            Double hsl = HeSoLuongHienTai(ma_canbo);
-            System.out.println(hsl);
-            
-            ppv.Txt_LCB.setText(Integer.toString(LCB));
-            
-            ppv.Txt_PCGD.setText("1");
-            for(CanBo cbo :listcb){
-                
-                String gioitinh = cbo.getGioiTinh();
-                String macanbo = cbo.getMa_CB();
-                double k3 = HeSoThamLien(gioitinh, macanbo);
-                ppv.Txt_HeSoThamLien.setText(Double.toString(k3));
-                
-            }
-                double pccv = PhuCapChucVu(chucvu);
-                ppv.Txt_PCCV.setText(Double.toString(pccv));
-                
-                double pccd = HeSoChucDanh(chucdanh);
-                ppv.Txt_PCCDanh.setText(Double.toString(pccd));
-                
-                ppv.Txt_HSL.setText(Double.toString(hsl));
-                
+            displayData(ppv.Cbx_Thang_TGBD.getSelectedItem().toString(), ppv.Cbx_Nam_TGBD.getSelectedItem().toString());
                 
         }
     }

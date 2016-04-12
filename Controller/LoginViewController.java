@@ -12,6 +12,7 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -152,11 +153,28 @@ public class LoginViewController extends CheckEmpty {
             
             u = lgv.getTfUser().getText();
             p = lgv.getStringPass();
-            
+            int nhapsai=0;
             if(!checkEmpty(lgv.getTfUser(), u, "Tên Đăng Nhập")&&!checkEmpty(lgv.getTfPass(), p, "Password")){
                 return;
             }
-            else if(cb.getLogin(u, p)){
+            else if(cb.getLogin(u, p) == false){
+                nhapsai++;
+                System.out.println(nhapsai);
+
+            }
+            
+                if (nhapsai == 3) {
+                    JOptionPane.showMessageDialog(lgv, "Bạn đã nhập sai tên đăng nhập hoặc mật khẩu 5 lần. Chương trình sẽ bị khóa trong 1 phút.!");
+                    System.out.println(nhapsai);
+                    lgv.loginBtn.setEnabled(false);
+                    int giay = Calendar.getInstance().get(Calendar.SECOND);
+                    if(giay==60){
+                        lgv.loginBtn.setEnabled(true);
+                    }
+                }
+                if(cb.getLogin(u, p)){
+                
+                
                 lgv.setVisible(false);
                 Main m = new Main();
                 Log lg = new Log();
@@ -174,9 +192,9 @@ public class LoginViewController extends CheckEmpty {
 //                frame.setVisible(true);
 //                browser.loadURL("http://phuong-chat.herokuapp.com/chat.html?name="+u+"&room=chat");
 
-                }else {
+            }else {
                     JOptionPane.showMessageDialog(lgv, "Tên đăng nhập hoặc mật khẩu không đúng. Đề nghị nhập lại.!");
-                
+                    
                 }
             }catch(Exception e){
                 e.printStackTrace();

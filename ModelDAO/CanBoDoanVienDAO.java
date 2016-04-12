@@ -23,6 +23,33 @@ public class CanBoDoanVienDAO {
     CanBoDoanVien dv = new CanBoDoanVien();
     ArrayList<CanBoDoanVien> listdv = new ArrayList<>();
     
+    public Vector loadTableDoanPhidadong(String nam, String thang){
+        listdv = dv.getByTIME(nam, thang);
+        Vector data = new Vector();
+        for(CanBoDoanVien dvv : listdv){
+            listcb =cb.getByID(dvv.getma_canbo());
+            Vector row = new Vector();
+            row.add(dvv.getStt());
+            row.add(dvv.getma_canbo());
+            row.add(listcb.get(0).getHoVaTen());
+            row.add(dvv.getSoTien());
+            row.add(dvv.getThoiGian());
+            data.add(row);
+        }
+        return data;
+    }
+    
+    public Vector loadTableDoanPhiCanhan(String id){
+        listdv = dv.getByIDCB(id);
+                Vector data = new Vector();
+        for(CanBoDoanVien dv : listdv){
+            Vector row = new Vector();
+            row.add(dv.getSoTien());
+            row.add(dv.getThoiGian());
+            data.add(row);
+        }
+        return data;
+    }
     
     public Vector loadTableDoanVien(){
         listdv = dv.getALL();

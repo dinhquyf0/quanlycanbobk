@@ -20,7 +20,7 @@ public class Luong extends DBConnect{
     String ThoiGianBatDau;
     private final String GET_BY_ID = "select * from luong where ma_canbo =?";
     private final String GET_ALL = "select * from luong";
-    private final String GET_ID_AND_TIME = "select HeSoLuong from luong where ma_canbo = ?";
+    private final String GET_ID_CB = "select HeSoLuong from luong where ma_canbo = ?";
     private final String GET_BY_TIME = "select * from luong where year(ThoiGianBatDau) = ? and month(ThoiGianBatDau) =?";
     private final String ADD_DATA = "insert into "
             + "luong(Stt,ma_canbo,HeSoLuong,ThoiGianBatDau)"
@@ -37,8 +37,7 @@ public class Luong extends DBConnect{
             ps.setString(1, year);
             ps.setString(2, month);
             ResultSet rs = ps.executeQuery();
-            if(rs!= null ){
-                while (rs.next()){
+            if(rs!= null && rs.next()){
                 Luong item = new Luong();
                 
                 item.setStt(rs.getString("Stt"));
@@ -47,7 +46,6 @@ public class Luong extends DBConnect{
                 item.setThoiGianBatDau(rs.getString("ThoiGianBatDau"));
                 
                 objs.add(item);
-                }
             }
             getClose();
         } catch (Exception e) {
@@ -56,19 +54,17 @@ public class Luong extends DBConnect{
         return objs;
     }
     
-    public double getByIDandTime(String macb) {
-        double hsl = 0;
+    public double getHSL(String macb) {
+        double hsl = 0.0;
         try {
             getConnect();
-            PreparedStatement ps = con.prepareStatement(GET_ID_AND_TIME);
+            PreparedStatement ps = con.prepareStatement(GET_ID_CB);
             ps.setString(1, macb);
             ResultSet rs = ps.executeQuery();
-            if (rs != null) {
-                while (rs.next()) {
+            if (rs != null && rs.next()) {
 
                     String HSL = rs.getString("HeSoLuong");
                     hsl = Double.parseDouble(HSL);
-                }
             }
             getClose();
         } catch (Exception e) {

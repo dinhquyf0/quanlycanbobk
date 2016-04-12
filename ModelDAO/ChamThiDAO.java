@@ -24,6 +24,41 @@ public class ChamThiDAO {
     ChamThi ct = new ChamThi();
     ArrayList<ChamThi> listct = new ArrayList<>();
     
+    public Vector loadTableChamThiCanhan(String id){
+        listct = ct.getByIDCB(id);
+        Vector data = new Vector();
+        for(ChamThi ct : listct){
+            Vector row = new Vector();
+            row.add(ct.getMa_ChamThi());
+            row.add(ct.getMa_lop());
+            row.add(ct.getMa_MH());
+            row.add(ct.getNgayNop());
+            row.add(ct.getSoBaiThi());
+            data.add(row);
+        }
+        return data;
+    }
+    
+    public Vector loadTienChamThi(){
+        listct = ct.getALL();
+       Vector data = new Vector();
+        for(ChamThi ct : listct){
+            Vector row = new Vector();
+            listcb = cb.getByID(ct.getma_canbo());
+            row.add(ct.getMa_ChamThi());
+            row.add(ct.getma_canbo());
+            if(listcb.size() > 0){
+                row.add(listcb.get(0).getHoVaTen());
+            }else{
+                row.add("isEmpty");
+            }        
+            row.add(ct.getNgayNop());
+                
+            data.add(row);
+        }
+       return data;
+                
+    }
     
     public Vector loadTableChamThi(){
         listct = ct.getALL();
@@ -60,7 +95,8 @@ public class ChamThiDAO {
                 row.add("isEmpty");
             }        
             row.add(ct.getNgayNop());
-            row.add(ct.getSoBaiThi());
+            row.add((Integer.parseInt(ct.getSoBaiThi())*10000));
+
             data.add(row);
         }
        return data;

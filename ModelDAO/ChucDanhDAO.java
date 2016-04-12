@@ -23,6 +23,18 @@ public class ChucDanhDAO {
     ChucDanh cd = new ChucDanh();
     ArrayList<ChucDanh> listcd = new ArrayList<>();
     
+    public Vector loadTableChucDanhCanhan(String id){
+        listcd = cd.getByID(id);
+        Vector data = new Vector();
+        for(ChucDanh cd : listcd){
+            Vector row = new Vector();
+            row.add(cd.getChucDanh());
+            row.add(cd.getThoiGianNhan());
+            data.add(row);
+        }
+        return data;
+    }
+    
     public Vector loadTableChucDanh(){
         listcd = cd.getALL();
         Vector data = new Vector();

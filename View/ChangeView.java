@@ -4760,18 +4760,6 @@ public class ChangeView extends javax.swing.JFrame {
     
     public void Cbx_MaCBBBActionListener(ActionListener al){
         CB_MaCB_BB.addActionListener(al);
-        
-        
-        CB_MaCB_GDinh.addActionListener(al);
-        CB_MaCB_Gday.addActionListener(al);
-        CB_MaCB_GiaoTrinh.addActionListener(al);
-        CB_MaCB_Luong.addActionListener(al);
-        CB_MaCB_NCKH.addActionListener(al);
-        CB_MaCb_DangVien.addActionListener(al);
-        Cb_MaCB_CDV.addActionListener(al);
-        CBx_MaCB_ChucDanh.addActionListener(al);
-        CBx_MaCB_ChucVu.addActionListener(al);
-        
     }
     
     public void Cbx_MaCBChamThiActionListener(ActionListener al){
@@ -4780,6 +4768,42 @@ public class ChangeView extends javax.swing.JFrame {
     
     public void Cbx_MaCBDoanVienActionListener(ActionListener al){
         CB_MaCB_DoanVien.addActionListener(al);
+    }
+    
+    public void Cbx_MaCBGDinhActionListener(ActionListener al){
+        CB_MaCB_GDinh.addActionListener(al); 
+    }
+    
+    public void Cbx_MaCBGDayActionListener(ActionListener al){
+        CB_MaCB_Gday.addActionListener(al); 
+    }
+    
+    public void Cbx_MaCBGiaoTrinhActionListener(ActionListener al){
+        CB_MaCB_GiaoTrinh.addActionListener(al); 
+    }
+    
+    public void Cbx_MaCBLuongActionListener(ActionListener al){
+        CB_MaCB_Luong.addActionListener(al); 
+    }
+    
+    public void Cbx_MaCB_NCKHActionListener(ActionListener al){
+        CB_MaCB_NCKH.addActionListener(al); 
+    }
+    
+    public void Cbx_MaCB_DangVienActionListener(ActionListener al){
+        CB_MaCb_DangVien.addActionListener(al); 
+    }
+    
+    public void Cbx_MaCB_CDVActionListener(ActionListener al){
+        Cb_MaCB_CDV.addActionListener(al); 
+    }
+    
+    public void Cbx_MaCB_ChucDanhActionListener(ActionListener al){
+        CBx_MaCB_ChucDanh.addActionListener(al); 
+    }
+    
+    public void Cbx_MaCB_ChucVuActionListener(ActionListener al){
+        CBx_MaCB_ChucVu.addActionListener(al); 
     }
     
     /**

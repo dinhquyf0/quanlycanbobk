@@ -23,6 +23,20 @@ public class ChucVuDAO {
     ChucVu cv = new ChucVu();
     ArrayList<ChucVu> listcv = new ArrayList<>();
     
+    public Vector loadTableChucVuCanhan(String id){
+        listcv = cv.getByID(id);
+        Vector data = new Vector();
+        for(ChucVu cv : listcv){
+            Vector row = new Vector();
+            
+            row.add(cv.getChucVu());
+            row.add(cv.getThoiGianNhan());
+            row.add(cv.getPhuCap_ChucVu());
+            data.add(row);
+        }
+        return data;
+    }
+    
     public Vector loadTableChucVu(){
         listcv = cv.getALL();
         Vector data = new Vector();

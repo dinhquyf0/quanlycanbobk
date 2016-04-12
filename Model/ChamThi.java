@@ -40,12 +40,15 @@ public class ChamThi extends DBConnect{
             ps.setString(1, year);
             ps.setString(2, month);
             ResultSet rs = ps.executeQuery();
-            if(rs != null && rs.next() ){
+            if(rs != null){
+                while (rs.next()) {
                     ChamThi item = new ChamThi();
                     item.setma_canbo(rs.getString("ma_canbo"));
                     item.setNgayNop(rs.getString("NgayNop"));
                     item.setSoBaiThi(rs.getString("SoBaiThi"));
-                objs.add(item);
+                    objs.add(item);
+                }
+                
             }
             getClose();
         }catch(Exception e){

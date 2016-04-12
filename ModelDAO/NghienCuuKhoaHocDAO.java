@@ -35,6 +35,26 @@ public class NghienCuuKhoaHocDAO {
         }
     }
     
+    public Vector loadTableNCKHCanhan(String id){
+        listnckh = nckh.getByIDCB(id);
+        Vector data = new Vector();
+        
+        for(NghienCuuKhoaHoc nckh : listnckh){
+            Vector row = new Vector();
+            row.add(nckh.getMa_DT());
+            row.add(nckh.getTenDeTai());
+            row.add(nckh.getCap());
+            row.add(nckh.getKinhPhi());
+            row.add(nckh.getThoiGianBatDau());
+            row.add(nckh.getThoiGianKetThuc());
+            row.add(nckh.getChuTriDeTai());
+            row.add(nckh.getTinhTrang());
+            row.add(nckh.getKetQua());
+            data.add(row);
+        }
+        return data;
+    }
+    
     public Vector loadTableCanBo_NCKH(){
         listgvnckh = gv_nckh.getALLGVDT();
         

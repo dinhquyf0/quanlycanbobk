@@ -58,10 +58,8 @@ public class CanBo extends DBConnect implements java.io.Serializable {
             PreparedStatement ps = con.prepareStatement(GET_TGBDCT);
             ps.setString(1, id);
             ResultSet rs = ps.executeQuery();
-            if(rs != null){
-                while (rs.next()) {
-                    thoigian = rs.getString("ThoiGianBatDauCongTac");
-                }
+            if(rs != null && rs.next()){
+                thoigian = rs.getString("ThoiGianBatDauCongTac");
             }
             getClose();
         } catch (Exception e) {

@@ -36,6 +36,25 @@ public class GiaoTrinhDAO {
         }
     }
     
+    public Vector loadTableGiaoTrinhCanhan(String id){
+        listgt = gt.getByIDCB(id);
+        Vector data = new Vector();
+        
+        for(GiaoTrinh gt : listgt){
+            
+            Vector row = new Vector();
+            
+            row.add(gt.getMa_GT());
+            row.add(gt.getTenGiaoTrinh());
+            row.add(gt.getTenTacGia());
+            row.add(gt.getNamXuatBan());
+            row.add(gt.getNhaXuatBan());
+          
+            data.add(row);
+        }
+        return data;
+    }
+    
     public Vector loadTableCanBo_GiaoTrinh(){
         listgvgt = gvgt.getALLGVGT();
         

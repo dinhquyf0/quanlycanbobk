@@ -32,7 +32,7 @@ public class NghienCuuKhoaHoc extends DBConnect{
             + "ngiencuu_khoahoc set TenDeTai =?,Cap=?,KinhPhi=?,ThoiGianBatDau=?,ThoiGianKetThuc=?,ChuTriDeTai=?,TinhTrang=?,KetQua=? where Ma_DT=?";
     private final String REMOVE_DATA = "Delete from ngiencuu_khoahoc where Ma_DT=?";
     
-    public ArrayList<NghienCuuKhoaHoc> getByID(String id){
+    public ArrayList<NghienCuuKhoaHoc> getByIDCB(String id){
         ArrayList<NghienCuuKhoaHoc> objs = new ArrayList<>();
         try {
             getConnect();

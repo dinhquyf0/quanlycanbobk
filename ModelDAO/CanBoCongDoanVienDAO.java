@@ -24,6 +24,38 @@ public class CanBoCongDoanVienDAO {
     ArrayList<CanBoCongDoanVien> listcdv = new ArrayList<>();
     
     
+    
+    public Vector loadTableCongDoanPhidadong(String nam, String thang){
+        listcdv = cdv.getByTIME(nam, thang);
+        Vector data = new Vector();
+        for(CanBoCongDoanVien cbcdv : listcdv){
+            listcb = cb.getByID(cbcdv.getma_canbo());
+            Vector row = new Vector();
+            row.add(cbcdv.getStt());
+            row.add(cbcdv.getma_canbo());
+            if(listcb.size() > 0){
+                row.add(listcb.get(0).getHoVaTen());
+            }else{
+                row.add("isEmpty");
+            }
+            row.add(cbcdv.getSoTienDong());
+            row.add(cbcdv.getThoiGianDong());
+            data.add(row);
+        }
+        return data;
+    }
+    
+    public Vector loadTableCongDoanPhiCanhan(String id){
+        listcdv = cdv.getByID(id);
+        Vector data = new Vector();
+        for(CanBoCongDoanVien cbcdv : listcdv){
+            Vector row = new Vector();
+            row.add(cbcdv.getSoTienDong());
+            row.add(cbcdv.getThoiGianDong());
+            data.add(row);
+        }
+        return data;
+    }
         
     public Vector loadTableCongDoanPhi(){
         listcdv = cdv.getALL();

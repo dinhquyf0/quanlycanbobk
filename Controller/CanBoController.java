@@ -40,6 +40,17 @@ public class CanBoController extends CheckEmpty{
         this.cw.DelCanBoBtnActionListener(new CanBoController.DelCanBoListener());
         this.cw.ClickTableCanBoListener(new CanBoController.ClickTableCanBoListener());
         this.cw.Cbx_MaCBBBActionListener(new CanBoController.Cbx_MaCBBBListener());
+        this.cw.Cbx_MaCBChamThiActionListener(new CanBoController.Cbx_MaCBChamThiListener());
+        this.cw.Cbx_MaCBDoanVienActionListener(new CanBoController.Cbx_MaCBDoanVienListener());
+        this.cw.Cbx_MaCBGDayActionListener(new CanBoController.Cbx_MaCBGDayListener());
+        this.cw.Cbx_MaCBGDinhActionListener(new CanBoController.Cbx_MaCBGiaDinhListener());
+        this.cw.Cbx_MaCBGiaoTrinhActionListener(new CanBoController.Cbx_MaCBGiaoTrinhListener());
+        this.cw.Cbx_MaCBLuongActionListener(new CanBoController.Cbx_MaCBLuongListener());
+        this.cw.Cbx_MaCB_CDVActionListener(new CanBoController.Cbx_MaCB_CDVListener());
+        this.cw.Cbx_MaCB_ChucDanhActionListener(new CanBoController.Cbx_MaCB_ChucDanhListener());
+        this.cw.Cbx_MaCB_ChucVuActionListener(new CanBoController.Cbx_MaCB_ChucVuListener());
+        this.cw.Cbx_MaCB_DangVienActionListener(new CanBoController.Cbx_MaCB_DangVienListener());
+        this.cw.Cbx_MaCB_NCKHActionListener(new CanBoController.Cbx_MaCB_NCKHListener());
         BindingCanBo();
         BindingCbxMaCB();
     }
@@ -50,6 +61,127 @@ public class CanBoController extends CheckEmpty{
 
     private void BindingCanBo(){
         cw.BindingCanBo(cbd.loadTableCanBo());
+    }
+
+    private class Cbx_MaCB_NCKHListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            listcbo = cb.getByID(cw.CB_MaCB_NCKH.getSelectedItem().toString());
+            for(CanBo cbo : listcbo){
+                cw.TxtTen_CBNCKH.setText(cbo.getHoVaTen());
+            }        }
+    }
+
+    private class Cbx_MaCB_DangVienListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            listcbo = cb.getByID(cw.CB_MaCb_DangVien.getSelectedItem().toString());
+            for(CanBo cbo : listcbo){
+                cw.TxtTen_CBDangVien.setText(cbo.getHoVaTen());
+            }        }
+    }
+
+    private class Cbx_MaCB_ChucVuListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            listcbo = cb.getByID(cw.CBx_MaCB_ChucVu.getSelectedItem().toString());
+            for(CanBo cbo : listcbo){
+                cw.Txt_TenCB_ChucVu.setText(cbo.getHoVaTen());
+            }        }
+    }
+
+    private  class Cbx_MaCB_ChucDanhListener implements ActionListener {
+
+         @Override
+        public void actionPerformed(ActionEvent ae) {
+            listcbo = cb.getByID(cw.CBx_MaCB_ChucDanh.getSelectedItem().toString());
+            for(CanBo cbo : listcbo){
+                cw.Txt_tenCB_ChucDanh.setText(cbo.getHoVaTen());
+            }        }
+    }
+
+    private class Cbx_MaCB_CDVListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            listcbo = cb.getByID(cw.Cb_MaCB_CDV.getSelectedItem().toString());
+            for(CanBo cbo : listcbo){
+                cw.TxtTenCb_CDV.setText(cbo.getHoVaTen());
+            }        }
+    }
+
+    private class Cbx_MaCBLuongListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            listcbo = cb.getByID(cw.CB_MaCB_Luong.getSelectedItem().toString());
+            for(CanBo cbo : listcbo){
+                cw.TxtTen_CBLuong.setText(cbo.getHoVaTen());
+                
+            }        
+        }
+    }
+
+
+    private class Cbx_MaCBGiaoTrinhListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            listcbo = cb.getByID(cw.CB_MaCB_GiaoTrinh.getSelectedItem().toString());
+            for(CanBo cbo : listcbo){
+                cw.Txt_TenCB_GTrinh.setText(cbo.getHoVaTen());
+            }        }
+    }
+
+    private class Cbx_MaCBGiaDinhListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            listcbo = cb.getByID(cw.CB_MaCB_GDinh.getSelectedItem().toString());
+            for(CanBo cbo : listcbo){
+                cw.TxtTen_CBGiaDinh.setText(cbo.getHoVaTen());
+            }        }
+    }
+
+    private class Cbx_MaCBGDayListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            
+            listcbo = cb.getByID(cw.CB_MaCB_Gday.getSelectedItem().toString());
+            for(CanBo cbo : listcbo){
+                cw.TxtTen_GV.setText(cbo.getHoVaTen());
+            }
+        
+        }
+    }
+
+    private class Cbx_MaCBDoanVienListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+
+            listcbo = cb.getByID(cw.CB_MaCB_DoanVien.getSelectedItem().toString());
+            for(CanBo cbo : listcbo){
+                cw.Txt_TenCanBo_DoanVien.setText(cbo.getHoVaTen());
+            }
+        
+        }
+    }
+
+    private class Cbx_MaCBChamThiListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            
+            listcbo = cb.getByID(cw.CB_MaCB_ChamThi.getSelectedItem().toString());
+            for(CanBo cbo : listcbo){
+                cw.TxtTen_CB_ChamThi.setText(cbo.getHoVaTen());
+            }
+        
+        }
     }
 
     private class Cbx_MaCBBBListener implements ActionListener {

@@ -113,7 +113,7 @@
                                   </Group>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
-                                  <Component id="Txt_HeSoThamLien" min="-2" pref="77" max="-2" attributes="0"/>
+                                  <Component id="Txt_HeSoThamniem" min="-2" pref="77" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="198" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -221,7 +221,7 @@
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="Txt_HeSoThamLien" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="Txt_HeSoThamniem" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
@@ -389,7 +389,7 @@
                 <Property name="text" type="java.lang.String" value="H&#x1ec7; s&#x1ed1; th&#xe2;m ni&#xea;n"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="Txt_HeSoThamLien">
+            <Component class="javax.swing.JTextField" name="Txt_HeSoThamniem">
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
@@ -746,9 +746,9 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="Cbx_Thang" min="-2" max="-2" attributes="0"/>
+                          <Component id="Cbx_Thang_Luong" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="Cbx_Nam" min="-2" max="-2" attributes="0"/>
+                          <Component id="Cbx_Nam_Luong" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="GetTableLuongBtn" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
@@ -760,8 +760,8 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="Cbx_Thang" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="Cbx_Nam" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Cbx_Thang_Luong" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Cbx_Nam_Luong" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="GetTableLuongBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
@@ -770,7 +770,7 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JComboBox" name="Cbx_Thang">
+                <Component class="javax.swing.JComboBox" name="Cbx_Thang_Luong">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
@@ -779,13 +779,13 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Cbx_ThangActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Cbx_Thang_LuongActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="Cbx_Nam">
+                <Component class="javax.swing.JComboBox" name="Cbx_Nam_Luong">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
@@ -794,7 +794,7 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Cbx_NamActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Cbx_Nam_LuongActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -1124,6 +1124,12 @@
                       </StringArray>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Cbx_D_CD_phiActionPerformed"/>
+                  </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="Cbx_thang_phi">
                   <Properties>

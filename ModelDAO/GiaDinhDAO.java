@@ -29,11 +29,27 @@ public class GiaDinhDAO {
     ArrayList<CanBo_GiaDinh> listcbgd = new ArrayList<>();
     
     
-     public void BindingMaGD(JComboBox cbx){
+    public void BindingMaGD(JComboBox cbx){
         listgd = gd.getALL();
         for(GiaDinh gd : listgd){
             cbx.addItem(gd.getMa_GD());
         }
+    }
+    
+    public Vector loadTableGiaDinhCanhan(String id){
+        listgd = gd.getByID(id);
+        Vector data = new Vector();
+        
+            for (GiaDinh gd : listgd) {
+            Vector row = new Vector();
+            
+            row.add(gd.getHoVaTenCon());
+            row.add(gd.getNamSinh());
+            row.add(gd.getThanhTich());
+
+            data.add(row);
+        }
+        return data;
     }
     
     public Vector loadTableCanBo_GiaDinh(){

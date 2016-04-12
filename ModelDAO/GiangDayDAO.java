@@ -36,6 +36,26 @@ public class GiangDayDAO {
         }
     }
     
+    public Vector loadTableGiangDayCanhan(String id){
+        listgd = gd.getByIDCB(id);
+        Vector data = new Vector();
+        
+            for (GiangDay gdy : listgd) {
+            Vector row = new Vector();
+            
+            row.add(gdy.getMa_MH());
+            row.add(gdy.getTenMon());
+            row.add(gdy.getSoTinChi());
+            row.add(gdy.getLop());
+            row.add(gdy.getSoSinhVien());
+            row.add(gdy.getHocKy());
+            row.add(gdy.getNamHoc());
+            row.add(gdy.getPhuCap_GD());
+            data.add(row);
+        }
+        return data;    
+    }
+    
     public Vector loadTableGiangVien_GiangDay(){
         listgvgd = gvgd.getALLGVGD();
         Vector data = new Vector();

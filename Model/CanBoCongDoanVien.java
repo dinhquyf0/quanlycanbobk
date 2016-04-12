@@ -21,13 +21,40 @@ public class CanBoCongDoanVien extends DBConnect{
 
     private final String GET_BY_ID = "select * from canbo_congdoanvien where ma_canbo =?";
     private final String GET_ALL = "select * from canbo_congdoanvien";
+    private final String GET_BY_TIME = "select * from canbo_congdoanvien where year(ThoiGianDong) =? and month(ThoiGianDong) =?";
     private final String ADD_DATA = "insert into "
             + "canbo_congdoanvien(Stt,ma_canbo,SoTienDong,ThoiGianDong)"
             + "values (?,?,?,?)";
     private final String UPDATE_DATA = "Update "
             + "canbo_congdoanvien set ma_canbo=?,SoTienDong=?,ThoiGianDong=? where Stt=?";
     private final String REMOVE_DATA = "Delete from canbo_congdoanvien where Stt=?";
+    
+    public ArrayList<CanBoCongDoanVien> getByTIME(String year, String month){
+        ArrayList<CanBoCongDoanVien> objs = new ArrayList<>();
+        try {
+            getConnect();
+            PreparedStatement ps = con.prepareStatement(GET_BY_TIME);
+            ps.setString(1, year);
+            ps.setString(2, month);
+            ResultSet rs = ps.executeQuery();
+            if(rs!= null){
+                while (rs.next()) {
+                    CanBoCongDoanVien item = new CanBoCongDoanVien();
+                    item.setStt(rs.getString("Stt"));
+                    item.setma_canbo(rs.getString("ma_canbo"));
+                    item.setSoTienDong(rs.getString("SoTienDong"));
+                    item.setThoiGianDong(rs.getString("ThoiGianDong"));
 
+                    objs.add(item);  
+                }
+            }
+            getClose();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return objs;
+    }
+    
     public ArrayList<CanBoCongDoanVien> getByID(String id){
         ArrayList<CanBoCongDoanVien> objs = new ArrayList<>();
         try {

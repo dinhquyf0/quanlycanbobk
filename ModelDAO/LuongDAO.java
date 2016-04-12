@@ -22,6 +22,18 @@ public class LuongDAO {
     
     Luong l = new Luong();
     ArrayList<Luong> listl = new ArrayList<>();
+    public Vector loadTableLuongCanhan(String id){
+        listl = l.getByID(id);
+         Vector data = new Vector();
+        for(Luong l : listl){
+            Vector row = new Vector();
+            
+            row.add(l.getHeSoLuong());
+            row.add(l.getThoiGianBatDau());
+            data.add(row);
+        }
+        return data;
+    }
     
     public Vector loadTableLuongMonth(ArrayList<Luong> listl){
         

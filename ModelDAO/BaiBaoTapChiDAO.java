@@ -36,6 +36,24 @@ public class BaiBaoTapChiDAO {
         }
     }
     
+    public Vector loadTableBaiBaoCaNhan(String id){
+        listbb = bb.getByIDCB(id);
+        Vector data = new Vector();
+        
+        for(BaiBaoTapChi bb : listbb){
+            Vector row = new Vector();
+            row.add(bb.getMa_BaiBao());
+            row.add(bb.getTenTapChi());
+            row.add(bb.getSo());
+            row.add(bb.getThoiGianXuatBan());
+            row.add(bb.getChiSo_ISSN());
+            row.add(bb.getHeSo_IF());
+ 
+            data.add(row);
+        }
+        return data;
+    }
+    
     public Vector loadTableGiangVien_TapChi(){
         listcbbb = cbbb.getALLGVBB();
         Vector data = new Vector();

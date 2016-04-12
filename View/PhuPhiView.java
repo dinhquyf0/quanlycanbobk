@@ -47,8 +47,7 @@ public class PhuPhiView extends javax.swing.JFrame {
         clums.add("Số Thứ Tự");
         clums.add("Mã Cán Bộ");
         clums.add("Tên Cán Bộ");
-        clums.add("Hệ Số Lương");
-        clums.add("Thời Gian Bắt Đầu");
+        clums.add("Thời Gian");
         clums.add("Tiền Lương");
         
         model.setColumnIdentifiers(clums);
@@ -115,7 +114,7 @@ public class PhuPhiView extends javax.swing.JFrame {
     
     public void BindingCbx_TG(){
         for(int years=Calendar.getInstance().get(Calendar.YEAR);years>=1950;years--){
-            Cbx_Nam.addItem(years);
+            Cbx_Nam_Luong.addItem(years);
             Cbx_Nam_TGBD.addItem(years);
             Cbx_Nam_ChamThi.addItem(years);
             Cbx_nam_phi.addItem(years);
@@ -124,7 +123,7 @@ public class PhuPhiView extends javax.swing.JFrame {
         
         for(int months = 12; months > 0;months --){
             Cbx_Thang_TGBD.addItem(months);
-            Cbx_Thang.addItem(months);
+            Cbx_Thang_Luong.addItem(months);
             Cbx_Thang_ChamThi.addItem(months);
             Cbx_thang_phi.addItem(months);
         }
@@ -162,7 +161,7 @@ public class PhuPhiView extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         Txt_PCCDanh = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        Txt_HeSoThamLien = new javax.swing.JTextField();
+        Txt_HeSoThamniem = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         Txt_PCGD = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
@@ -190,8 +189,8 @@ public class PhuPhiView extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         LBL_Nam_Luong = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        Cbx_Thang = new javax.swing.JComboBox();
-        Cbx_Nam = new javax.swing.JComboBox();
+        Cbx_Thang_Luong = new javax.swing.JComboBox();
+        Cbx_Nam_Luong = new javax.swing.JComboBox();
         GetTableLuongBtn = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -433,7 +432,7 @@ public class PhuPhiView extends javax.swing.JFrame {
                                 .addComponent(Cbx_MaCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(Txt_LCB, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(Txt_HeSoThamLien, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Txt_HeSoThamniem, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(198, 198, 198)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
@@ -518,7 +517,7 @@ public class PhuPhiView extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel12)
-                                    .addComponent(Txt_HeSoThamLien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(Txt_HeSoThamniem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(Txt_HSL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -570,17 +569,17 @@ public class PhuPhiView extends javax.swing.JFrame {
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Chọn tháng/năm"));
 
-        Cbx_Thang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tháng" }));
-        Cbx_Thang.addActionListener(new java.awt.event.ActionListener() {
+        Cbx_Thang_Luong.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tháng" }));
+        Cbx_Thang_Luong.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Cbx_ThangActionPerformed(evt);
+                Cbx_Thang_LuongActionPerformed(evt);
             }
         });
 
-        Cbx_Nam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Năm" }));
-        Cbx_Nam.addActionListener(new java.awt.event.ActionListener() {
+        Cbx_Nam_Luong.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Năm" }));
+        Cbx_Nam_Luong.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Cbx_NamActionPerformed(evt);
+                Cbx_Nam_LuongActionPerformed(evt);
             }
         });
 
@@ -592,9 +591,9 @@ public class PhuPhiView extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Cbx_Thang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Cbx_Thang_Luong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(Cbx_Nam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Cbx_Nam_Luong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(GetTableLuongBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -604,8 +603,8 @@ public class PhuPhiView extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Cbx_Thang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Cbx_Nam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Cbx_Thang_Luong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Cbx_Nam_Luong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(GetTableLuongBtn))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -764,6 +763,11 @@ public class PhuPhiView extends javax.swing.JFrame {
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("tùy chọn xem")));
 
         Cbx_D_CD_phi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "đảng phí", "đoàn phí", "công đoàn phí" }));
+        Cbx_D_CD_phi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Cbx_D_CD_phiActionPerformed(evt);
+            }
+        });
 
         Cbx_thang_phi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "tháng" }));
         Cbx_thang_phi.addActionListener(new java.awt.event.ActionListener() {
@@ -942,13 +946,13 @@ public class PhuPhiView extends javax.swing.JFrame {
         RBtn_1nguoi.setSelected(false);
     }//GEN-LAST:event_Rbtn_NhieuNguoiActionPerformed
 
-    private void Cbx_ThangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cbx_ThangActionPerformed
-        LBL_Thang_LUong.setText(Cbx_Thang.getSelectedItem().toString());
-    }//GEN-LAST:event_Cbx_ThangActionPerformed
+    private void Cbx_Thang_LuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cbx_Thang_LuongActionPerformed
+        LBL_Thang_LUong.setText(Cbx_Thang_Luong.getSelectedItem().toString());
+    }//GEN-LAST:event_Cbx_Thang_LuongActionPerformed
 
-    private void Cbx_NamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cbx_NamActionPerformed
-        LBL_Nam_Luong.setText(Cbx_Nam.getSelectedItem().toString());
-    }//GEN-LAST:event_Cbx_NamActionPerformed
+    private void Cbx_Nam_LuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cbx_Nam_LuongActionPerformed
+        LBL_Nam_Luong.setText(Cbx_Nam_Luong.getSelectedItem().toString());
+    }//GEN-LAST:event_Cbx_Nam_LuongActionPerformed
 
     private void Cbx_Thang_ChamThiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cbx_Thang_ChamThiActionPerformed
         LBL_Thang_ChamThi.setText(Cbx_Thang_ChamThi.getSelectedItem().toString());
@@ -965,6 +969,10 @@ public class PhuPhiView extends javax.swing.JFrame {
     private void Cbx_nam_phiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cbx_nam_phiActionPerformed
         LBL_Nam_Phi.setText(Cbx_nam_phi.getSelectedItem().toString());
     }//GEN-LAST:event_Cbx_nam_phiActionPerformed
+
+    private void Cbx_D_CD_phiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cbx_D_CD_phiActionPerformed
+        LBL_phi.setText(Cbx_D_CD_phi.getSelectedItem().toString());
+    }//GEN-LAST:event_Cbx_D_CD_phiActionPerformed
 
     public void CBx_MaCbActionListener(ActionListener al){
         Cbx_MaCB.addActionListener(al);
@@ -996,6 +1004,14 @@ public class PhuPhiView extends javax.swing.JFrame {
 
     public void GetTableChamThiBtnActionListener(ActionListener al){
         GetTableChamThiBtn.addActionListener(al);
+    }
+    
+    public void Cbx_BangPhiActionListener(ActionListener al){
+        Cbx_D_CD_phi.addActionListener(al);
+    }
+    
+    public void XemPhiBtnActionListener(ActionListener al){
+        XemPhiBtn.addActionListener(al);
     }
     
     /**
@@ -1035,13 +1051,13 @@ public class PhuPhiView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton Back_Btn;
-    private javax.swing.JComboBox Cbx_D_CD_phi;
+    public javax.swing.JComboBox Cbx_D_CD_phi;
     public javax.swing.JComboBox Cbx_MaCB;
-    public javax.swing.JComboBox Cbx_Nam;
     public javax.swing.JComboBox Cbx_Nam_ChamThi;
+    public javax.swing.JComboBox Cbx_Nam_Luong;
     public javax.swing.JComboBox Cbx_Nam_TGBD;
-    public javax.swing.JComboBox Cbx_Thang;
     public javax.swing.JComboBox Cbx_Thang_ChamThi;
+    public javax.swing.JComboBox Cbx_Thang_Luong;
     public javax.swing.JComboBox Cbx_Thang_TGBD;
     public javax.swing.JComboBox Cbx_nam_phi;
     public javax.swing.JComboBox Cbx_thang_phi;
@@ -1070,7 +1086,7 @@ public class PhuPhiView extends javax.swing.JFrame {
     public javax.swing.JButton Save_Btn;
     public javax.swing.JButton Tinh_Btn;
     public javax.swing.JTextField Txt_HSL;
-    public javax.swing.JTextField Txt_HeSoThamLien;
+    public javax.swing.JTextField Txt_HeSoThamniem;
     public javax.swing.JTextField Txt_HoVaTen;
     public javax.swing.JTextField Txt_LCB;
     public javax.swing.JTextField Txt_PCCDanh;
