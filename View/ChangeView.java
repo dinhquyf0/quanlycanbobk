@@ -1521,6 +1521,8 @@ public class ChangeView extends javax.swing.JFrame {
 
         jLabel50.setText("Hệ Số Lương");
 
+        TxtHeSoLuong.setEnabled(false);
+
         jLabel51.setText("Thời Gian Bắt Đầu");
 
         CBx_Ngay_Luong_TGBD.setEditable(true);

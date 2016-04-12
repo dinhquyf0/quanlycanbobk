@@ -13,6 +13,7 @@ import View.ChangeView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -105,6 +106,10 @@ public class GiangDayController extends CheckEmpty {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
+            if(cw.RBtn_GDay.isSelected()==false && cw.RBtn_CB_GDay.isSelected()==false){
+                JOptionPane.showMessageDialog(cw, "Đề nghị chọn bảng để thực hiện thao tác này");
+            }
+            
             if(cw.RBtn_CB_GDay.isSelected()){
                 gdd.DelCanBo_GiangDay(cw.CB_GDay_TBL);
                  cw.BindingGV_GiangDay(gdd.loadTableGiangVien_GiangDay());
@@ -130,6 +135,10 @@ public class GiangDayController extends CheckEmpty {
             
             int row1 = cw.GDayBTL.getSelectedRow();
             int row2 = cw.CB_GDay_TBL.getSelectedRow();
+            
+            if(cw.RBtn_GDay.isSelected()==false && cw.RBtn_CB_GDay.isSelected()==false){
+                JOptionPane.showMessageDialog(cw, "Đề nghị chọn bảng để thực hiện thao tác này");
+            }
             
             if(cw.RBtn_GDay.isSelected()){
                 String Ma_MH = listgd.get(row1).getMa_MH();
@@ -172,6 +181,10 @@ public class GiangDayController extends CheckEmpty {
             String stt = cw.Txt_STT_CB_GDay.getText();
             String Ma_mh = cw.CB_Ma_MH.getSelectedItem().toString();
             String Ma_cb = cw.CB_MaCB_Gday.getSelectedItem().toString();
+            
+            if(cw.RBtn_GDay.isSelected()==false && cw.RBtn_CB_GDay.isSelected()==false){
+                JOptionPane.showMessageDialog(cw, "Đề nghị chọn bảng để thực hiện thao tác này");
+            }
             
             if(cw.RBtn_GDay.isSelected()){
                 if (!checkEmpty(cw.TxtMa_MH, Ma_MH, "Mã Môn Học")) {

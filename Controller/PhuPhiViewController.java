@@ -61,7 +61,6 @@ public class PhuPhiViewController {
         this.ppv.GetDataBtnActionListener(new PhuPhiViewController.GetDataListener());
         this.ppv.TinhBtnActionListener(new PhuPhiViewController.TinhListener());
         this.ppv.RefreshBtnActionListener(new PhuPhiViewController.RefreshListener());
-        this.ppv.SaveBtnActionListener(new PhuPhiViewController.SaveListener());
         this.ppv.BackBtnActionListenter(new PhuPhiViewController.BackListener());
         this.ppv.CBx_MaCbActionListener(new PhuPhiViewController.Cbx_MaCbListener());
         this.ppv.GetTableLuongBtnActionListener(new PhuPhiViewController.GetTableLuongListener());
@@ -371,30 +370,6 @@ public class PhuPhiViewController {
             ppv.setVisible(false);
             PhuPhiViewController ppvc = new PhuPhiViewController(ppv, cb, lg, gdy, cd, cv, ct,ld,ctd,user);
             ppv.setVisible(true);
-        }
-    }
-
-    private class SaveListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent ae) {
-            String Luong = ppv.LBL_Luong.getText();
-            String DangPhi = ppv.LBL_DangPhi.getText();
-            String CDPhi = ppv.LBL_CongDoanPhi.getText();
-            
-        
-            try {
-                theQuery("insert into luong (Luong) values ('" + Luong +"')where ma_canbo = "+ppv.Cbx_MaCB.getSelectedItem().toString()+" "
-                        + "and year(ThoiGianBatDau) = "+ ppv.Cbx_Nam_TGBD.getSelectedItem().toString()+""
-                        + "and month(ThoiGianBatDau)= "+ ppv.Cbx_Thang_TGBD.getSelectedItem().toString() +"");
-                theQuery("insert into canbo_congdoanvien(SoTienDong) values ('"+CDPhi+"') where ma_canbo = "+ppv.Cbx_MaCB.getSelectedItem().toString()+" "
-                        + "and year(ThoiGianDong) = "+ppv.Cbx_Nam_TGBD.getSelectedItem().toString()+" "
-                        + "and month(ThoiGianDong) = "+ppv.Cbx_Thang_TGBD.getSelectedItem().toString()+"");
-                theQuery("insert into canbo_dangvien(SoTienDong) values ('"+DangPhi+"') where ma_canbo = "+ppv.Cbx_MaCB.getSelectedItem().toString()+" "
-                        + "and year(ThoiGianDong) = "+ppv.Cbx_Nam_TGBD.getSelectedItem().toString()+" "
-                        + "and month(ThoiGianDong) = "+ppv.Cbx_Thang_TGBD.getSelectedItem().toString()+"");
-                } catch (Exception e) {
-                    e.printStackTrace();
-            }
         }
     }
 

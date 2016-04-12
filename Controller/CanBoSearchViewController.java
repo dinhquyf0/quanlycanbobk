@@ -63,7 +63,9 @@ public class CanBoSearchViewController {
     private class RefreshBtnAction implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent ae) {
-            BindingSearch();
+            cbs.setVisible(false);
+            CanBoSearchViewController cbsc = new CanBoSearchViewController(cbs, cb, cbd, user);
+            cbs.setVisible(true);
         }
     }
 

@@ -1492,7 +1492,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel18">
           <Properties>
-            <Property name="text" type="java.lang.String" value="In"/>
+            <Property name="text" type="java.lang.String" value="Xu&#x1ea5;t b&#xe1;o c&#xe1;o"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel19">

@@ -13,6 +13,7 @@ import View.ChangeView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -96,6 +97,11 @@ public class GiaoTrinhController extends CheckEmpty {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
+            
+            if(cw.RBtn_GiaoTrinh.isSelected()==false && cw.RBtn_CB_GTrinh.isSelected()==false){
+                JOptionPane.showMessageDialog(cw, "Đề nghị chọn bảng để thực hiện thao tác này");
+            }
+            
             if(cw.RBtn_CB_GDay.isSelected()){
                 gtd.DelGiangVien_GiaoTrinh(cw.CB_GiaoTrinh_TBL);
                 cw.BindingGiangVien_GT(gtd.loadTableCanBo_GiaoTrinh());
@@ -121,6 +127,10 @@ public class GiaoTrinhController extends CheckEmpty {
             
             int row1 = cw.GiaoTrinh_TBL.getSelectedRow();
             int row2 = cw.CB_GiaoTrinh_TBL.getSelectedRow();
+            
+            if(cw.RBtn_GiaoTrinh.isSelected()==false && cw.RBtn_CB_GTrinh.isSelected()==false){
+                JOptionPane.showMessageDialog(cw, "Đề nghị chọn bảng để thực hiện thao tác này");
+            }
             
             if(cw.RBtn_GiaoTrinh.isSelected()){
                 String Ma_GT = listgt.get(row1).getMa_GT();
@@ -157,6 +167,10 @@ public class GiaoTrinhController extends CheckEmpty {
             String stt = cw.Txt_Stt_CBGTrinh.getText();
             String Ma_gt = cw.CB_Ma_GTrinh.getSelectedItem().toString();
             String Ma_cb = cw.CB_MaCB_GiaoTrinh.getSelectedItem().toString();
+            
+            if(cw.RBtn_GiaoTrinh.isSelected()==false && cw.RBtn_CB_GTrinh.isSelected()==false){
+                JOptionPane.showMessageDialog(cw, "Đề nghị chọn bảng để thực hiện thao tác này");
+            }
             
             if(cw.RBtn_GiaoTrinh.isSelected()){
                 if (!checkEmpty(cw.TxtMa_GT, Ma_GT, "Mã Giáo Trình")) {

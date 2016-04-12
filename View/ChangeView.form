@@ -1493,6 +1493,9 @@
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JTextField" name="TxtHeSoLuong">
+                          <Properties>
+                            <Property name="enabled" type="boolean" value="false"/>
+                          </Properties>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                           </AuxValues>

@@ -105,6 +105,10 @@ public class GiaDinhController extends CheckEmpty {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
+            if(cw.RBtn_GD.isSelected()==false && cw.RBtn_CBGD.isSelected()==false){
+                JOptionPane.showMessageDialog(cw, "Đề nghị chọn bảng để thực hiện thao tác này");
+            }
+            
             if(cw.RBtn_CBGD.isSelected()){
                 gdd.DelCanBo_GiaDinh(cw.CB_GD_TBL);
                 cw.BindingGD(gdd.loadTableGiaDinh());
@@ -131,6 +135,10 @@ public class GiaDinhController extends CheckEmpty {
             int row1 = cw.GiaDinhTBL.getSelectedRow();
             int row2 = cw.CB_GD_TBL.getSelectedRow();
             
+            if(cw.RBtn_GD.isSelected()==false && cw.RBtn_CBGD.isSelected()==false){
+                JOptionPane.showMessageDialog(cw, "Đề nghị chọn bảng để thực hiện thao tác này");
+            }
+            
             if(cw.RBtn_GD.isSelected()){
                 String Stt = listgd.get(row1).getStt();
                 String Ma_GD = cw.TxtMa_GD.getText();
@@ -140,8 +148,6 @@ public class GiaDinhController extends CheckEmpty {
                 gdd.UpdateGiaDinh(Stt, Ma_GD, HoVaTenCon, NamSinhCon, ThanhTichCon);
                 isl.theQuery("INSERT INTO Log (NoiDung) value('Cập nhật thông tin gia đình 1 cán bộ')");
                 cw.BindingGD(gdd.loadTableGiaDinh());
-            }else{
-                JOptionPane.showMessageDialog(null, "Đề nghị chọn bảng sẽ cập nhật");
             }
 
             if(cw.RBtn_CBGD.isSelected()){
@@ -151,8 +157,6 @@ public class GiaDinhController extends CheckEmpty {
                 String Ma_cb = cw.CB_MaCB_GDinh.getSelectedItem().toString();
                 gdd.UpdateCanBo_GiaDinh(stt, Ma_cb, Ma_gd);
                 cw.BindingCanBo_GiaDinh(gdd.loadTableCanBo_GiaDinh());
-            }else{
-                JOptionPane.showMessageDialog(null, "Đề nghị chọn bảng sẽ cập nhật");
             }
             
         }
@@ -172,6 +176,10 @@ public class GiaDinhController extends CheckEmpty {
             String stt = cw.TxtStt_CBGD.getText();
             String Ma_gd = cw.CB_Ma_GD.getSelectedItem().toString();
             String Ma_cb = cw.CB_MaCB_GDinh.getSelectedItem().toString();           
+            
+            if(cw.RBtn_GD.isSelected()==false && cw.RBtn_CBGD.isSelected()==false){
+                JOptionPane.showMessageDialog(cw, "Đề nghị chọn bảng để thực hiện thao tác này");
+            }
             
             if(cw.RBtn_GD.isSelected()){
                 if (!checkEmpty(cw.TxtStt_GD, Stt, "Số Thứ Tự")) {

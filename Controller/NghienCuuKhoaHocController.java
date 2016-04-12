@@ -13,6 +13,7 @@ import View.ChangeView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -115,6 +116,10 @@ public class NghienCuuKhoaHocController extends CheckEmpty{
 
         @Override
         public void actionPerformed(ActionEvent ae) {
+            if(cw.RBtn_GV_NCKH.isSelected()==false && cw.RBtn_NCKH.isSelected()==false){
+                JOptionPane.showMessageDialog(cw, "Đề nghị chọn bảng để thực hiện thao tác này");
+            }
+            
             if(cw.RBtn_GV_NCKH.isSelected()){
                 nckhd.DelGiangVian_NghienCuuKhoaHoc(cw.GV_NCKH_TBL);
                 cw.BindingGiangVien_NCKH(nckhd.loadTableCanBo_NCKH());
@@ -140,6 +145,10 @@ public class NghienCuuKhoaHocController extends CheckEmpty{
             
             int row1 = cw.NCKH_TBL.getSelectedRow();
             int row2 = cw.GV_NCKH_TBL.getSelectedRow();
+            
+            if(cw.RBtn_GV_NCKH.isSelected()==false && cw.RBtn_NCKH.isSelected()==false){
+                JOptionPane.showMessageDialog(cw, "Đề nghị chọn bảng để thực hiện thao tác này");
+            }
             
             if(cw.RBtn_NCKH.isSelected()){
                 String Ma_DT = listnckh.get(row1).getMa_DT();
@@ -192,7 +201,11 @@ public class NghienCuuKhoaHocController extends CheckEmpty{
             String Stt = cw.Txt_Stt_NCKH.getText();
             String Ma_dt = cw.CB_Ma_DTai.getSelectedItem().toString();
             String Ma_cb = cw.CB_MaCB_NCKH.getSelectedItem().toString();
-           
+            
+            if(cw.RBtn_GV_NCKH.isSelected()==false && cw.RBtn_NCKH.isSelected()==false){
+                JOptionPane.showMessageDialog(cw, "Đề nghị chọn bảng để thực hiện thao tác này");
+            }
+            
             if(cw.RBtn_NCKH.isSelected()){
                 if (!checkEmpty(cw.Txt_MaDT, Ma_DT, "Mã Đề Tài")) {
                     return;

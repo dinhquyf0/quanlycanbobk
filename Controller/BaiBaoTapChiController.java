@@ -13,6 +13,7 @@ import View.ChangeView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -64,7 +65,7 @@ public class BaiBaoTapChiController extends CheckEmpty{
 
         @Override
         public void valueChanged(ListSelectionEvent lse) {
-             if (cw.BaiBao_TBL.getSelectedRow() != -1) {
+            if (cw.BaiBao_TBL.getSelectedRow() != -1) {
             int row = cw.BaiBao_TBL.getSelectedRow();
             listbb = bb.getALL();
 
@@ -106,6 +107,10 @@ public class BaiBaoTapChiController extends CheckEmpty{
 
         @Override
         public void actionPerformed(ActionEvent ae) {
+            if(cw.RBtn_BBao.isSelected()==false && cw.RBtn_CB_BB.isSelected()==false){
+                JOptionPane.showMessageDialog(cw, "Đề nghị chọn bảng để thực hiện thao tác này");
+            }
+            
             if(cw.RBtn_CB_BB.isSelected()){
                 bbd.DelCanBo_TapChi(cw.CB_BB_TBL);
                 isl.theQuery(null);
@@ -132,6 +137,10 @@ public class BaiBaoTapChiController extends CheckEmpty{
             
             int row1 = cw.BaiBao_TBL.getSelectedRow();
             int row2 = cw.CB_BB_TBL.getSelectedRow();
+            
+            if(cw.RBtn_BBao.isSelected()==false && cw.RBtn_CB_BB.isSelected()==false){
+                JOptionPane.showMessageDialog(cw, "Đề nghị chọn bảng để thực hiện thao tác này");
+            }
             
             if(cw.RBtn_BBao.isSelected()){
                 String Ma_BB = listbb.get(row1).getMa_BaiBao();
@@ -175,6 +184,10 @@ public class BaiBaoTapChiController extends CheckEmpty{
             String Ma_bb = cw.CB_MaBB.getSelectedItem().toString();
             String Ma_cb = cw.CB_MaCB_BB.getSelectedItem().toString();
            
+            if(cw.RBtn_BBao.isSelected()==false && cw.RBtn_CB_BB.isSelected()==false){
+                JOptionPane.showMessageDialog(cw, "Đề nghị chọn bảng để thực hiện thao tác này");
+            }
+            
             if(cw.RBtn_BBao.isSelected()){
                 if (!checkEmpty(cw.TxtMaBaiBao, Ma_BB, "Mã Bài Báo")) {
                     return;

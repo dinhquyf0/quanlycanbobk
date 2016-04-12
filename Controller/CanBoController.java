@@ -293,6 +293,7 @@ public class CanBoController extends CheckEmpty{
 
         @Override
         public void actionPerformed(ActionEvent ae) {
+            
             cbd.DelCanBo(cw.CanBo_TBL);
             isl.theQuery("INSERT INTO Log (NoiDung) value('xóa 1 cán bộ')");
             cw.BindingCanBo(cbd.loadTableCanBo());
