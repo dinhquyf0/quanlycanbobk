@@ -5029,7 +5029,7 @@ public class ChangeView extends javax.swing.JFrame {
     public javax.swing.JTextField Txt_TenCB_ChucVu;
     public javax.swing.JTextField Txt_TenCB_GTrinh;
     public javax.swing.JTextField Txt_TenCanBo_DoanVien;
-    private javax.swing.JTextField Txt_TrinhDo_Luong;
+    public javax.swing.JTextField Txt_TrinhDo_Luong;
     public javax.swing.JTextField Txt_tenCB_ChucDanh;
     public javax.swing.JButton UpdateBBBtn;
     public javax.swing.JButton UpdateCDVBtn;

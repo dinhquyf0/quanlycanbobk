@@ -2,30 +2,28 @@
 package Controller;
 import Model.*;
 import View.*;
-import com.teamdev.jxbrowser.chromium.Browser;
-import com.teamdev.jxbrowser.chromium.swing.BrowserView;
 import de.javasoft.plaf.synthetica.SyntheticaBlackEyeLookAndFeel;
 import de.javasoft.plaf.synthetica.SyntheticaMauveMetallicLookAndFeel;
 import de.javasoft.plaf.synthetica.SyntheticaOrangeMetallicLookAndFeel;
 import de.javasoft.plaf.synthetica.SyntheticaPlainLookAndFeel;
-import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.util.Calendar;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.WindowConstants;
 
 /**
  *
  * @author DINHQUY
  */
 public class LoginViewController extends CheckEmpty {
+    Timer timer;
     private CanBo cb;
     private LoginView lgv;
     
@@ -38,6 +36,7 @@ public class LoginViewController extends CheckEmpty {
         this.lgv.LoginBtnListener(new LoginViewController.LoginBtnListener());
         this.lgv.GuestLoginActionListener(new LoginViewController.GuestLoginListener());
         this.lgv.CbxChangeThemeActionListener(new LoginViewController.ChangeThemeListener());
+        
     }
 
     private class ChangeThemeListener implements ActionListener {
@@ -142,38 +141,32 @@ public class LoginViewController extends CheckEmpty {
             Log lg = new Log();
             MainViewController mc = new MainViewController(m, lg, "Khách");
             m.setVisible(true);
+            
+//            final Browser browser = new Browser();
+//                BrowserView browserView = new BrowserView(browser);
+//
+//                JFrame frame = new JFrame();
+//                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//                frame.add(browserView, BorderLayout.CENTER);
+//                frame.setSize(284, 584);
+//                frame.setLocation(1623, 431);
+//                frame.setVisible(true);
+//                browser.loadURL("http://phuong-chat.herokuapp.com/chat.html?name="khách"&room=chat");
         }
     }
         
     public class LoginBtnListener implements ActionListener{
-        
+        int check = 0;
         @Override
         public void actionPerformed(ActionEvent ae) {
             try{
             
             u = lgv.getTfUser().getText();
             p = lgv.getStringPass();
-            int nhapsai=0;
             if(!checkEmpty(lgv.getTfUser(), u, "Tên Đăng Nhập")&&!checkEmpty(lgv.getTfPass(), p, "Password")){
                 return;
             }
-            else if(cb.getLogin(u, p) == false){
-                nhapsai++;
-                System.out.println(nhapsai);
-
-            }
-            
-                if (nhapsai == 3) {
-                    JOptionPane.showMessageDialog(lgv, "Bạn đã nhập sai tên đăng nhập hoặc mật khẩu 5 lần. Chương trình sẽ bị khóa trong 1 phút.!");
-                    System.out.println(nhapsai);
-                    lgv.loginBtn.setEnabled(false);
-                    int giay = Calendar.getInstance().get(Calendar.SECOND);
-                    if(giay==60){
-                        lgv.loginBtn.setEnabled(true);
-                    }
-                }
-                if(cb.getLogin(u, p)){
-                
+            if(cb.getLogin(u, p)){
                 
                 lgv.setVisible(false);
                 Main m = new Main();
@@ -192,17 +185,30 @@ public class LoginViewController extends CheckEmpty {
 //                frame.setVisible(true);
 //                browser.loadURL("http://phuong-chat.herokuapp.com/chat.html?name="+u+"&room=chat");
 
-            }else {
-                    JOptionPane.showMessageDialog(lgv, "Tên đăng nhập hoặc mật khẩu không đúng. Đề nghị nhập lại.!");
-                    
+            } else {
+                        check++;
+                        JOptionPane.showMessageDialog(lgv, "Tên đăng nhập hoặc mật khẩu không chính xác. Đề nghị nhập lại.!");
+                    }
+                if (check == 3) {
+                        JOptionPane.showMessageDialog(lgv, "Bạn đã nhập sai thông tin 3 lần. Vui lòng đợi trong 5 giây.!");
+                       lgv.loginBtn.setEnabled(false);
+                       Lock(5);
+                       check = 0;
                 }
-            }catch(Exception e){
-                e.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
             }
-            
         }
     }
-    
-   
-    
+        public void Lock ( int seconds )   {
+          timer = new Timer () ;
+          timer.schedule (new LockTask (), seconds*1000 );
+        }
+  
+    class LockTask extends TimerTask  {
+    public void run ()   {
+        lgv.loginBtn.setEnabled(true);
+        timer.cancel ();
+    }
+  }
 }

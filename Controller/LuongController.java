@@ -81,7 +81,7 @@ public class LuongController extends  CheckEmpty{
         }
     }
     
-     public double HeSoLuongTheoTrinhDo(String trinhdo){
+    public double HeSoLuongTheoTrinhDo(String trinhdo){
         double hsl = 1;
         switch (trinhdo) {
             case "Thạc sĩ":{

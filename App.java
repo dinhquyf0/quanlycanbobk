@@ -19,6 +19,7 @@ import javax.swing.UnsupportedLookAndFeelException;
  *
  * @author DINHQUY
  */
+
 public class App {
     CanBo cb = new CanBo();
     LoginView lgv = new LoginView();

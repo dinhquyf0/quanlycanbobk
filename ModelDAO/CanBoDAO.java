@@ -127,6 +127,7 @@ public class CanBoDAO {
         cb.setGioiTinh(GioiTinh);
         cb.setNoiCongTac(NoiCongTac);
         cb.setThoiGianBDCT(ThoiGianBatDau);
+        cb.setTrinhDo(TrinhDo);
         cb.setMaSoThue(MaSoThue);
         cb.setSoTaiKhoan(SoTaiKhoan);
         cb.setDiaChi(DiaChi);

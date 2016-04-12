@@ -120,7 +120,27 @@ public class CanBoController extends CheckEmpty{
             listcbo = cb.getByID(cw.CB_MaCB_Luong.getSelectedItem().toString());
             for(CanBo cbo : listcbo){
                 cw.TxtTen_CBLuong.setText(cbo.getHoVaTen());
-                
+                cw.Txt_TrinhDo_Luong.setText(cbo.getTrinhDo());
+            double hsl=1;
+            switch (cbo.getTrinhDo()) {
+                case "Thạc sĩ":{
+                    hsl = 2.67;
+                    break;
+                }
+                case"Tiến sĩ":{
+                    hsl = 3;
+                    break;
+                }
+                case"Phó giáo sư":{
+                    hsl = 3.33;
+                    break;
+                }
+                case"Giáo sư":{
+                    hsl = 3.66;
+                    break;
+                }        
+            }
+                cw.TxtHeSoLuong.setText(Double.toString(hsl));
             }        
         }
     }
@@ -274,7 +294,7 @@ public class CanBoController extends CheckEmpty{
         @Override
         public void actionPerformed(ActionEvent ae) {
             cbd.DelCanBo(cw.CanBo_TBL);
-            isl.theQuery("INSERT INTO Log (NoiDung) value('xóa cán bộ')");
+            isl.theQuery("INSERT INTO Log (NoiDung) value('xóa 1 cán bộ')");
             cw.BindingCanBo(cbd.loadTableCanBo());
             BindingCbxMaCB();
         }
@@ -385,7 +405,7 @@ public class CanBoController extends CheckEmpty{
                 return;
             }else {
             cbd.AddCanBo(Ma_CB, user, Password, HovaTen, NgaySinh, GioiTinh, NoiCongTac, ThoiGianBatDau, TrinhDo, MaSoThue, SoTaiKhoan, DiaChi, SoDienThoai, Email, ThanhTich, ThongTinKhac,Dgv,dv,cdv);
-            isl.theQuery("INSERT INTO Log (NoiDung) value('Thêm cán bộ')");
+            isl.theQuery("INSERT INTO Log (NoiDung) value('Thêm 1 cán bộ')");
             }
             
             cw.BindingCanBo(cbd.loadTableCanBo());

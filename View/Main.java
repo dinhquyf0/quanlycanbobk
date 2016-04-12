@@ -7,9 +7,13 @@ package View;
 
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  *
@@ -23,9 +27,28 @@ public class Main extends javax.swing.JFrame {
 
     public Main() {
         initComponents();
-        
+        displayTime();
     }
     
+    public void displayTime(){
+         TimerTask tasknew = new TimerTask() {
+       @Override
+        public void run() {
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss yyyy/MM/dd");
+           try {
+               Thread.sleep(1000);
+           } catch (InterruptedException ex) {
+               Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+           }
+        Date date = new Date();
+        LBL_Thoigian.setText(dateFormat.format(date));
+       }
+   };
+   Timer timer = new Timer();
+      
+   // scheduling the task at interval
+   timer.schedule(tasknew,100, 100);      
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
