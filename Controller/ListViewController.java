@@ -316,7 +316,7 @@ public class ListViewController {
                     lv.BindingDanhSachChamThi(ChamThi());
                     break;
                 }
-                case"Danh sách các môn học trong 1 học kì":{
+                case"Danh sách các môn học trong 1 học kỳ":{
                     lv.BindingDanhSachMonHoc(DanhSachMonHoc());
                     break;
                 }
