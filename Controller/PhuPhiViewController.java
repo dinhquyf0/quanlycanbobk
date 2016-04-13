@@ -70,8 +70,6 @@ public class PhuPhiViewController {
            ppv.Cbx_MaCB.setEnabled(true);
         }else{
             ppv.Cbx_MaCB.setEnabled(false);
-            ppv.RBtn_1nguoi.setEnabled(false);
-            ppv.Rbtn_NhieuNguoi.setEnabled(false);
             ArrayList<CanBo> listcb = cb.getByUser(s);
             for(CanBo cbo : listcb){
                 String macb = cbo.getMa_CB();
@@ -406,9 +404,9 @@ public class PhuPhiViewController {
         double pccd = Double.parseDouble(ppv.Txt_PCCDanh.getText());
 
         int luong = (int) ((lcb*(hsl+pccd))+(M1+(pccv+hstn)*M2+M3));
-        int dangphi = (int) ((((hsl+pccv)*lcb)+pcgd)*(1/100d));
+        int dangphi = (int) ((((hsl+pccv+pcgd)*lcb))*(1/100d));
         int doanphi = (int) ((hsl*lcb)*(1/100d));
-        int congdoanphi = (int) ((((hsl)*lcb)+pcgd)*(1/100d));
+        int congdoanphi = (int) ((((hsl+pcgd)*lcb))*(1/100d));
 
         ppv.LBL_Luong.setText(Integer.toString(luong));
         

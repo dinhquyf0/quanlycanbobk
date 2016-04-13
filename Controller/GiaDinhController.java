@@ -118,7 +118,16 @@ public class GiaDinhController extends CheckEmpty {
                 isl.theQuery("INSERT INTO Log (NoiDung) value('Xóa thông tin gia đình của 1 cán bộ')");
                 cw.BindingCanBo_GiaDinh(gdd.loadTableCanBo_GiaDinh());
             }
-           
+            BindingMaGD();
+            cw.TxtStt_GD.setText("");
+            cw.TxtMa_GD.setText("");
+            cw.TxtTenCon.setText("");
+            cw.TxtThanhTichCon.setText("");
+            cw.Cbx_NamSinh_Con.setSelectedItem("");
+            cw.TxtStt_CBGD.setText("");
+            cw.CB_Ma_GD.setSelectedItem("");
+            cw.CB_MaCB_GDinh.setSelectedItem("");
+            cw.TxtTen_CBGiaDinh.setText("");
         }
            
     }
@@ -141,6 +150,11 @@ public class GiaDinhController extends CheckEmpty {
             
             if(cw.RBtn_GD.isSelected()){
                 String Stt = listgd.get(row1).getStt();
+                String tt = cw.TxtStt_GD.getText();
+                if(tt!=Stt){
+                    JOptionPane.showMessageDialog(cw, "Số thứ tự không được phép thay đổi.");
+                    cw.TxtStt_GD.requestFocus();
+                }
                 String Ma_GD = cw.TxtMa_GD.getText();
                 String HoVaTenCon = cw.TxtTenCon.getText();
                 String NamSinhCon = cw.Cbx_NamSinh_Con.getSelectedItem().toString();
@@ -153,12 +167,25 @@ public class GiaDinhController extends CheckEmpty {
             if(cw.RBtn_CBGD.isSelected()){
                 
                 String stt = listcbgd.get(row2).getstt();
+                String tt = cw.TxtStt_CBGD.getText();
+                if(tt!=stt){
+                    JOptionPane.showMessageDialog(cw, "Số thứ tự không được phép thay đổi.");
+                    cw.TxtStt_CBGD.requestFocus();
+                }
                 String Ma_gd = cw.CB_Ma_GD.getSelectedItem().toString();
                 String Ma_cb = cw.CB_MaCB_GDinh.getSelectedItem().toString();
                 gdd.UpdateCanBo_GiaDinh(stt, Ma_cb, Ma_gd);
                 cw.BindingCanBo_GiaDinh(gdd.loadTableCanBo_GiaDinh());
             }
-            
+            cw.TxtStt_GD.setText("");
+            cw.TxtMa_GD.setText("");
+            cw.TxtTenCon.setText("");
+            cw.TxtThanhTichCon.setText("");
+            cw.Cbx_NamSinh_Con.setSelectedItem("");
+            cw.TxtStt_CBGD.setText("");
+            cw.CB_Ma_GD.setSelectedItem("");
+            cw.CB_MaCB_GDinh.setSelectedItem("");
+            cw.TxtTen_CBGiaDinh.setText("");
         }
     }
 
@@ -199,6 +226,16 @@ public class GiaDinhController extends CheckEmpty {
                     cw.BindingCanBo_GiaDinh(gdd.loadTableCanBo_GiaDinh());
                 }
             }
+            BindingMaGD();
+            cw.TxtStt_GD.setText("");
+            cw.TxtMa_GD.setText("");
+            cw.TxtTenCon.setText("");
+            cw.TxtThanhTichCon.setText("");
+            cw.Cbx_NamSinh_Con.setSelectedItem("");
+            cw.TxtStt_CBGD.setText("");
+            cw.CB_Ma_GD.setSelectedItem("");
+            cw.CB_MaCB_GDinh.setSelectedItem("");
+            cw.TxtTen_CBGiaDinh.setText("");
         }
      
     }

@@ -60,6 +60,7 @@ public class LoginView extends javax.swing.JFrame {
         loginBtn.setBackground(new java.awt.Color(0, 204, 204));
         loginBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         loginBtn.setText("Đăng Nhập");
+        loginBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         loginBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginBtnActionPerformed(evt);
@@ -70,6 +71,7 @@ public class LoginView extends javax.swing.JFrame {
         jLabel3.setText("Đăng Nhập Hệ Thống");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Chọn Theme", "Trắng", "Đen", "Hồng", "Cam" }));
+        jComboBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -77,6 +79,7 @@ public class LoginView extends javax.swing.JFrame {
         });
 
         GuestLoginBtn.setText("Đăng nhập tư cách khách");
+        GuestLoginBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/member login.png"))); // NOI18N
 

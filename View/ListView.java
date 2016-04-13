@@ -240,6 +240,7 @@ public class ListView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         BackBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Quay lại.png"))); // NOI18N
+        BackBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BackBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BackBtnActionPerformed(evt);
@@ -249,6 +250,7 @@ public class ListView extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Tùy chọn In"));
 
         Chbx_header.setText("Header");
+        Chbx_header.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Chbx_header.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Chbx_headerActionPerformed(evt);
@@ -256,6 +258,7 @@ public class ListView extends javax.swing.JFrame {
         });
 
         Chbx_footer.setText("Footer");
+        Chbx_footer.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Chbx_footer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Chbx_footerActionPerformed(evt);
@@ -268,12 +271,15 @@ public class ListView extends javax.swing.JFrame {
 
         Chbx_show.setSelected(true);
         Chbx_show.setText("Hiển thị cửa sổ in");
+        Chbx_show.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         Chbx_fit.setSelected(true);
         Chbx_fit.setText("Chỉnh độ rộng cột");
+        Chbx_fit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         Chbx_Interative.setSelected(true);
         Chbx_Interative.setText("Tương tác");
+        Chbx_Interative.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -320,6 +326,7 @@ public class ListView extends javax.swing.JFrame {
         );
 
         Print_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/In.png"))); // NOI18N
+        Print_Btn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Print_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Print_BtnActionPerformed(evt);
@@ -338,8 +345,10 @@ public class ListView extends javax.swing.JFrame {
         });
 
         ChangeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/đổi độ tuổi.png"))); // NOI18N
+        ChangeBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         Chbx_ChangeAge.setText("Đổi độ tuổi");
+        Chbx_ChangeAge.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Chbx_ChangeAge.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Chbx_ChangeAgeActionPerformed(evt);
@@ -347,6 +356,7 @@ public class ListView extends javax.swing.JFrame {
         });
 
         Chbx_Thaydoithanhtich.setText("Thay đổi thành tích");
+        Chbx_Thaydoithanhtich.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Chbx_Thaydoithanhtich.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Chbx_ThaydoithanhtichActionPerformed(evt);
@@ -356,10 +366,22 @@ public class ListView extends javax.swing.JFrame {
         jLabel3.setText("Thay đổi");
 
         Chbx_Nam.setText("Năm Học");
+        Chbx_Nam.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Chbx_Nam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Chbx_NamActionPerformed(evt);
+            }
+        });
 
         Txt_NamHoc.setEnabled(false);
 
         Chbx_Hocki.setText("Học kì");
+        Chbx_Hocki.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Chbx_Hocki.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Chbx_HockiActionPerformed(evt);
+            }
+        });
 
         Txt_Hocki.setToolTipText("");
         Txt_Hocki.setEnabled(false);
@@ -437,6 +459,8 @@ public class ListView extends javax.swing.JFrame {
         ));
         jScrollPane4.setViewportView(List_TBL);
 
+        Cbx_ListTBL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         LBL_List_TBL.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
 
         jLabel4.setText("Chọn Danh sách xem");
@@ -461,18 +485,17 @@ public class ListView extends javax.swing.JFrame {
                                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(Print_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(BackBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Print_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(BackBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addGap(49, 49, 49))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -547,19 +570,19 @@ public class ListView extends javax.swing.JFrame {
             if (complete) {
 
                 JOptionPane.showMessageDialog(this,
-                    "Printing Complete",
-                    "Printing Result",
+                    "Xuất báo cáo xong.!",
+                    "Kết quả xuất :",
                     JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(this,
-                    "Printing Cancelled",
-                    "Printing Result",
+                    "Dừng xuất báo cáo.!",
+                    "Kết quả xuất : ",
                     JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (PrinterException pe) {
             JOptionPane.showMessageDialog(this,
-                "Printing Failed: " + pe.getMessage(),
-                "Printing Result",
+                "Xuất báo cáo lỗi: " + pe.getMessage(),
+                "Kết quả xuất : ",
                 JOptionPane.ERROR_MESSAGE);
         }
 
@@ -586,6 +609,22 @@ public class ListView extends javax.swing.JFrame {
     private void TxtTuoiNhanQuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtTuoiNhanQuaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TxtTuoiNhanQuaActionPerformed
+
+    private void Chbx_NamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Chbx_NamActionPerformed
+        if(Chbx_Hocki.isSelected()){
+            Txt_NamHoc.setEnabled(true);
+        }else{
+            Txt_NamHoc.setEnabled(false);
+        }
+    }//GEN-LAST:event_Chbx_NamActionPerformed
+
+    private void Chbx_HockiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Chbx_HockiActionPerformed
+        if(Chbx_Hocki.isSelected()){
+            Txt_Hocki.setEnabled(true);
+        }else{
+            Txt_Hocki.setEnabled(false);
+        }
+    }//GEN-LAST:event_Chbx_HockiActionPerformed
 
     public void BackBtnActionListener(ActionListener al){
         BackBtn.addActionListener(al);

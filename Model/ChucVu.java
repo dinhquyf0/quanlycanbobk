@@ -18,15 +18,14 @@ public class ChucVu extends DBConnect{
     String Ma_CB;
     String ChucVu;
     String ThoiGianNhan;
-    String PhuCap_ChucVu;
     private final String GET_BY_ID = "select * from chuc_vu where Ma_CB =?";
     private final String GET_BY_ID_AND_TIME = "select * from chuc_vu where Ma_CB =? ";
     private final String GET_ALL = "select * from chuc_vu";
     private final String ADD_DATA = "insert into "
-            + "chuc_vu(Stt,Ma_CB,ChucVu,ThoiGian,PhuCap_ChucVu)"
-            + "values (?,?,?,?,?)";
+            + "chuc_vu(Stt,Ma_CB,ChucVu,ThoiGian)"
+            + "values (?,?,?,?)";
     private final String UPDATE_DATA = "Update "
-            + "chuc_vu set Ma_CB = ?,ChucVu=?,ThoiGian=?,PhuCap_ChucVu=? where Stt=?";
+            + "chuc_vu set Ma_CB = ?,ChucVu=?,ThoiGian=? where Stt=?";
     private final String REMOVE_DATA = "Delete from chuc_vu where Stt=?";
     
     public String getChucVuByTime(String id){
@@ -63,7 +62,6 @@ public class ChucVu extends DBConnect{
                 item.setMa_CB(rs.getString("Ma_CB"));
                 item.setChucVu(rs.getString("ChucVu"));
                 item.setThoiGianNhan(rs.getString("ThoiGian"));
-                item.setPhuCap_ChucVu(rs.getString("PhuCap_ChucVu"));
                 }                
                 objs.add(item);
             }
@@ -87,7 +85,6 @@ public class ChucVu extends DBConnect{
                     item.setMa_CB(rs.getString("Ma_CB"));
                     item.setChucVu(rs.getString("ChucVu"));
                     item.setThoiGianNhan(rs.getString("ThoiGian"));
-                    item.setPhuCap_ChucVu(rs.getString("PhuCap_ChucVu"));
                     
                     objs.add(item);
                 }
@@ -108,7 +105,6 @@ public class ChucVu extends DBConnect{
             ps.setString(2, cv.getMa_CB());
             ps.setString(3, cv.getChucVu());
             ps.setString(4, cv.getThoiGianNhan());
-            ps.setString(5, cv.getPhuCap_ChucVu());
             
             int rs = ps.executeUpdate();
             if(rs > 0){
@@ -146,9 +142,8 @@ public class ChucVu extends DBConnect{
             PreparedStatement ps = con.prepareStatement(UPDATE_DATA);
             ps.setString(1,cv.getMa_CB() );
             ps.setString(2,cv.getChucVu() );
-            ps.setString(3, cv.getThoiGianNhan());
-            ps.setString(4, cv.getPhuCap_ChucVu());
-            ps.setString(5, cv.getStt());
+            ps.setString(3,cv.getThoiGianNhan());
+            ps.setString(4,cv.getStt());
             int rs = ps.executeUpdate();
             if(rs > 0){
                 check = true;
@@ -199,15 +194,6 @@ public class ChucVu extends DBConnect{
         this.ThoiGianNhan = ThoiGianNhan;
     }
 
-    public String getPhuCap_ChucVu() {
-        return PhuCap_ChucVu;
-    }
-
-    public void setPhuCap_ChucVu(String PhuCap_ChucVu) {
-        this.PhuCap_ChucVu = PhuCap_ChucVu;
-    }
-
-    
     
     
 }

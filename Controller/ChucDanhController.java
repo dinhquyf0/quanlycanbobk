@@ -12,6 +12,7 @@ import View.ChangeView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -82,6 +83,12 @@ public class ChucDanhController extends CheckEmpty {
             cdd.DelChucDanh(cw.ChucDanh_TBL);
             isl.theQuery("INSERT INTO Log (NoiDung) value('xóa 1 chức danh')");
             BindingChucDanh();
+            cw.Txt_Stt_ChucDanh.setText("");
+            cw.CBx_MaCB_ChucDanh.setSelectedItem("");
+            cw.Txt_ChucDanh.setText("");
+            cw.Cbx_Nam_ChucDanh.setSelectedItem("");
+            cw.Cbx_Thang_ChucDanh.setSelectedItem("");
+            cw.Cbx_Ngay_ChucDanh.setSelectedItem("");
         }
     }
     
@@ -93,6 +100,11 @@ public class ChucDanhController extends CheckEmpty {
             listcd = cd.getALL();
             int row = cw.ChucDanh_TBL.getSelectedRow();
             String Stt = listcd.get(row).getStt();
+            String tt = cw.Txt_Stt_ChucDanh.getText();
+                if(tt!=Stt){
+                    JOptionPane.showMessageDialog(cw, "Số thứ tự không được phép thay đổi.");
+                    cw.Txt_Stt_ChucDanh.requestFocus();
+                }
             String Ma_CB = cw.CBx_MaCB_ChucDanh.getSelectedItem().toString();
             String ChucVu = cw.Txt_ChucDanh.getText();
             String ThoiGianDong = cw.Cbx_Nam_ChucDanh.getSelectedItem().toString()+"-"
@@ -101,6 +113,12 @@ public class ChucDanhController extends CheckEmpty {
             cdd.UpdateChucDanh(Stt, Ma_CB, ChucVu, ThoiGianDong);
             isl.theQuery("INSERT INTO Log (NoiDung) value('Cập nhật 1 chức danh')");
             BindingChucDanh();
+            cw.Txt_Stt_ChucDanh.setText("");
+            cw.CBx_MaCB_ChucDanh.setSelectedItem("");
+            cw.Txt_ChucDanh.setText("");
+            cw.Cbx_Nam_ChucDanh.setSelectedItem("");
+            cw.Cbx_Thang_ChucDanh.setSelectedItem("");
+            cw.Cbx_Ngay_ChucDanh.setSelectedItem("");
         }
     }
 
@@ -115,10 +133,18 @@ public class ChucDanhController extends CheckEmpty {
                                     +cw.Cbx_Thang_ChucDanh.getSelectedItem().toString()+"-"
                                     +cw.Cbx_Ngay_ChucDanh.getSelectedItem().toString();
             if(!checkEmpty(cw.Txt_Stt_ChucDanh,Stt, "Số Thứ Tự")){
+                 return;
+            }else {
                 cdd.AddChucDanh(Stt, Ma_CB, ChucDanh, ThoiGianDong);
                 isl.theQuery("INSERT INTO Log (NoiDung) value('Thêm mới 1 chức danh')");
                 BindingChucDanh();
             }
+            cw.Txt_Stt_ChucDanh.setText("");
+            cw.CBx_MaCB_ChucDanh.setSelectedItem("");
+            cw.Txt_ChucDanh.setText("");
+            cw.Cbx_Nam_ChucDanh.setSelectedItem("");
+            cw.Cbx_Thang_ChucDanh.setSelectedItem("");
+            cw.Cbx_Ngay_ChucDanh.setSelectedItem("");
         }
      
     }

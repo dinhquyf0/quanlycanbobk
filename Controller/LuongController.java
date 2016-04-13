@@ -12,6 +12,7 @@ import View.ChangeView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -78,6 +79,13 @@ public class LuongController extends  CheckEmpty{
             ld.DelLuong(cw.Luong_TBL);
             isl.theQuery("INSERT INTO Log (NoiDung) value('Xóa thông tin lương của 1 cán bộ')");
             BindingLuong();
+            cw.TxtSoTTLuong.setText("");
+            cw.CB_MaCB_Luong.setSelectedItem("");
+            cw.TxtHeSoLuong.setText("");
+            cw.TxtTen_CBLuong.setText("");
+            cw.Cbx_Nam_Luong_TGBD.setSelectedItem("");
+            cw.Cbx_Thang_Luong_TGBD.setSelectedItem("");
+            cw.CBx_Ngay_Luong_TGBD.setSelectedItem("");
         }
     }
     
@@ -112,6 +120,11 @@ public class LuongController extends  CheckEmpty{
             listl = l.getALL();
             int row = cw.Luong_TBL.getSelectedRow();
             String Stt = listl.get(row).getStt();
+            String stt = cw.TxtSoTTLuong.getText();
+            if(stt!=Stt){
+                JOptionPane.showMessageDialog(cw, "Số thứ tự không được phép thay đổi.");
+                cw.TxtSoTTLuong.requestFocus();
+            }
             String Ma_CB = cw.CB_MaCB_Luong.getSelectedItem().toString();
             String HeSoLuong = cw.TxtHeSoLuong.getText();
             String TGBD = cw.Cbx_Nam_Luong_TGBD.getSelectedItem().toString()+"-"
@@ -120,6 +133,13 @@ public class LuongController extends  CheckEmpty{
             ld.UpdateLuong(Stt, Ma_CB, HeSoLuong, TGBD);
             isl.theQuery("INSERT INTO Log (NoiDung) value('Cập nhật thông tin lương của 1 cán bộ')");
             BindingLuong();
+            cw.TxtSoTTLuong.setText("");
+            cw.CB_MaCB_Luong.setSelectedItem("");
+            cw.TxtHeSoLuong.setText("");
+            cw.TxtTen_CBLuong.setText("");
+            cw.Cbx_Nam_Luong_TGBD.setSelectedItem("");
+            cw.Cbx_Thang_Luong_TGBD.setSelectedItem("");
+            cw.CBx_Ngay_Luong_TGBD.setSelectedItem("");
         }
     }
 
@@ -134,10 +154,19 @@ public class LuongController extends  CheckEmpty{
                             +cw.Cbx_Thang_Luong_TGBD.getSelectedItem().toString()+"-"
                                 +cw.CBx_Ngay_Luong_TGBD.getSelectedItem().toString();
             if(!checkEmpty(cw.TxtSoTTLuong,Stt, "Số Thứ Tự")){
+                 return;
+            }else {
                 ld.AddLuong(Stt, Ma_CB, HeSoLuong, TGBD);
                 isl.theQuery("INSERT INTO Log (NoiDung) value('Thêm thông tin lương của 1 cán bộ')");
                 BindingLuong();
             }
+            cw.TxtSoTTLuong.setText("");
+            cw.CB_MaCB_Luong.setSelectedItem("");
+            cw.TxtHeSoLuong.setText("");
+            cw.TxtTen_CBLuong.setText("");
+            cw.Cbx_Nam_Luong_TGBD.setSelectedItem("");
+            cw.Cbx_Thang_Luong_TGBD.setSelectedItem("");
+            cw.CBx_Ngay_Luong_TGBD.setSelectedItem("");
         }
      
     }

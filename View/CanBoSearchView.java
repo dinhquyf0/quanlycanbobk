@@ -88,6 +88,7 @@ public class CanBoSearchView extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         BackBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Quay lại.png"))); // NOI18N
+        BackBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BackBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BackBtnActionPerformed(evt);
@@ -95,6 +96,7 @@ public class CanBoSearchView extends javax.swing.JFrame {
         });
 
         PrintSearch_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/In.png"))); // NOI18N
+        PrintSearch_Btn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         PrintSearch_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PrintSearch_BtnActionPerformed(evt);
@@ -104,6 +106,7 @@ public class CanBoSearchView extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tìm kiếm", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
         CB_1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Chọn", "cán bộ ID", "họ tên", "giới tính", "năm sinh", "chức vụ", "chức danh", "nơi công tác", "địa chỉ", "email", "số điện thoại" }));
+        CB_1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         CB_1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 CB_1FocusGained(evt);
@@ -135,6 +138,7 @@ public class CanBoSearchView extends javax.swing.JFrame {
         });
 
         CB_2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Chọn", "cán bộ ID", "họ tên", "giới tính", "năm sinh", "chức vụ", "chức danh", "nơi công tác", "địa chỉ", "email", "số điện thoại" }));
+        CB_2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         CB_2.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 CB_2FocusLost(evt);
@@ -153,6 +157,7 @@ public class CanBoSearchView extends javax.swing.JFrame {
         });
 
         CB_3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Chọn", "cán bộ ID", "họ tên", "giới tính", "năm sinh", "chức vụ", "chức danh", "nơi công tác", "địa chỉ", "email", "số điện thoại" }));
+        CB_3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         CB_3.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 CB_3FocusLost(evt);
@@ -166,6 +171,7 @@ public class CanBoSearchView extends javax.swing.JFrame {
         });
 
         SearchBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Tìm kiếm icon.png"))); // NOI18N
+        SearchBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         SearchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SearchBtnActionPerformed(evt);
@@ -173,6 +179,7 @@ public class CanBoSearchView extends javax.swing.JFrame {
         });
 
         RefreshBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/tải lạiS.png"))); // NOI18N
+        RefreshBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         RefreshBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RefreshBtnActionPerformed(evt);
@@ -246,7 +253,11 @@ public class CanBoSearchView extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(PrintSearch_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
@@ -254,11 +265,7 @@ public class CanBoSearchView extends javax.swing.JFrame {
                 .addComponent(BackBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
-                .addGap(29, 29, 29))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

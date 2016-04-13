@@ -111,7 +111,16 @@ public class GiaoTrinhController extends CheckEmpty {
                 isl.theQuery("INSERT INTO Log (NoiDung) value('Xóa thông tin của 1 giáo trình')");
                 cw.BindingGiaoTrinh(gtd.loadTableGiaoTrinh());
             }
-           
+            cw.BindingMaGT(gt.getALL());
+            cw.CB_MaCB_GiaoTrinh.setSelectedItem("");
+            cw.Txt_Stt_CBGTrinh.setText("");
+            cw.CB_Ma_GTrinh.setSelectedItem("");
+            cw.Txt_TenCB_GTrinh.setText("");
+            cw.TxtMa_GT.setText("");
+            cw.TxtTenGiaoTrinh.setText("");
+            cw.TxtTenTacGia.setText("");
+            cw.TxtNhaXuatBan.setText("");
+            cw.Cbx_Nam_GiaoTrinh.setSelectedItem("");
         }
            
     }
@@ -134,6 +143,11 @@ public class GiaoTrinhController extends CheckEmpty {
             
             if(cw.RBtn_GiaoTrinh.isSelected()){
                 String Ma_GT = listgt.get(row1).getMa_GT();
+                String magt = cw.TxtMa_GT.getText();
+                if(magt!=Ma_GT){
+                    JOptionPane.showMessageDialog(cw, "Mã giáo trình không được phép thay đổi.");
+                    cw.TxtMa_GT.requestFocus();
+                }
                 String TenGiaoTrinh = cw.TxtTenGiaoTrinh.getText();
                 String TenTacGia = cw.TxtTenTacGia.getText();
                 String NamXuatBan = cw.Cbx_Nam_GiaoTrinh.getSelectedItem().toString();
@@ -144,12 +158,25 @@ public class GiaoTrinhController extends CheckEmpty {
             }
             if(cw.RBtn_CB_GTrinh.isSelected()){
                 String stt = listgvgt.get(row2).getStt();
+                String tt = cw.Txt_Stt_CBGTrinh.getText();
+                if(tt!=stt){
+                    JOptionPane.showMessageDialog(cw, "Số thứ tự không được phép thay đổi.");
+                    cw.Txt_Stt_CBGTrinh.requestFocus();
+                }
                 String Ma_gt = cw.CB_Ma_GTrinh.getSelectedItem().toString();
                 String Ma_cb = cw.CB_MaCB_GiaoTrinh.getSelectedItem().toString();
                 gtd.UpdateGiangVien_GiaoTrinh(stt, Ma_cb, Ma_gt);
                 cw.BindingGiangVien_GT(gtd.loadTableCanBo_GiaoTrinh());
             }
-            
+            cw.CB_MaCB_GiaoTrinh.setSelectedItem("");
+            cw.Txt_Stt_CBGTrinh.setText("");
+            cw.CB_Ma_GTrinh.setSelectedItem("");
+            cw.Txt_TenCB_GTrinh.setText("");
+            cw.TxtMa_GT.setText("");
+            cw.TxtTenGiaoTrinh.setText("");
+            cw.TxtTenTacGia.setText("");
+            cw.TxtNhaXuatBan.setText("");
+            cw.Cbx_Nam_GiaoTrinh.setSelectedItem("");
         }
     }
 
@@ -190,7 +217,16 @@ public class GiaoTrinhController extends CheckEmpty {
                     cw.BindingGiangVien_GT(gtd.loadTableCanBo_GiaoTrinh());
                 }
             }
-            
+            cw.BindingMaGT(gt.getALL());
+            cw.CB_MaCB_GiaoTrinh.setSelectedItem("");
+            cw.Txt_Stt_CBGTrinh.setText("");
+            cw.CB_Ma_GTrinh.setSelectedItem("");
+            cw.Txt_TenCB_GTrinh.setText("");
+            cw.TxtMa_GT.setText("");
+            cw.TxtTenGiaoTrinh.setText("");
+            cw.TxtTenTacGia.setText("");
+            cw.TxtNhaXuatBan.setText("");
+            cw.Cbx_Nam_GiaoTrinh.setSelectedItem("");
         }
      
     }

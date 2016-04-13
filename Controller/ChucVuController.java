@@ -12,6 +12,7 @@ import View.ChangeView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -63,7 +64,6 @@ public class ChucVuController extends CheckEmpty {
             cw.Txt_TenCB_ChucVu.setText(listcb.get(0).getHoVaTen());
             cw.CBx_MaCB_ChucVu.setSelectedItem(listcv.get(row).getMa_CB());
             cw.Txt_ChucVu.setText(listcv.get(row).getChucVu());
-            cw.Txt_PhuCap_CVu.setText(listcv.get(row).getPhuCap_ChucVu());
             
             String nam = listcv.get(row).getThoiGianNhan().substring(0,4);
             String thang = listcv.get(row).getThoiGianNhan().substring(5,7);
@@ -85,6 +85,12 @@ public class ChucVuController extends CheckEmpty {
             cvd.DelChucVu(cw.ChucVu_TBL);
             isl.theQuery("INSERT INTO Log (NoiDung) value('Xóa 1 chức vụ của 1 cán bộ')");
             BindingChucVu();
+            cw.Txt_STT_ChucVu.setText("");
+            cw.CBx_MaCB_ChucVu.setSelectedItem("");
+            cw.Txt_ChucVu.setText("");
+            cw.Cbx_Nam_ChucVu.setSelectedItem("");
+            cw.Cbx_Thang_ChucVu.setSelectedItem("");
+            cw.Cbx_Ngay_ChucVu.setSelectedItem("");
         }
     }
     
@@ -98,6 +104,11 @@ public class ChucVuController extends CheckEmpty {
             listcv = cv.getALL();
             int row = cw.ChucVu_TBL.getSelectedRow();
             String Stt = listcv.get(row).getStt();
+            String tt = cw.Txt_STT_ChucVu.getText();
+                if(tt!=Stt){
+                    JOptionPane.showMessageDialog(cw, "Số thứ tự không được phép thay đổi.");
+                    cw.Txt_STT_ChucVu.requestFocus();
+                }
             String Ma_CB = cw.CBx_MaCB_ChucVu.getSelectedItem().toString();
             String ChucVu = cw.Txt_ChucVu.getText();
             String ThoiGianDong = cw.Cbx_Nam_ChucVu.getSelectedItem().toString()+"-"
@@ -106,6 +117,12 @@ public class ChucVuController extends CheckEmpty {
             cvd.UpdateChucVu(Stt, Ma_CB, ChucVu, ThoiGianDong);
             isl.theQuery("INSERT INTO Log (NoiDung) value('Cập nhật thông tin chức vụ 1 cán bộ')");
             BindingChucVu();
+            cw.Txt_STT_ChucVu.setText("");
+            cw.CBx_MaCB_ChucVu.setSelectedItem("");
+            cw.Txt_ChucVu.setText("");
+            cw.Cbx_Nam_ChucVu.setSelectedItem("");
+            cw.Cbx_Thang_ChucVu.setSelectedItem("");
+            cw.Cbx_Ngay_ChucVu.setSelectedItem("");
         }
     }
 
@@ -120,10 +137,18 @@ public class ChucVuController extends CheckEmpty {
                                     +cw.Cbx_Thang_ChucVu.getSelectedItem().toString()+"-"
                                     +cw.Cbx_Ngay_ChucVu.getSelectedItem().toString();
             if(!checkEmpty(cw.Txt_STT_ChucVu,Stt, "Số Thứ Tự")){
+                 return;
+            }else {
                 cvd.AddChucVu(Stt, Ma_CB, ChucVu, ThoiGianDong);
                 isl.theQuery("INSERT INTO Log (NoiDung) value('Thêm thông tin chức vụ 1 cán bộ')");
                 BindingChucVu();
             }
+            cw.Txt_STT_ChucVu.setText("");
+            cw.CBx_MaCB_ChucVu.setSelectedItem("");
+            cw.Txt_ChucVu.setText("");
+            cw.Cbx_Nam_ChucVu.setSelectedItem("");
+            cw.Cbx_Thang_ChucVu.setSelectedItem("");
+            cw.Cbx_Ngay_ChucVu.setSelectedItem("");
         }
      
     }

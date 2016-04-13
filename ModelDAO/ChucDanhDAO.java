@@ -43,7 +43,11 @@ public class ChucDanhDAO {
             listcb = cb.getByID(cd.getMa_CB());
             row.add(cd.getStt());
             row.add(cd.getMa_CB());
-            row.add(listcb.get(0).getHoVaTen());
+            if(listcb.size() > 0){
+                row.add(listcb.get(0).getHoVaTen());
+            }else{
+                row.add("isEmpty");
+            }        
             row.add(cd.getChucDanh());
             row.add(cd.getThoiGianNhan());
             

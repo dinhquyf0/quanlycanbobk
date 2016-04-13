@@ -13,6 +13,7 @@ import View.ChangeView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -144,7 +145,7 @@ public class CanBoController extends CheckEmpty{
             }        
         }
     }
-
+    
 
     private class Cbx_MaCBGiaoTrinhListener implements ActionListener {
 
@@ -298,6 +299,29 @@ public class CanBoController extends CheckEmpty{
             isl.theQuery("INSERT INTO Log (NoiDung) value('xóa 1 cán bộ')");
             cw.BindingCanBo(cbd.loadTableCanBo());
             BindingCbxMaCB();
+            cw.TxtCanBoID.setText("");
+            cw.TxtTenDangNhap.setText("");
+            cw.TxtTenCanBo.setText("");
+            cw.Rbtn_Nam.setSelected(false);
+            cw.RBtn_Nu.setSelected(false);
+            cw.Rbtn_DangVien.setSelected(false);
+            cw.RBtn_DoanVien.setSelected(false);
+            cw.RBtn_CongDoanVien.setSelected(false);
+            cw.TxtNoiCongTac.setText("");
+            cw.TxtMaSoThue.setText("");
+            cw.TxtSoTaiKhoan.setText("");
+            cw.TxtDiaChi.setText("");
+            cw.TxtSoDienThoai.setText("");
+            cw.TxtEmail.setText("");
+            cw.TxtThanhTich.setText("");
+            cw.TxtThongTinKhac.setText("");
+            cw.Cbx_TrinhDo.setSelectedItem("");
+            cw.Cbx_NamSinh_CB.setSelectedItem("");
+            cw.Cbx_ThangSinh_CB.setSelectedItem("");
+            cw.Cbx_NgaySinh_CB.setSelectedItem("");
+            cw.CBx_Nam_Ctac.setSelectedItem("");
+            cw.CBx_Thang_Ctac.setSelectedItem("");
+            cw.CBx_Ngay_Ctac.setSelectedItem("");
         }
     }
     
@@ -309,6 +333,11 @@ public class CanBoController extends CheckEmpty{
             listcbo = cb.getALL();
             int row = cw.CanBo_TBL.getSelectedRow();
             String Ma_CB = listcbo.get(row).getMa_CB();
+            String tt = cw.TxtCanBoID.getText();
+                if(tt!=Ma_CB){
+                    JOptionPane.showMessageDialog(cw,"Mã cán bộ không được phép thay đổi.");
+                    cw.TxtCanBoID.requestFocus();
+                }
             String user = cw.TxtTenDangNhap.getText();
             String HovaTen = cw.TxtTenCanBo.getText();
             String NgaySinh = cw.Cbx_NamSinh_CB.getSelectedItem().toString()+"-"
@@ -329,6 +358,7 @@ public class CanBoController extends CheckEmpty{
             String SoTaiKhoan = cw.TxtSoTaiKhoan.getText();
             String DiaChi = cw.TxtDiaChi.getText();
             String SoDienThoai = cw.TxtSoDienThoai.getText();
+            
             String Email = cw.TxtEmail.getText();
             String ThanhTich = cw.TxtThanhTich.getText();
             String ThongTinKhac = cw.TxtThongTinKhac.getText();
@@ -348,10 +378,43 @@ public class CanBoController extends CheckEmpty{
             }else {
                 cdv = 0;
             }
-            
+            int hieu = Integer.parseInt(cw.CBx_Nam_Ctac.getSelectedItem().toString())-Integer.parseInt(cw.Cbx_NamSinh_CB.getSelectedItem().toString());
+            if(hieu < 23){
+                JOptionPane.showMessageDialog(cw, "Năm sinh phải nhỏ hơn năm công tác ít nhất là 23 năm ");
+                cw.CBx_Nam_Ctac.requestFocus();
+            }else if(isNumber(SoDienThoai)== false){
+                JOptionPane.showMessageDialog(cw, "Trường số điện thoại phải là số.");
+                cw.TxtSoDienThoai.requestFocus();
+            }else{
             cbd.UpdateCanBo(Ma_CB, user, HovaTen, NgaySinh, GioiTinh, NoiCongTac, ThoiGianBatDau, TrinhDo, MaSoThue, SoTaiKhoan, DiaChi, SoDienThoai, Email, ThanhTich, ThongTinKhac, Dgv, dv,cdv);
+            
             isl.theQuery("INSERT INTO Log (NoiDung) value('Cập nhật thông tin cán bộ')");
-            cw.BindingCanBo(cbd.loadTableCanBo());            
+            cw.BindingCanBo(cbd.loadTableCanBo());
+            
+            cw.TxtCanBoID.setText("");
+            cw.TxtTenDangNhap.setText("");
+            cw.TxtTenCanBo.setText("");
+            cw.Rbtn_Nam.setSelected(false);
+            cw.RBtn_Nu.setSelected(false);
+            cw.Rbtn_DangVien.setSelected(false);
+            cw.RBtn_DoanVien.setSelected(false);
+            cw.RBtn_CongDoanVien.setSelected(false);
+            cw.TxtNoiCongTac.setText("");
+            cw.TxtMaSoThue.setText("");
+            cw.TxtSoTaiKhoan.setText("");
+            cw.TxtDiaChi.setText("");
+            cw.TxtSoDienThoai.setText("");
+            cw.TxtEmail.setText("");
+            cw.TxtThanhTich.setText("");
+            cw.TxtThongTinKhac.setText("");
+            cw.Cbx_TrinhDo.setSelectedItem("");
+            cw.Cbx_NamSinh_CB.setSelectedItem("");
+            cw.Cbx_ThangSinh_CB.setSelectedItem("");
+            cw.Cbx_NgaySinh_CB.setSelectedItem("");
+            cw.CBx_Nam_Ctac.setSelectedItem("");
+            cw.CBx_Thang_Ctac.setSelectedItem("");
+            cw.CBx_Ngay_Ctac.setSelectedItem("");
+            }
         }
     }
 
@@ -385,7 +448,7 @@ public class CanBoController extends CheckEmpty{
             String Email = cw.TxtEmail.getText();
             String ThanhTich = cw.TxtThanhTich.getText();
             String ThongTinKhac = cw.TxtThongTinKhac.getText();
-             int Dgv, dv, cdv;
+            int Dgv, dv, cdv;
             if(cw.Rbtn_DangVien.isSelected()){
                 Dgv = 1;
             }else {
@@ -401,21 +464,52 @@ public class CanBoController extends CheckEmpty{
             }else {
                 cdv = 0;
             }
-            
+            int hieu = Integer.parseInt(cw.CBx_Nam_Ctac.getSelectedItem().toString())-Integer.parseInt(cw.Cbx_NamSinh_CB.getSelectedItem().toString());
             if (!checkEmpty(cw.TxtCanBoID, Ma_CB, "Mã Cán Bộ")&&!checkEmpty(cw.TxtTenDangNhap, user, "Tên Đăng Nhập")) {
                 return;
-            }else {
+            }else if(hieu < 23){
+                JOptionPane.showMessageDialog(cw, "Năm sinh phải nhỏ hơn năm công tác ít nhất là 23 năm ");
+                cw.Cbx_NamSinh_CB.requestFocus();
+            }else if(isNumber(SoDienThoai)== false){
+                JOptionPane.showMessageDialog(cw, "Trường số điện thoại phải là số.");
+                cw.TxtSoDienThoai.requestFocus();
+            }else{
             cbd.AddCanBo(Ma_CB, user, Password, HovaTen, NgaySinh, GioiTinh, NoiCongTac, ThoiGianBatDau, TrinhDo, MaSoThue, SoTaiKhoan, DiaChi, SoDienThoai, Email, ThanhTich, ThongTinKhac,Dgv,dv,cdv);
             isl.theQuery("INSERT INTO Log (NoiDung) value('Thêm 1 cán bộ')");
             }
             
             cw.BindingCanBo(cbd.loadTableCanBo());
             BindingCbxMaCB();
+            
+            cw.TxtCanBoID.setText("");
+            cw.TxtTenDangNhap.setText("");
+            cw.TxtTenCanBo.setText("");
+            cw.Rbtn_Nam.setSelected(false);
+            cw.RBtn_Nu.setSelected(false);
+            cw.Rbtn_DangVien.setSelected(false);
+            cw.RBtn_DoanVien.setSelected(false);
+            cw.RBtn_CongDoanVien.setSelected(false);
+            cw.TxtNoiCongTac.setText("");
+            cw.TxtMaSoThue.setText("");
+            cw.TxtSoTaiKhoan.setText("");
+            cw.TxtDiaChi.setText("");
+            cw.TxtSoDienThoai.setText("");
+            cw.TxtEmail.setText("");
+            cw.TxtThanhTich.setText("");
+            cw.TxtThongTinKhac.setText("");
+            cw.Cbx_TrinhDo.setSelectedItem("");
+            cw.Cbx_NamSinh_CB.setSelectedItem("");
+            cw.Cbx_ThangSinh_CB.setSelectedItem("");
+            cw.Cbx_NgaySinh_CB.setSelectedItem("");
+            cw.CBx_Nam_Ctac.setSelectedItem("");
+            cw.CBx_Thang_Ctac.setSelectedItem("");
+            cw.CBx_Ngay_Ctac.setSelectedItem("");
         }
      
     }
     
-   
-    
+    public boolean isNumber(String input) {
+        return input.matches("^-?[0-9]+(\\.[0-9]+)?$");
+    }
 }
 

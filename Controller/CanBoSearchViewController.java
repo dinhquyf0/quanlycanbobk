@@ -64,6 +64,9 @@ public class CanBoSearchViewController {
         @Override
         public void actionPerformed(ActionEvent ae) {
             cbs.setVisible(false);
+            CanBoSearchView cbs = new CanBoSearchView();
+            CanBo cb = new CanBo();
+            CanBoDAO cbd = new CanBoDAO();
             CanBoSearchViewController cbsc = new CanBoSearchViewController(cbs, cb, cbd, user);
             cbs.setVisible(true);
         }

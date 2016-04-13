@@ -26,13 +26,13 @@ public class GiangDay extends DBConnect{
     private final String GET_BY_ID = "select * from giang_day where Ma_MH =?";
     private final String GET_BY_IDCB = "select giang_day.* from canbo, canbo_giangday ,giang_day where giang_day.Ma_MH = canbo_giangday.Ma_MH and canbo_giangday.Ma_CB = canbo.Ma_CB and canbo.Ma_CB =?";
     private final String GET_BY_IDCB_AND_TIME ="select giang_day.* from canbo, canbo_giangday ,giang_day "
-            + "where giang_day.Ma_MH = canbo_giangday.Ma_MH and canbo_giangday.Ma_CB = canbo.Ma_CB and canbo.Ma_CB =? and HocKy =? and NamHoc =?";
+                                                + "where giang_day.Ma_MH = canbo_giangday.Ma_MH and canbo_giangday.Ma_CB =? and giang_day.HocKy = ? and giang_day.NamHoc = ? ";
     private final String GET_ALL = "select * from giang_day";
     private final String ADD_DATA = "insert into "
-            + "giang_day(Ma_MH,TenMon,SoTinChi,Lop,SoSinhVien,HocKy,NamHoc,PhuCap_GD,SoGioDay)"
-            + "values (?,?,?,?,?,?,?,?,?)";
+                                    + "giang_day(Ma_MH,TenMon,SoTinChi,Lop,SoSinhVien,HocKy,NamHoc,PhuCap_GD,SoGioDay)"
+                                    + "values (?,?,?,?,?,?,?,?,?)";
     private final String UPDATE_DATA = "Update "
-            + "giang_day set TenMon=?,SoTinChi=?,Lop=?,SoSinhVien=?,HocKy=?,NamHoc=?,PhuCap_GD=?, SoGioDay=? where Ma_MH=?";
+                                        + "giang_day set TenMon=?,SoTinChi=?,Lop=?,SoSinhVien=?,HocKy=?,NamHoc=?,PhuCap_GD=?, SoGioDay=? where Ma_MH=?";
     private final String REMOVE_DATA = "Delete from giang_day where Ma_MH=?";
     
     public ArrayList<GiangDay> getByIDCBTIME(String id,String hky, String Nam){

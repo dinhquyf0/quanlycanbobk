@@ -60,6 +60,7 @@ public class ChangePassView extends javax.swing.JFrame {
         jLabel3.setText("Nhập Lại Mật Khẩu Mới");
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/quay lại pass.png"))); // NOI18N
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -67,6 +68,7 @@ public class ChangePassView extends javax.swing.JFrame {
         });
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/đổi mật khẩu view.png"))); // NOI18N
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel4.setText("Quay lại");
 

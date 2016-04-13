@@ -121,6 +121,17 @@ public class BaiBaoTapChiController extends CheckEmpty{
                 isl.theQuery("INSERT INTO Log (NoiDung) value('Xóa bài báo')");
                 cw.BindingBB(bbd.loadTabelBaiBao_TapChi());
             }
+            BindingMaBB();
+            cw.TxtMaBaiBao.setText("");
+            cw.TxtTenTapChi.setText("");
+            cw.TxtSo.setText("");
+            cw.Cbx_Nam_BB.setSelectedItem("");
+            cw.Cbx_Thang_baiBao.setSelectedItem("");
+            cw.TxtChiSoISSN.setText("");
+            cw.TxtHeSoIF.setText("");
+            cw.Txt_Stt_BB.setText("");
+            cw.CB_MaBB.setSelectedItem("");
+            cw.CB_MaCB_BB.setSelectedItem("");
            
         }
            
@@ -144,6 +155,11 @@ public class BaiBaoTapChiController extends CheckEmpty{
             
             if(cw.RBtn_BBao.isSelected()){
                 String Ma_BB = listbb.get(row1).getMa_BaiBao();
+                String tt = cw.TxtMaBaiBao.getText();
+                if(tt!=Ma_BB){
+                    JOptionPane.showMessageDialog(cw,"Mã bài báo không được phép thay đổi.");
+                    cw.TxtMaBaiBao.requestFocus();
+                }
                 String TenTapChi = cw.TxtTenTapChi.getText();
                 String So = cw.TxtSo.getText();
                 String ThoiGianXuatBan = cw.Cbx_Nam_BB.getSelectedItem().toString()+"-"
@@ -156,12 +172,26 @@ public class BaiBaoTapChiController extends CheckEmpty{
             }
             if(cw.RBtn_CB_BB.isSelected()){
                 String Stt = listgvtc.get(row2).getStt();
+                String tt = cw.Txt_Stt_BB.getText();
+                if(tt!=Stt){
+                    JOptionPane.showMessageDialog(cw,"Số thứ tự không được phép thay đổi.");
+                    cw.Txt_Stt_BB.requestFocus();
+                }
                 String Ma_bb = cw.CB_MaBB.getSelectedItem().toString();
                 String Ma_cb = cw.CB_MaCB_BB.getSelectedItem().toString();
                 bbd.UpdateCanBo_TapChi(Stt,Ma_cb, Ma_bb);
                 cw.BindingGiangVien_BBTC(bbd.loadTableGiangVien_TapChi());
             }
-            
+            cw.TxtMaBaiBao.setText("");
+            cw.TxtTenTapChi.setText("");
+            cw.TxtSo.setText("");
+            cw.Cbx_Nam_BB.setSelectedItem("");
+            cw.Cbx_Thang_baiBao.setSelectedItem("");
+            cw.TxtChiSoISSN.setText("");
+            cw.TxtHeSoIF.setText("");
+            cw.Txt_Stt_BB.setText("");
+            cw.CB_MaBB.setSelectedItem("");
+            cw.CB_MaCB_BB.setSelectedItem("");
             
         }
     }
@@ -205,8 +235,17 @@ public class BaiBaoTapChiController extends CheckEmpty{
                     cw.BindingGiangVien_BBTC(bbd.loadTableGiangVien_TapChi());   
                 }
             }
-            
-        
+            BindingMaBB();
+            cw.TxtMaBaiBao.setText("");
+            cw.TxtTenTapChi.setText("");
+            cw.TxtSo.setText("");
+            cw.Cbx_Nam_BB.setSelectedItem("");
+            cw.Cbx_Thang_baiBao.setSelectedItem("");
+            cw.TxtChiSoISSN.setText("");
+            cw.TxtHeSoIF.setText("");
+            cw.Txt_Stt_BB.setText("");
+            cw.CB_MaBB.setSelectedItem("");
+            cw.CB_MaCB_BB.setSelectedItem("");
         }
         
     } 

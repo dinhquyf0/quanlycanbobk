@@ -8,6 +8,12 @@ package Controller;
 import View.*;
 import Model.*;
 import ModelDAO.*;
+import com.teamdev.jxbrowser.chromium.Browser;
+import com.teamdev.jxbrowser.chromium.swing.BrowserView;
+import java.awt.BorderLayout;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -15,6 +21,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
 /**
  *
  * @author DINHQUY
@@ -43,6 +50,7 @@ public class MainViewController {
         this.mw.ListBtnListener(new MainViewController.getListBtnListener());
         this.mw.PPBtnListener(new MainViewController.getPPBtnListener());
         this.mw.LogoutBtnListener(new MainViewController.getLogoutBtnListener());
+        this.mw.ChatBtnListenner(new MainViewController.getChatBtnListener());
         
         mw.LBL_Ten.setText(user);
         BindingLog();
@@ -59,7 +67,30 @@ public class MainViewController {
             }else{
             mw.ChangeBtn.setEnabled(false);
         }
-        
+    }
+    
+    public void Chat(){
+        final Browser browser = new Browser();
+            BrowserView browserView = new BrowserView(browser);
+            JFrame frame = new JFrame();
+            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            frame.add(browserView, BorderLayout.CENTER);
+            frame.setSize(284, 584);
+            
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            GraphicsDevice defaultScreen = ge.getDefaultScreenDevice();
+            Rectangle rect = defaultScreen.getDefaultConfiguration().getBounds();
+            int x = (int) rect.getMaxX() - frame.getWidth();
+            int y = (int) rect.getMaxY() - frame.getHeight() - 50;
+            
+            frame.setLocation(x, y);
+            frame.setVisible(true);
+            browser.loadURL("http://phuong-chat.herokuapp.com/chat.html?name="+s+"&room=chat");
+            
+            
+
+            
+
     }
     
     public void BindingLog(){
@@ -75,6 +106,14 @@ public class MainViewController {
         mw.ListLog.setModel(dlm);
 
         
+    }
+
+    private class getChatBtnListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            Chat();
+        }
     }
     private  class getAboutBtnListener implements ActionListener {
 
@@ -182,7 +221,6 @@ public class MainViewController {
         @Override
         public void actionPerformed(ActionEvent ae) {
             mw.setVisible(false);
-            
             CanBo cb = new CanBo();
             LoginViewController lgvc = new LoginViewController(lgw, cb);
             lgw.setVisible(true);

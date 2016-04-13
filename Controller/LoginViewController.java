@@ -1,14 +1,12 @@
  
 package Controller;
+
 import Model.*;
 import View.*;
-import com.teamdev.jxbrowser.chromium.Browser;
-import com.teamdev.jxbrowser.chromium.swing.BrowserView;
 import de.javasoft.plaf.synthetica.SyntheticaBlackEyeLookAndFeel;
 import de.javasoft.plaf.synthetica.SyntheticaMauveMetallicLookAndFeel;
 import de.javasoft.plaf.synthetica.SyntheticaOrangeMetallicLookAndFeel;
 import de.javasoft.plaf.synthetica.SyntheticaPlainLookAndFeel;
-import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
@@ -16,7 +14,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -145,15 +142,6 @@ public class LoginViewController extends CheckEmpty {
             MainViewController mc = new MainViewController(m, lg, "Khách");
             m.setVisible(true);
             
-            final Browser browser = new Browser();
-            BrowserView browserView = new BrowserView(browser);
-            JFrame frame = new JFrame();
-            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            frame.add(browserView, BorderLayout.CENTER);
-            frame.setSize(284, 584);
-            frame.setLocation(1623, 431);
-            frame.setVisible(true);
-            browser.loadURL("http://phuong-chat.herokuapp.com/chat.html?name=khách&room=chat");
         }
     }
         
@@ -176,19 +164,10 @@ public class LoginViewController extends CheckEmpty {
                 MainViewController mc = new MainViewController(m, lg, u);
                 m.setVisible(true);
                 
-//                final Browser browser = new Browser();
-//                BrowserView browserView = new BrowserView(browser);
-//                JFrame frame = new JFrame();
-//                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-//                frame.add(browserView, BorderLayout.CENTER);
-//                frame.setSize(284, 584);
-//                frame.setLocation(1623, 431);
-//                frame.setVisible(true);
-//                browser.loadURL("http://phuong-chat.herokuapp.com/chat.html?name="+u+"&room=chat");
-
+                
             } else {
-                        check++;
-                        JOptionPane.showMessageDialog(lgv, "Tên đăng nhập hoặc mật khẩu không chính xác. Đề nghị nhập lại.!");
+                check++;
+                JOptionPane.showMessageDialog(lgv, "Tên đăng nhập hoặc mật khẩu không chính xác. Đề nghị nhập lại.!");
                     }
                 if (check == 3) {
                         JOptionPane.showMessageDialog(lgv, "Bạn đã nhập sai thông tin 3 lần. Vui lòng đợi trong 5 giây.!");

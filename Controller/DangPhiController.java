@@ -12,6 +12,7 @@ import View.ChangeView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -78,6 +79,12 @@ public class DangPhiController extends CheckEmpty{
             dvd.DelCanBoDangVien(cw.CongDoanPhi_TBL);
             isl.theQuery("INSERT INTO Log (NoiDung) value('Xóa thông tin thu đảng phí của 1 cán bộ')");
             BindingDangPhi();
+            cw.TxtSttDangVien.setText("");
+            cw.CB_MaCb_DangVien.setSelectedItem("");
+            cw.TxtSoTienDongDangVien.setText("");
+            cw.Cbx_Nam_DangPhi.setSelectedItem("");
+            cw.Cbx_Thang_DangPhi.setSelectedItem("");
+            cw.Cbx_Ngay_DangPhi.setSelectedItem("");
         }
     }
     
@@ -91,14 +98,30 @@ public class DangPhiController extends CheckEmpty{
             listdv = dv.getALL();
             int row = cw.DangPhi_TBL.getSelectedRow();
             String Stt = listdv.get(row).getStt();
+            String tt = cw.TxtSttDangVien.getText();
+                if(tt!=Stt){
+                    JOptionPane.showMessageDialog(cw, "Số thứ tự không được phép thay đổi.");
+                    cw.TxtSttDangVien.requestFocus();
+                }
             String Ma_CB = cw.CB_MaCb_DangVien.getSelectedItem().toString();
             String SoTienDong = cw.TxtSoTienDongDangVien.getText();
             String ThoiGianDong = cw.Cbx_Nam_DangPhi.getSelectedItem().toString()+"-"
                                     +cw.Cbx_Thang_DangPhi.getSelectedItem().toString()+"-"
                                     +cw.Cbx_Ngay_DangPhi.getSelectedItem().toString();
+            if(isNumber(SoTienDong)== false){
+                JOptionPane.showMessageDialog(cw, "Trường số tiền đóng phải là số.");
+                cw.TxtSoTienDongDangVien.requestFocus();
+            }else{
             dvd.UpdateDangVien(Stt, Ma_CB, SoTienDong, ThoiGianDong);
             isl.theQuery("INSERT INTO Log (NoiDung) value('Cập nhật thông tin đảng phí của 1 cán bộ')");
             BindingDangPhi();
+            cw.TxtSttDangVien.setText("");
+            cw.CB_MaCb_DangVien.setSelectedItem("");
+            cw.TxtSoTienDongDangVien.setText("");
+            cw.Cbx_Nam_DangPhi.setSelectedItem("");
+            cw.Cbx_Thang_DangPhi.setSelectedItem("");
+            cw.Cbx_Ngay_DangPhi.setSelectedItem("");
+            }
         }
     }
 
@@ -113,11 +136,26 @@ public class DangPhiController extends CheckEmpty{
                                     +cw.Cbx_Thang_DangPhi.getSelectedItem().toString()+"-"
                                     +cw.Cbx_Ngay_DangPhi.getSelectedItem().toString();
             if(!checkEmpty(cw.TxtSttDangVien,Stt, "Số Thứ Tự")){
+                 return;
+            }else if(isNumber(SoTienDong)== false){
+                JOptionPane.showMessageDialog(cw, "Trường số tiền đóng phải là số.");
+                cw.TxtSoTienDongDangVien.requestFocus();
+            }else{
                 dvd.AddDangVien(Stt, Ma_CB, SoTienDong, ThoiGianDong);
                 isl.theQuery("INSERT INTO Log (NoiDung) value('Thêm thông tin đảng phí của 1 cán bộ')");
                 BindingDangPhi();
             }
+            cw.TxtSttDangVien.setText("");
+            cw.CB_MaCb_DangVien.setSelectedItem("");
+            cw.TxtSoTienDongDangVien.setText("");
+            cw.Cbx_Nam_DangPhi.setSelectedItem("");
+            cw.Cbx_Thang_DangPhi.setSelectedItem("");
+            cw.Cbx_Ngay_DangPhi.setSelectedItem("");
         }
      
     }
+    public boolean isNumber(String input) {
+        return input.matches("^-?[0-9]+(\\.[0-9]+)?$");
+    }
+    
 }

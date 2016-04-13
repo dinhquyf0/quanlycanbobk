@@ -19,10 +19,10 @@ import java.util.Vector;
 public class ListViewController {
     Insertlog isl = new Insertlog();
     String user;
-    int tuoi = 16;
-    int Hocky = 1;
-    int Namhoc = 2015;
-    String thanhtich = "";
+    public static int tuoi = 20;
+    public static int Hocky = 1;
+    public static int Namhoc = 2015;
+    public static String thanhtich = "";
     
     
     
@@ -50,9 +50,13 @@ public class ListViewController {
         if(s.equals("admin")){
             lv.Chbx_ChangeAge.setEnabled(true);
             lv.Chbx_Thaydoithanhtich.setEnabled(true);
+            lv.Chbx_Hocki.setEnabled(true);
+            lv.Chbx_Nam.setEnabled(true);
         }else{
             lv.Chbx_ChangeAge.setEnabled(false);
             lv.Chbx_Thaydoithanhtich.setEnabled(false);
+            lv.Chbx_Hocki.setEnabled(false);
+            lv.Chbx_Nam.setEnabled(false);
         }
         
         BindingCbxListTBL();
@@ -269,7 +273,7 @@ public class ListViewController {
             }
             row.add(gd.getMa_GD());
             row.add(gd.getHoVaTenCon());
-            if(year - nsi < tuoi){
+            if(year - nsi <= tuoi){
                 row.add(x);
             }else{
                 row.removeAll(row);

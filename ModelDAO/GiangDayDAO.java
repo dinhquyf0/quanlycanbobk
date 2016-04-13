@@ -138,7 +138,7 @@ public class GiangDayDAO {
     }
     
     public void AddGiangDay(String Ma_MH, String TenMon, String SoTinChi, 
-                                String Lop, String SoSinhVien, String Hocky, String NamHoc, String PhuCap_GD){
+                                String Lop, String SoSinhVien, String Hocky, String NamHoc, String PhuCap_GD,String Sogioday){
         
         gd.setMa_MH(Ma_MH);
         gd.setTenMon(TenMon);
@@ -148,6 +148,7 @@ public class GiangDayDAO {
         gd.setHocKy(Hocky);
         gd.setNamHoc(NamHoc);
         gd.setPhuCap_GD(PhuCap_GD);
+        gd.setSoGioDay(Sogioday);
         
         if(Ma_MH.length() != 0) {
             if (gd.AddData(gd)) {
@@ -162,7 +163,7 @@ public class GiangDayDAO {
     }
     
     public void UpdateGiangDay(String Ma_MH, String TenMon, String SoTinChi, 
-                                String Lop, String SoSinhVien, String Hocky, String NamHoc, String PhuCap_GD){
+                                String Lop, String SoSinhVien, String Hocky, String NamHoc, String PhuCap_GD,String sogioday){
         
         gd.setMa_MH(Ma_MH);
         gd.setTenMon(TenMon);
@@ -172,7 +173,7 @@ public class GiangDayDAO {
         gd.setHocKy(Hocky);
         gd.setNamHoc(NamHoc);
         gd.setPhuCap_GD(PhuCap_GD);
-        
+        gd.setSoGioDay(sogioday);
        
         if (gd.Update(gd)) {
             JOptionPane.showMessageDialog(null, "Cập nhật thành công.!");

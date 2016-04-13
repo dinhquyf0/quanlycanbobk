@@ -31,7 +31,11 @@ public class CanBoDoanVienDAO {
             Vector row = new Vector();
             row.add(dvv.getStt());
             row.add(dvv.getma_canbo());
-            row.add(listcb.get(0).getHoVaTen());
+            if(listcb.size() > 0){
+                row.add(listcb.get(0).getHoVaTen());
+            }else{
+                row.add("isEmpty");
+            }        
             row.add(dvv.getSoTien());
             row.add(dvv.getThoiGian());
             data.add(row);

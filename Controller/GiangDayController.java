@@ -96,6 +96,7 @@ public class GiangDayController extends CheckEmpty {
                 cw.TxtHocKy.setText(listgd.get(row).getHocKy());
                 cw.TxtNamHoc.setText(listgd.get(row).getNamHoc());
                 cw.TxtPhuCap.setText(listgd.get(row).getPhuCap_GD());
+                cw.TxtSoGioDay.setText(listgd.get(row).getSoGioDay());
             }
         
         }
@@ -119,7 +120,18 @@ public class GiangDayController extends CheckEmpty {
                 isl.theQuery("INSERT INTO Log (NoiDung) value('Xóa thông tin giảng dạy của 1 môn học')");
                 cw.BindingGday(gdd.loadTableGiangDay());
             }
-           
+            cw.BindingMaMH(gd.getALL());
+            cw.CB_MaCB_Gday.setSelectedItem("");
+            cw.Txt_STT_CB_GDay.setText("");
+            cw.TxtTen_GV.setText("");
+            cw.TxtMa_MH.setText("");
+            cw.TxtTenMon.setText("");
+            cw.TxtSoTinChi.setText("");
+            cw.TxtLop.setText("");
+            cw.TxtSoSinhVien.setText("");
+            cw.TxtHocKy.setText("");
+            cw.TxtNamHoc.setText("");
+            cw.TxtPhuCap.setText("");
         }
            
     }
@@ -142,25 +154,46 @@ public class GiangDayController extends CheckEmpty {
             
             if(cw.RBtn_GDay.isSelected()){
                 String Ma_MH = listgd.get(row1).getMa_MH();
+                String mamh = cw.TxtMa_MH.getText();
+                if(mamh!=Ma_MH){
+                    JOptionPane.showMessageDialog(cw, "Mã môn học không được phép thay đổi.");
+                    cw.TxtMa_MH.requestFocus();
+                }
                 String TenMon = cw.TxtMa_GD.getText();
-                String SoTinChi = cw.TxtTenCon.getText();
-                String Lop = cw.Cbx_NamSinh_Con.getSelectedItem().toString();
-                String SoSinhVien = cw.TxtThanhTichCon.getText();
+                String SoTinChi = cw.TxtSoTinChi.getText();
+                String Lop = cw.TxtLop.getText();
+                String SoSinhVien = cw.TxtSoSinhVien.getText();
                 String HocKy = cw.TxtHocKy.getText();
                 String NamHoc = cw.TxtNamHoc.getText();
                 String PhuCap_GD = cw.TxtPhuCap.getText();
-                gdd.UpdateGiangDay(Ma_MH, TenMon, SoTinChi, Lop, SoSinhVien, HocKy, NamHoc, PhuCap_GD);
+                String sogioday = cw.TxtSoGioDay.getText();
+                gdd.UpdateGiangDay(Ma_MH, TenMon, SoTinChi, Lop, SoSinhVien, HocKy, NamHoc, PhuCap_GD,sogioday);
                 isl.theQuery("INSERT INTO Log (NoiDung) value('Cập nhật thông tin giảng dạy của 1 môn học')");
                  cw.BindingGday(gdd.loadTableGiangDay());
             }
             if(cw.RBtn_CB_GDay.isSelected()){
-                 String stt = listgvgd.get(row2).getStt();
+                String stt = listgvgd.get(row2).getStt();
+                String tt = cw.Txt_STT_CB_GDay.getText();
+                if(tt!=stt){
+                    JOptionPane.showMessageDialog(cw, "Số thứ tự không được phép thay đổi.");
+                    cw.Txt_STT_CB_GDay.requestFocus();
+                }
                 String Ma_mh = cw.CB_Ma_MH.getSelectedItem().toString();
                 String Ma_cb = cw.CB_MaCB_Gday.getSelectedItem().toString();
                 gdd.UpdateGiangVien_GiangDay(stt, Ma_cb, Ma_mh);
                  cw.BindingGV_GiangDay(gdd.loadTableGiangVien_GiangDay());
             }
-            
+            cw.CB_MaCB_Gday.setSelectedItem("");
+            cw.Txt_STT_CB_GDay.setText("");
+            cw.TxtTen_GV.setText("");
+            cw.TxtMa_MH.setText("");
+            cw.TxtTenMon.setText("");
+            cw.TxtSoTinChi.setText("");
+            cw.TxtLop.setText("");
+            cw.TxtSoSinhVien.setText("");
+            cw.TxtHocKy.setText("");
+            cw.TxtNamHoc.setText("");
+            cw.TxtPhuCap.setText("");
         }
     }
 
@@ -171,12 +204,13 @@ public class GiangDayController extends CheckEmpty {
 
             String Ma_MH = cw.TxtMa_MH.getText();
             String TenMon = cw.TxtMa_GD.getText();
-            String SoTinChi = cw.TxtTenCon.getText();
-            String Lop = cw.Cbx_NamSinh_Con.getSelectedItem().toString();
-            String SoSinhVien = cw.TxtThanhTichCon.getText();
+            String SoTinChi = cw.TxtSoTinChi.getText();
+            String Lop = cw.TxtLop.getText();
+            String SoSinhVien = cw.TxtSoSinhVien.getText();
             String HocKy = cw.TxtHocKy.getText();
             String NamHoc = cw.TxtNamHoc.getText();
             String PhuCap_GD = cw.TxtPhuCap.getText();
+            String sogioday = cw.TxtSoGioDay.getText();
             
             String stt = cw.Txt_STT_CB_GDay.getText();
             String Ma_mh = cw.CB_Ma_MH.getSelectedItem().toString();
@@ -190,7 +224,7 @@ public class GiangDayController extends CheckEmpty {
                 if (!checkEmpty(cw.TxtMa_MH, Ma_MH, "Mã Môn Học")) {
                     return;
                 }else {
-                    gdd.AddGiangDay(Ma_MH, TenMon, SoTinChi, Lop, SoSinhVien, HocKy, NamHoc, PhuCap_GD);
+                    gdd.AddGiangDay(Ma_MH, TenMon, SoTinChi, Lop, SoSinhVien, HocKy, NamHoc, PhuCap_GD,sogioday);
                     isl.theQuery("INSERT INTO Log (NoiDung) value('Thêm thông tin giảng dạy của 1 môn học')");
                     cw.BindingGday(gdd.loadTableGiangDay());
                 }
@@ -204,7 +238,18 @@ public class GiangDayController extends CheckEmpty {
                     cw.BindingGV_GiangDay(gdd.loadTableGiangVien_GiangDay());
                 }
             }
-            
+            cw.BindingMaMH(gd.getALL());
+            cw.CB_MaCB_Gday.setSelectedItem("");
+            cw.Txt_STT_CB_GDay.setText("");
+            cw.TxtTen_GV.setText("");
+            cw.TxtMa_MH.setText("");
+            cw.TxtTenMon.setText("");
+            cw.TxtSoTinChi.setText("");
+            cw.TxtLop.setText("");
+            cw.TxtSoSinhVien.setText("");
+            cw.TxtHocKy.setText("");
+            cw.TxtNamHoc.setText("");
+            cw.TxtPhuCap.setText("");
         }
      
     }

@@ -129,7 +129,24 @@ public class NghienCuuKhoaHocController extends CheckEmpty{
                 isl.theQuery("INSERT INTO Log (NoiDung) value('Xóa thông tin 1 đề tài NCKH')");
                 cw.BindingNCKH(nckhd.loadTableNCKH());
             }
-           
+            cw.BindingMaNCKH(nckh.getALL());
+            cw.CB_MaCB_NCKH.setSelectedItem("");
+            cw.Txt_Stt_NCKH.setText("");
+            cw.CB_Ma_DTai.setSelectedItem("");
+            cw.TxtTen_CBNCKH.setText("");
+            cw.Txt_MaDT.setText("");
+            cw.TxtTenDT.setText("");
+            cw.TxtCap.setText("");
+            cw.TxtKinhPhi.setText("");
+            cw.TxtChuTri.setText("");
+            cw.TxtTinhTrang.setText("");
+            cw.TxtKetQua.setText("");
+            cw.CBx_Nam_NCKH_TGBD.setSelectedItem("");
+            cw.Cbx_Thang_NCKH_TGBD.setSelectedItem("");
+            cw.Cbx_Ngay_NCKH_TGBD.setSelectedItem("");
+            cw.Cbx_Nam_NCKH_TGKT.setSelectedItem("");
+            cw.Cbx_Thang_NCKH_TGKT.setSelectedItem("");
+            cw.Cbx_Ngay_NCKH_TGKT.setSelectedItem("");
         }
            
     }
@@ -152,6 +169,11 @@ public class NghienCuuKhoaHocController extends CheckEmpty{
             
             if(cw.RBtn_NCKH.isSelected()){
                 String Ma_DT = listnckh.get(row1).getMa_DT();
+                String madt = cw.Txt_MaDT.getText();
+                if(madt!=Ma_DT){
+                    JOptionPane.showMessageDialog(cw, "Mã đề tài không được phép thay đổi.");
+                    cw.Txt_MaDT.requestFocus();
+                }
                 String TenDeTai = cw.TxtTenDT.getText();
                 String Cap = cw.TxtCap.getText();
                 String KinhPhi = cw.TxtKinhPhi.getText();
@@ -161,12 +183,20 @@ public class NghienCuuKhoaHocController extends CheckEmpty{
                 String ThoiGianKetThuc = cw.Cbx_Nam_NCKH_TGKT.getSelectedItem().toString()+"-"
                                             +cw.Cbx_Thang_NCKH_TGKT.getSelectedItem().toString()+"-"
                                                 +cw.Cbx_Ngay_NCKH_TGKT.getSelectedItem().toString();
+                int hieu = Integer.parseInt(cw.Cbx_Nam_NCKH_TGKT.getSelectedItem().toString())- Integer.parseInt(cw.CBx_Nam_NCKH_TGBD.getSelectedItem().toString());
                 String ChuTriDeTai = cw.TxtChuTri.getText();
                 String TinhTrang = cw.TxtTinhTrang.getText();
                 String KetQua = cw.TxtKetQua.getText();
-                nckhd.UpdateNghienCuuKhoaHoc(Ma_DT, TenDeTai, Cap, KinhPhi, ThoiGianBatDau, ThoiGianKetThuc, ChuTriDeTai, TinhTrang, KetQua);
-                isl.theQuery("INSERT INTO Log (NoiDung) value('cập nhật thông tin 1 đề tài NCKH')");
-                cw.BindingNCKH(nckhd.loadTableNCKH());
+                if(isNumber(KinhPhi)== false){
+                        JOptionPane.showMessageDialog(cw, "Trường kinh phí phải là số.");
+                        cw.TxtKinhPhi.requestFocus();
+                    }else if(hieu<0){
+                        JOptionPane.showMessageDialog(cw, "Năm thời gian kết thúc không được nhỏ hơn năm thời gian bắt đầu");
+                    }else{
+                        nckhd.UpdateNghienCuuKhoaHoc(Ma_DT, TenDeTai, Cap, KinhPhi, ThoiGianBatDau, ThoiGianKetThuc, ChuTriDeTai, TinhTrang, KetQua);
+                        isl.theQuery("INSERT INTO Log (NoiDung) value('cập nhật thông tin 1 đề tài NCKH')");
+                        cw.BindingNCKH(nckhd.loadTableNCKH());
+                }
             }
             if(cw.RBtn_GV_NCKH.isSelected()){
                 String Stt = listgvnckh.get(row2).getstt();
@@ -175,7 +205,23 @@ public class NghienCuuKhoaHocController extends CheckEmpty{
                 nckhd.UpdateGiangVien_NghienCuuKhoaHoc(Stt, Ma_cb, Ma_dt);
                 cw.BindingGiangVien_NCKH(nckhd.loadTableCanBo_NCKH());
             }
-            
+            cw.CB_MaCB_NCKH.setSelectedItem("");
+            cw.Txt_Stt_NCKH.setText("");
+            cw.CB_Ma_DTai.setSelectedItem("");
+            cw.TxtTen_CBNCKH.setText("");
+            cw.Txt_MaDT.setText("");
+            cw.TxtTenDT.setText("");
+            cw.TxtCap.setText("");
+            cw.TxtKinhPhi.setText("");
+            cw.TxtChuTri.setText("");
+            cw.TxtTinhTrang.setText("");
+            cw.TxtKetQua.setText("");
+            cw.CBx_Nam_NCKH_TGBD.setSelectedItem("");
+            cw.Cbx_Thang_NCKH_TGBD.setSelectedItem("");
+            cw.Cbx_Ngay_NCKH_TGBD.setSelectedItem("");
+            cw.Cbx_Nam_NCKH_TGKT.setSelectedItem("");
+            cw.Cbx_Thang_NCKH_TGKT.setSelectedItem("");
+            cw.Cbx_Ngay_NCKH_TGKT.setSelectedItem("");
         }
     }
 
@@ -194,6 +240,7 @@ public class NghienCuuKhoaHocController extends CheckEmpty{
             String ThoiGianKetThuc = cw.Cbx_Nam_NCKH_TGKT.getSelectedItem().toString()+"-"
                                         +cw.Cbx_Thang_NCKH_TGKT.getSelectedItem().toString()+"-"
                                             +cw.Cbx_Ngay_NCKH_TGKT.getSelectedItem().toString();
+            int hieu = Integer.parseInt(cw.Cbx_Nam_NCKH_TGKT.getSelectedItem().toString())- Integer.parseInt(cw.CBx_Nam_NCKH_TGBD.getSelectedItem().toString());
             String ChuTriDeTai = cw.TxtChuTri.getText();
             String TinhTrang = cw.TxtTinhTrang.getText();
             String KetQua = cw.TxtKetQua.getText();
@@ -209,7 +256,12 @@ public class NghienCuuKhoaHocController extends CheckEmpty{
             if(cw.RBtn_NCKH.isSelected()){
                 if (!checkEmpty(cw.Txt_MaDT, Ma_DT, "Mã Đề Tài")) {
                     return;
-                }else {
+                }else if(isNumber(KinhPhi)== false){
+                        JOptionPane.showMessageDialog(cw, "Trường kinh phí phải là số.");
+                        cw.TxtKinhPhi.requestFocus();
+                    }else if(hieu<0){
+                        JOptionPane.showMessageDialog(cw, "Năm thời gian kết thúc không được nhỏ hơn năm thời gian bắt đầu");
+                    }else{
                     nckhd.AddNghienCuuKhoaHoc(Ma_DT, TenDeTai, Cap, KinhPhi, ThoiGianBatDau, ThoiGianKetThuc, ChuTriDeTai, TinhTrang, KetQua);
                     isl.theQuery("INSERT INTO Log (NoiDung) value('Thêm mới thông tin 1 đề tài NCKH')");
                     cw.BindingNCKH(nckhd.loadTableNCKH());
@@ -223,8 +275,28 @@ public class NghienCuuKhoaHocController extends CheckEmpty{
                     cw.BindingGiangVien_NCKH(nckhd.loadTableCanBo_NCKH());
                 }
             }
-            
+            cw.BindingMaNCKH(nckh.getALL());
+            cw.CB_MaCB_NCKH.setSelectedItem("");
+            cw.Txt_Stt_NCKH.setText("");
+            cw.CB_Ma_DTai.setSelectedItem("");
+            cw.TxtTen_CBNCKH.setText("");
+            cw.Txt_MaDT.setText("");
+            cw.TxtTenDT.setText("");
+            cw.TxtCap.setText("");
+            cw.TxtKinhPhi.setText("");
+            cw.TxtChuTri.setText("");
+            cw.TxtTinhTrang.setText("");
+            cw.TxtKetQua.setText("");
+            cw.CBx_Nam_NCKH_TGBD.setSelectedItem("");
+            cw.Cbx_Thang_NCKH_TGBD.setSelectedItem("");
+            cw.Cbx_Ngay_NCKH_TGBD.setSelectedItem("");
+            cw.Cbx_Nam_NCKH_TGKT.setSelectedItem("");
+            cw.Cbx_Thang_NCKH_TGKT.setSelectedItem("");
+            cw.Cbx_Ngay_NCKH_TGKT.setSelectedItem("");
         }
      
     } 
+    public boolean isNumber(String input) {
+        return input.matches("^-?[0-9]+(\\.[0-9]+)?$");
+    }
 }

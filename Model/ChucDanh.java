@@ -23,7 +23,7 @@ public class ChucDanh extends DBConnect{
     private final String GET_ALL = "select * from chuc_danh";
     private final String ADD_DATA = "insert into "
             + "chuc_danh(Stt,Ma_CB,ChucDanh,ThoiGianNhan)"
-            + "values (?,?,?,?,?)";
+            + "values (?,?,?,?)";
     private final String UPDATE_DATA = "Update "
             + "chuc_danh set Ma_CB =? ,ChucDanh=?,ThoiGianNhan=? where Stt=?";
     private final String REMOVE_DATA = "Delete from chuc_danh where Stt=?";

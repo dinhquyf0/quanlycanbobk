@@ -12,6 +12,7 @@ import View.ChangeView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -59,7 +60,7 @@ public class ChamThiController extends CheckEmpty {
                 cw.CB_MaCB_ChamThi.setSelectedIndex(0);
             }
             cw.TxtMa_ChamThi.setText(listct.get(row).getMa_ChamThi());
-            cw.TxtMa_MH_ChamThi.setText(listct.get(row).getMa_MH());
+            cw.Cbx_MaMH_ChamThi.setSelectedItem(listct.get(row).getMa_MH());
             cw.TxtMa_Lop.setText(listct.get(row).getMa_lop());
             
             cw.TxtSoBaiThi.setText(listct.get(row).getSoBaiThi());
@@ -96,17 +97,32 @@ public class ChamThiController extends CheckEmpty {
             listct = ct.getALL();
             int row = cw.Chamthi_TBL.getSelectedRow();
             String Ma_CT = listct.get(row).getMa_ChamThi();
+            String tt = cw.TxtMa_ChamThi.getText();
+                if(tt!=Ma_CT){
+                    JOptionPane.showMessageDialog(cw,"Mã chấm thi không được phép thay đổi.");
+                    cw.TxtMa_ChamThi.requestFocus();
+                }
             String Ma_Lop = cw.TxtMa_Lop.getText();
             String Ma_CB = cw.CB_MaCB_ChamThi.getSelectedItem().toString();
-            String Ma_MH = cw.TxtMa_MH_ChamThi.getText();
+            String Ma_MH = cw.Cbx_MaMH_ChamThi.getSelectedItem().toString();
             String NgayNop = cw.Cbx_Nam_ChamThi.getSelectedItem().toString()+"-"
                                 +cw.Cbx_Thang_ChamThi.getSelectedItem().toString()+"-"
                                     +cw.Cbx_Ngay_ChamThi.getSelectedItem().toString();
             String SoBaiThi = cw.TxtSoBaiThi.getText();
-            
+            if(isNumber(SoBaiThi)== false){
+                JOptionPane.showMessageDialog(cw, "Trường số bài thi phải là số.");
+                cw.TxtSoBaiThi.requestFocus();
+            }else{
             ctd.UpdateChamThi(Ma_CT, Ma_Lop, Ma_CB, Ma_MH, NgayNop, SoBaiThi);
             isl.theQuery("INSERT INTO Log (NoiDung) value('Cập nhật thông tin chấm thi')");
             BindingChamThi();
+            cw.TxtMa_ChamThi.setText("");
+            cw.TxtMa_Lop.setText("");
+            cw.CB_MaCB_ChamThi.setSelectedItem("");
+            cw.Cbx_Nam_ChamThi.setSelectedItem("");
+            cw.Cbx_Ngay_ChamThi.setSelectedItem("");
+            cw.TxtSoBaiThi.setText("");
+            }
         }
     }
 
@@ -114,20 +130,37 @@ public class ChamThiController extends CheckEmpty {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
+            
             String Ma_CT = cw.TxtMa_ChamThi.getText();
             String Ma_Lop = cw.TxtMa_Lop.getText();
             String Ma_CB = cw.CB_MaCB_ChamThi.getSelectedItem().toString();
-            String Ma_MH = cw.TxtMa_MH_ChamThi.getText();
+            String Ma_MH = cw.Cbx_MaMH_ChamThi.getSelectedItem().toString();
             String NgayNop = cw.Cbx_Nam_ChamThi.getSelectedItem().toString()+"-"
                                 +cw.Cbx_Thang_ChamThi.getSelectedItem().toString()+"-"
                                     +cw.Cbx_Ngay_ChamThi.getSelectedItem().toString();
             String SoBaiThi = cw.TxtSoBaiThi.getText();
             if(!checkEmpty(cw.TxtMa_ChamThi,Ma_CT, "Mã Chấm Thi")){
+                return;
+            }else if(isNumber(SoBaiThi)== false){
+                JOptionPane.showMessageDialog(cw, "Trường số bài thi phải là số.");
+                cw.TxtSoBaiThi.requestFocus();
+            }else{
             ctd.AddChamThi(Ma_CT, Ma_Lop, Ma_CB, Ma_MH, NgayNop, SoBaiThi);
+            
             isl.theQuery("INSERT INTO Log (NoiDung) value('Thêm mới 1 thông tin chấm thi')");
             BindingChamThi();
+            cw.TxtMa_ChamThi.setText("");
+            cw.TxtMa_Lop.setText("");
+            cw.CB_MaCB_ChamThi.setSelectedItem("");
+            cw.Cbx_Nam_ChamThi.setSelectedItem("");
+            cw.Cbx_Ngay_ChamThi.setSelectedItem("");
+            cw.TxtSoBaiThi.setText("");
+            
             }
         }
      
+    }
+    public boolean isNumber(String input) {
+        return input.matches("^-?[0-9]+(\\.[0-9]+)?$");
     }
 }

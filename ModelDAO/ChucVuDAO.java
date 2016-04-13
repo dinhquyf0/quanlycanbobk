@@ -31,7 +31,6 @@ public class ChucVuDAO {
             
             row.add(cv.getChucVu());
             row.add(cv.getThoiGianNhan());
-            row.add(cv.getPhuCap_ChucVu());
             data.add(row);
         }
         return data;
@@ -45,10 +44,13 @@ public class ChucVuDAO {
             listcb = cb.getByID(cv.getMa_CB());
             row.add(cv.getStt());
             row.add(cv.getMa_CB());
-            row.add(listcb.get(0).getHoVaTen());
+            if(listcb.size() > 0){
+                row.add(listcb.get(0).getHoVaTen());
+            }else{
+                row.add("isEmpty");
+            }        
             row.add(cv.getChucVu());
             row.add(cv.getThoiGianNhan());
-            row.add(cv.getPhuCap_ChucVu());
             data.add(row);
         }
         return data;

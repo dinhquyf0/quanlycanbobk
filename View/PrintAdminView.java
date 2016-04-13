@@ -15,11 +15,21 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import jxl.Workbook;
+import jxl.write.Label;
+import jxl.write.WritableCell;
+import jxl.write.WritableCellFormat;
+import jxl.write.WritableFont;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
+import jxl.write.WriteException;
 
 
 /**
@@ -355,6 +365,7 @@ public class PrintAdminView extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Tùy Chỉnh"));
 
         CHBx_Footer.setText("Chọn Footer");
+        CHBx_Footer.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         CHBx_Footer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CHBx_FooterActionPerformed(evt);
@@ -362,6 +373,7 @@ public class PrintAdminView extends javax.swing.JFrame {
         });
 
         CHBx_Header.setText("Chọn Header");
+        CHBx_Header.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         CHBx_Header.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CHBx_HeaderActionPerformed(evt);
@@ -373,6 +385,7 @@ public class PrintAdminView extends javax.swing.JFrame {
         jLabel2.setText("Chọn Bảng In");
 
         Cbx_bang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Chọn", "Cán Bộ", "Gia Đình", "Lương", "Đảng Phí", "Công Đoàn Phí", "Đoàn Phí", "Chức Vụ", "Chức Danh", "Bài Báo - Tạp Chí", "Nghiên Cứu Khoa Học", "Chấm Thi", "Giảng Dạy" }));
+        Cbx_bang.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Cbx_bang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Cbx_bangActionPerformed(evt);
@@ -383,14 +396,18 @@ public class PrintAdminView extends javax.swing.JFrame {
 
         CHBx_Fit_Width.setSelected(true);
         CHBx_Fit_Width.setText("Chỉnh độ rộng cột");
+        CHBx_Fit_Width.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         CHBx_showprintdialog.setSelected(true);
         CHBx_showprintdialog.setText("Hiển thị cửa sổ in");
+        CHBx_showprintdialog.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         CHBx_Interative.setSelected(true);
         CHBx_Interative.setText("Tương tác");
+        CHBx_Interative.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         RBtn_Excel.setText("Excel");
+        RBtn_Excel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         RBtn_Excel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RBtn_ExcelActionPerformed(evt);
@@ -399,6 +416,7 @@ public class PrintAdminView extends javax.swing.JFrame {
 
         RBtn_PDF.setSelected(true);
         RBtn_PDF.setText("PDF");
+        RBtn_PDF.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         RBtn_PDF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RBtn_PDFActionPerformed(evt);
@@ -464,6 +482,7 @@ public class PrintAdminView extends javax.swing.JFrame {
         );
 
         Print_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/InAdmin.png"))); // NOI18N
+        Print_Btn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Print_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Print_BtnActionPerformed(evt);
@@ -554,28 +573,32 @@ public class PrintAdminView extends javax.swing.JFrame {
         
     }//GEN-LAST:event_CHBx_FooterActionPerformed
     
-    public void toExcel(JTable table, File file){    
+    public void toExcel(JTable table, File file) throws WriteException{ 
         try{
+        WritableWorkbook workbook = Workbook.createWorkbook(file);
+            WritableSheet sheet = workbook.createSheet("Page 1", 0);
+            
+            
             TableModel model = TBL_print.getModel();
-            FileWriter excel = new FileWriter(file);
-            BufferedWriter bw=new BufferedWriter(excel);
-            for(int i = 0; i < model.getColumnCount(); i++){
-                bw.write(model.getColumnName(i) + "\t");
-                }
 
-            bw.write("\n");
-
+            WritableCellFormat cellFormat = new WritableCellFormat();
+            WritableFont font = new WritableFont(WritableFont.ARIAL);
+            font.setStruckout(true);
+            cellFormat.setFont(font);
+            
+            for(int i = 0; i<model.getColumnCount(); i++){
+                Label column = new Label(i,0,model.getColumnName(i).toString());
+                sheet.addCell(column);
+            }
+            
             for(int i=0; i< model.getRowCount(); i++) {
                 for(int j=0; j < model.getColumnCount(); j++) {
-                    String string = model.getValueAt(i,j).toString()+"\t";
-                    byte[] utf8 = string.getBytes("UTF-8");
-    
-                    string = new String(utf8, "UTF-8");
-                    bw.write(string);
+                    sheet.addCell(new Label(j,i+1,model.getValueAt(i, j).toString()));
                 }
-                bw.write("\n");
+                
             }
-        bw.close();
+            workbook.write();
+            workbook.close();
         }catch(IOException e){ System.out.println(e); }
         }
     
@@ -601,45 +624,50 @@ public class PrintAdminView extends javax.swing.JFrame {
                     boolean complete = TBL_print.print(mode, header, footer, showPrintDialog, null, interactive, null);
                     if (complete) {
                         JOptionPane.showMessageDialog(null,
-                                                      "Printing Complete",
-                                                      "Printing Result",
+                                                      "Xuất báo cáo xong.!",
+                                                      "Kết quả xuất :",
                                                       JOptionPane.INFORMATION_MESSAGE);
                     } else {
                         JOptionPane.showMessageDialog(null,
-                                                      "Printing Cancelled",
-                                                      "Printing Result",
+                                                      "Dừng xuất báo cáo.!",
+                                                      "Kết quả xuất :",
                                                       JOptionPane.INFORMATION_MESSAGE);
                     }
                 } catch (PrinterException pe) {
                     JOptionPane.showMessageDialog(null,
-                                                  "Printing Failed: " + pe.getMessage(),
-                                                  "Printing Result",
+                                                  "Xuất báo cáo lỗi: " + pe.getMessage(),
+                                                  "Kết quả xuất :",
                                                   JOptionPane.ERROR_MESSAGE);
                 }
             }
                 if(RBtn_Excel.isSelected()){
 
                     JFileChooser fc = new JFileChooser();
-                    int option = fc.showSaveDialog(PrintAdminView.this);
-                    if(option == JFileChooser.APPROVE_OPTION){
-                        String filename = fc.getSelectedFile().getName(); 
-                        String path = fc.getSelectedFile().getParentFile().getPath();
+            int option = fc.showSaveDialog(PrintAdminView.this);
+            if(option == JFileChooser.APPROVE_OPTION){
+                String filename = fc.getSelectedFile().getName(); 
+                String path = fc.getSelectedFile().getParentFile().getPath();
 
-                        int len = filename.length();
-                        String ext = "";
-                        String file = "";
+                int len = filename.length();
+                String ext = "";
+                String file = "";
 
-                        if(len > 4){
-                            ext = filename.substring(len-4, len);
-                        }
+                if(len > 4){
+                    ext = filename.substring(len-4, len);
+                }
 
-                        if(ext.equals(".xls")){
-                            file = path + "\\" + filename; 
-                        }else{
-                            file = path + "\\" + filename + ".xls"; 
-                        }
-                            toExcel(TBL_print, new File(file));
-                    }
+                if(ext.equals(".xls")){
+                    file = path + "\\" + filename; 
+                }else{
+                    file = path + "\\" + filename + ".xls"; 
+                }
+                try {
+                    toExcel(TBL_print, new File(file));
+                } catch (WriteException ex) {
+                    Logger.getLogger(PrintAdminView.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            JOptionPane.showMessageDialog(this, "Xuất báo cáo thành công.!");
 
                 }
 
