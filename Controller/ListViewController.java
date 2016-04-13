@@ -20,8 +20,8 @@ public class ListViewController {
     Insertlog isl = new Insertlog();
     String user;
     public static int tuoi = 20;
-    public static int Hocky = 1;
-    public static int Namhoc = 2015;
+    int Hocky;
+    int Namhoc;
     public static String thanhtich = "";
     
     
@@ -55,8 +55,8 @@ public class ListViewController {
         }else{
             lv.Chbx_ChangeAge.setEnabled(false);
             lv.Chbx_Thaydoithanhtich.setEnabled(false);
-            lv.Chbx_Hocki.setEnabled(false);
-            lv.Chbx_Nam.setEnabled(false);
+            lv.Chbx_Hocki.setEnabled(true);
+            lv.Chbx_Nam.setEnabled(true);
         }
         
         BindingCbxListTBL();
